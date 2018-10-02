@@ -1,0 +1,4 @@
+Pre Condition:
+=======================================
+1. Install Eigen3.3
+run ./install_eigen.sh

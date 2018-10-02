@@ -7,6 +7,8 @@
 /cmake_install.cmake
 /doc/doxyfile.config
 bin
+build_release
+build_debug
 /craam/eigen-eigen-5a0156e40feb
 /include/Eigen
 /data

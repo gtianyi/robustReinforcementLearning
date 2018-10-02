@@ -34,7 +34,7 @@ endif()
 
 # **** Find packages ****
 find_package(OpenMP)
-find_package (Eigen3 3.3 REQUIRED NO_MODULE)
+#find_package (Eigen3 3.3 REQUIRED NO_MODULE)
 find_package(Boost COMPONENTS unit_test_framework ) 
 find_package(Doxygen)
 if(${Boost_FOUND} LESS 1)
@@ -63,9 +63,9 @@ endif()
 
 # **** TURN FEATURES ON AND OFF ****
 
-option (BUILD_TESTS "Build tests (requires Boost)" ON)
+option (BUILD_TESTS "Build tests (requires Boost)" OFF)
 option (BUILD_DOCUMENTATION "Build source code documentation" ${DOXYGEN_FOUND})
-option (USE_GUROBI "Use Gurobi linear program solver" ON)
+option (USE_GUROBI "Use Gurobi linear program solver" OFF)
 
 # **** CONFIGURATION ****
 
