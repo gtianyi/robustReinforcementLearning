@@ -22,7 +22,7 @@ if __name__ == "__main__":
     transitions = np.array([[0.6,0.2,0.2],[0.2,0.6,0.2],[0.2,0.2,0.6]])
     
     # ***start UCRL2***
-    num_episodes = 20
+    num_episodes = 30
     t=1
     
     # state-action counts
@@ -54,7 +54,7 @@ if __name__ == "__main__":
     
         for a in range(num_actions):
             for s in range(num_next_states):
-                estimated_mdp.add_transition(0, a, s+1, p_hat[a,s], rewards[s])
+                estimated_mdp.add_transition(0, a, s+1, p_hat[a,s], r_hat[a]+psi_r[a]) # as the reward is upper bounded by psi_r from mean reward r_hat
                 
                 # construct the threshold for each state-action
                 thresholds[0].append(0) # from state
