@@ -4,6 +4,7 @@ import numpy as np
 from scipy.stats import norm
 from craam import crobust
 from scipy import stats
+import matplotlib.pyplot as plt
 #import tqdm
 import pickle
 import datetime
@@ -88,3 +89,86 @@ if __name__ == "__main__":
     
     print("orig_sol", orig_sol, "orig_policy", orig_policy)
     
+### Posterior Sampling Reinforcement Learning (PSRL)
+
+if __name__ == "__main__":
+    confidence = 0.95
+    num_next_states = 3
+    num_actions = 3
+    discount_factor = 0.9
+    num_episodes = 50
+    num_runs = 20
+    horizon = 5
+    
+    # rewards for 3 possible next terminal states
+    rewards = np.arange(1, num_next_states+1, dtype=float)*10
+    
+    # 3 possible actions, each action can lead to 3 terminal states with different probabilities. transitions[i] is the transition probability for action i.
+    transitions = np.array([[0.6,0.2,0.2],[0.2,0.6,0.2],[0.2,0.2,0.6]])
+    
+    true_mdp = crobust.MDP(0, discount_factor)
+    for a in range(num_actions):
+        for s in range(num_next_states):
+            true_mdp.add_transition(0, a, s+1, transitions[a, s], rewards[s])
+    true_solution = true_mdp.solve_mpi()
+    #print("true_solution", true_solution)
+    
+    prior = [np.ones(num_next_states) for _ in range(num_actions)]
+    samples = np.zeros((num_actions, num_next_states))
+    posterior = prior + samples
+    
+    regret = np.zeros( (num_episodes, num_runs) )
+    
+    for k in range(num_episodes):
+        for m in range(num_runs):
+            sampled_mdp = crobust.MDP(0, discount_factor)
+            posterior = posterior+samples
+            
+            for a in range(num_actions):
+                trp =  np.random.dirichlet(posterior[a], 1)[0]
+                for s in range(num_next_states):
+                    sampled_mdp.add_transition(0, a, s+1, trp[s], rewards[s])
+            
+            cur_solution = sampled_mdp.solve_mpi()
+            cur_policy = cur_solution.policy
+            action = cur_policy[0] # action for the nonterminal state 0
+            regret[k,m] = abs(cur_solution[0][0]-true_solution[0][0])
+            
+            samples = np.zeros((num_actions, num_next_states))
+            for h in range(horizon):
+                next_state = np.random.choice(num_next_states, 1, p=transitions[action])
+                samples[action, next_state] += 1
+    regret = np.mean(regret, axis=1)
+    print("regret", regret)
+    #print("cur_solution", cur_solution, "posterior", posterior)
+
+    plt.plot(regret)
+    plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
