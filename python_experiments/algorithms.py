@@ -24,7 +24,7 @@ def PSRL(num_states, num_actions, num_next_states, true_transitions, rewards, di
     true_solution : Solution object of CRAAM
         The solution of the true MDP
         
-    Returns:
+    Returns
     --------
     numpy array
         Computed regret
@@ -84,6 +84,11 @@ def compute_bayesian_threshold(points, nominal_point, confidence_level):
         Array containing nominal/average transition probabilities
     confidence_level : float
         Required confidence level
+        
+    Returns
+    -------
+    float
+        threshold value
     """
     distances = [np.linalg.norm(p - nominal_point, ord = 1) for p in points]
     confidence_rank = math.ceil(len(points) * confidence_level)
@@ -119,7 +124,7 @@ def BayesUCRL(num_states, num_actions, num_next_states, true_transitions, reward
     true_solution : Solution object of CRAAM
         The solution of the true MDP
         
-    Returns:
+    Returns
     --------
     numpy array
         Computed regret
@@ -204,7 +209,7 @@ def UCRL2(num_states, num_actions, num_next_states, true_transitions, rewards, d
     true_solution : Solution object of CRAAM
         The solution of the true MDP
         
-    Returns:
+    Returns
     --------
     numpy array
         Computed regret
