@@ -26,9 +26,9 @@ if __name__ == "__main__":
     confidence = 0.9
     num_actions = 2
     discount_factor = 0.9
-    num_bayes_samples = 20
-    num_episodes = 500
-    num_runs = 30
+    num_bayes_samples = 30
+    num_episodes = 20
+    num_runs = 10
     horizon = 10
     num_states = 6
     states = np.arange(num_states)
@@ -71,14 +71,19 @@ if __name__ == "__main__":
     regret_psrl = PSRL(num_states, num_actions, num_states, transitions, rewards, discount_factor, num_episodes, num_runs, true_solution)
     print("executing Bayes UCRL...")
     regret_bayes_ucrl =  BayesUCRL(num_states, num_actions, num_states, transitions, rewards, discount_factor, confidence, num_bayes_samples, num_episodes, num_runs, true_solution)
+    print("executing OFVF...")
+    regret_ofvf = Optimism_VF(num_states, num_actions, num_states, transitions, rewards, discount_factor, confidence, num_bayes_samples, num_episodes, num_runs, true_solution)
     
 ### Plot results
 if __name__ == "__main__":
-    plt.plot(np.cumsum(regret_psrl), label="PSRL", color='b', linestyle='--')
-    #plt.plot(np.cumsum(regret_ucrl), label="UCRL", color='g', linestyle=':')
-    plt.plot(np.cumsum(regret_bayes_ucrl), label="Bayes UCRL", color='r', linestyle='-.')
+    plt.plot(np.cumsum(regret_psrl), label="PSRL", color='b', linestyle=':')
+    #plt.plot(np.cumsum(regret_ucrl), label="UCRL", color='c', linestyle=':')
+    plt.plot(np.cumsum(regret_bayes_ucrl), label="Bayes UCRL", color='g', linestyle='--')
+    plt.plot(np.cumsum(regret_ofvf), label="OFVF", color='r', linestyle='-.')
     plt.legend(loc='best', fancybox=True, framealpha=0.3)
     plt.grid()
     plt.show()
+
+
 
     
