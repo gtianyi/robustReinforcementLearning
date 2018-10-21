@@ -80,7 +80,7 @@ def PSRL(num_states, num_actions, num_next_states, true_transitions, rewards, di
                 cur_state = next_state
                 
     #regret_psrl = np.mean(regret_psrl, axis=1)
-    return np.mean(regret_psrl, axis=0)
+    return np.amin(regret_psrl, axis=0), np.mean(regret_psrl, axis=0)
     
 def compute_bayesian_threshold(points, nominal_point, confidence_level):
     """
@@ -195,7 +195,7 @@ def BayesUCRL(num_states, num_actions, num_next_states, true_transitions, reward
                 cur_state = next_state
 
     #regret_bayes_ucrl = np.mean(regret_bayes_ucrl, axis=1)
-    return np.mean(regret_bayes_ucrl, axis=0)
+    return np.amin(regret_bayes_ucrl, axis=0), np.mean(regret_bayes_ucrl, axis=0)
     
     
 def UCRL2(num_states, num_actions, num_next_states, true_transitions, rewards, discount_factor, num_episodes, num_runs, true_solution):
@@ -299,7 +299,7 @@ def UCRL2(num_states, num_actions, num_next_states, true_transitions, rewards, d
                 cur_state = next_state
 
     #regret_ucrl = np.mean(regret_ucrl, axis=0)
-    return np.mean(regret_ucrl, axis=0)
+    return np.amin(regret_ucrl, axis=0), np.mean(regret_ucrl, axis=0)
     
 
 
@@ -376,9 +376,9 @@ def Optimism_VF(num_states, num_actions, num_next_states, true_transitions, rewa
     #num_bayes_samples = 20
     num_update = 10
     
+    confidences = []
     regret_OFVF = np.zeros( (num_runs, num_episodes) )
-    
-    #print(sa_confidence)
+    violations = np.zeros( (num_runs, num_episodes) )
     
     for m in range(num_runs):
         # Initialize uniform Dirichlet prior
@@ -390,6 +390,8 @@ def Optimism_VF(num_states, num_actions, num_next_states, true_transitions, rewa
             sampled_mdp = crobust.MDP(0, discount_factor)
             confidence = 1-1/(k+1)
             sa_confidence = 1-(1-confidence)/(num_states*num_actions) # !!! Apply union bound to compute confidence for each state-action
+            if m==0:
+                confidences.append(confidence)
             
             # Compute posterior
             posterior = posterior+samples
@@ -417,7 +419,12 @@ def Optimism_VF(num_states, num_actions, num_next_states, true_transitions, rewa
             # Compute current solution
             cur_solution = sampled_mdp.rsolve_mpi(b"optimistic_l1",np.array(thresholds)) # solve_mpi()
             
-            regret_OFVF[m,k], rsol = OFVF(num_states, num_actions, num_next_states, cur_solution[0], posterior_transition_points, num_update, sa_confidence, true_solution)
+            rsol = OFVF(num_states, num_actions, num_next_states, cur_solution[0], posterior_transition_points, num_update, sa_confidence)
+            
+            regret_OFVF[m,k] = abs(rsol[0][0] - true_solution[0][0])
+            
+            violations[m,k] = rsol[0][0] - true_solution[0][0]
+            
             rpolicy = rsol.policy
 
             samples = np.zeros((num_states, num_actions, num_next_states))
@@ -435,11 +442,13 @@ def Optimism_VF(num_states, num_actions, num_next_states, true_transitions, rewa
     #regret_OFVF = np.mean(regret_OFVF, axis=1)
     #plt.plot(np.cumsum(regret_OFVF))
     #plt.show()
+    
+    violations = np.mean(violations<0, axis=0)
+    
+    return np.amin(regret_OFVF, axis=0), np.mean(regret_OFVF, axis=0), violations, confidences
 
-    return np.mean(regret_OFVF, axis=0)
 
-
-def OFVF(num_states, num_actions, num_next_states, valuefunctions, posterior_transition_points, num_update, sa_confidence, true_solution):
+def OFVF(num_states, num_actions, num_next_states, valuefunctions, posterior_transition_points, num_update, sa_confidence):
     """
     Method to incrementally improve value function by adding the new value function with 
     previous valuefunctions, finding the nominal point & threshold for this cluster of value functions
@@ -530,11 +539,11 @@ def OFVF(num_states, num_actions, num_next_states, valuefunctions, posterior_tra
         #If the whole MDP is unchanged, meaning the new value function didn't change the uncertanty
         #set for any state-action, no need to iterate more!
         if is_mdp_unchanged or i==num_update-1:
-            print("**** Add Values *****")
-            print("MDP remains unchanged after number of iteration:",i)
-            print("rsol.valuefunction",rsol.valuefunction)  
+            #print("**** Add Values *****")
+            #print("MDP remains unchanged after number of iteration:",i)
+            #print("rsol.valuefunction",rsol.valuefunction)  
                             
-            return abs(rsol[0][0] - true_solution[0][0]), rsol
+            return rsol
         
         valuefunction = rsol.valuefunction
         valuefunctions.append(valuefunction)

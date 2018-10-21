@@ -10,6 +10,7 @@ import pickle
 import datetime
 import itertools
 
+# cd /home/reazul/PhD_Research/Bayesian_Exploration/Codes/Bayes_explore/bayesian_exploration/python_experiments
 
 """
 **** RiverSwim MDP problem, described in Osband2013 paper
@@ -25,10 +26,10 @@ year = {2013}
 if __name__ == "__main__":
     confidence = 0.9
     num_actions = 2
-    discount_factor = 0.9
-    num_bayes_samples = 30
-    num_episodes = 20
-    num_runs = 10
+    discount_factor = 0.99
+    num_bayes_samples = 100
+    num_episodes = 500
+    num_runs = 50
     horizon = 10
     num_states = 6
     states = np.arange(num_states)
@@ -61,28 +62,92 @@ if __name__ == "__main__":
         
     #print(true_mdp.to_json())
     true_solution = true_mdp.solve_mpi()
+    
+    with open('dumped_results/truesolution','wb') as fp:
+        pickle.dump(true_solution.valuefunction, fp)
+    
     print("true_solution", true_solution)
 
 ### Run Experiments
 if __name__ == "__main__":
     #print("executing UCRL2...")
-    #regret_ucrl = UCRL2(num_states, num_actions, num_states, transitions, rewards, discount_factor, num_episodes, num_runs, true_solution)
+    #worst_regret_ucrl, avg_regret_ucrl = UCRL2(num_states, num_actions, num_states, transitions, rewards, discount_factor, num_episodes, num_runs, true_solution)
     print("executing PSRL...")
-    regret_psrl = PSRL(num_states, num_actions, num_states, transitions, rewards, discount_factor, num_episodes, num_runs, true_solution)
-    print("executing Bayes UCRL...")
-    regret_bayes_ucrl =  BayesUCRL(num_states, num_actions, num_states, transitions, rewards, discount_factor, confidence, num_bayes_samples, num_episodes, num_runs, true_solution)
-    print("executing OFVF...")
-    regret_ofvf = Optimism_VF(num_states, num_actions, num_states, transitions, rewards, discount_factor, confidence, num_bayes_samples, num_episodes, num_runs, true_solution)
+    worst_regret_psrl, avg_regret_psrl = PSRL(num_states, num_actions, num_states, transitions, rewards, discount_factor, num_episodes, num_runs, true_solution)
+    with open('dumped_results/worst_regret_psrl','wb') as fp:
+        pickle.dump(worst_regret_psrl, fp)
+    with open('dumped_results/avg_regret_psrl','wb') as fp:
+        pickle.dump(worst_regret_psrl, fp)
     
-### Plot results
+    
+    print("executing Bayes UCRL...")
+    worst_regret_bayes_ucrl, avg_regret_bayes_ucrl =  BayesUCRL(num_states, num_actions, num_states, transitions, rewards, discount_factor, confidence, num_bayes_samples, num_episodes, num_runs, true_solution)
+    with open('dumped_results/worst_regret_bayes_ucrl','wb') as fp:
+        pickle.dump(worst_regret_bayes_ucrl, fp)
+    with open('dumped_results/avg_regret_bayes_ucrl','wb') as fp:
+        pickle.dump(avg_regret_bayes_ucrl, fp)
+    
+    
+    print("executing OFVF...")
+    worst_regret_ofvf, avg_regret_ofvf,  violations, confidences = Optimism_VF(num_states, num_actions, num_states, transitions, rewards, discount_factor, confidence, num_bayes_samples, num_episodes, num_runs, true_solution)
+    with open('dumped_results/worst_regret_ofvf','wb') as fp:
+        pickle.dump(worst_regret_ofvf, fp)
+    with open('dumped_results/avg_regret_ofvf','wb') as fp:
+        pickle.dump(avg_regret_ofvf, fp)
+    with open('dumped_results/violations_ofvf','wb') as fp:
+        pickle.dump(violations, fp)
+    with open('dumped_results/confidences_ofvf','wb') as fp:
+        pickle.dump(confidences, fp)
+    
+### Plot worst case results
 if __name__ == "__main__":
-    plt.plot(np.cumsum(regret_psrl), label="PSRL", color='b', linestyle=':')
-    #plt.plot(np.cumsum(regret_ucrl), label="UCRL", color='c', linestyle=':')
-    plt.plot(np.cumsum(regret_bayes_ucrl), label="Bayes UCRL", color='g', linestyle='--')
-    plt.plot(np.cumsum(regret_ofvf), label="OFVF", color='r', linestyle='-.')
+    plt.plot(np.cumsum(worst_regret_psrl), label="PSRL", color='b', linestyle=':')
+    #plt.plot(np.cumsum(worst_regret_ucrl), label="UCRL", color='c', linestyle=':')
+    plt.plot(np.cumsum(worst_regret_bayes_ucrl), label="Bayes UCRL", color='g', linestyle='--')
+    plt.plot(np.cumsum(worst_regret_ofvf), label="OFVF", color='r', linestyle='-.')
     plt.legend(loc='best', fancybox=True, framealpha=0.3)
+    plt.xlabel("num_episodes")
+    plt.ylabel("cumulative regret")
+    plt.title("Worst Case Regret for RiverSwim Problem")
     plt.grid()
     plt.show()
+    
+### Plot average case results
+if __name__ == "__main__":
+    plt.plot(np.cumsum(avg_regret_psrl), label="PSRL", color='b', linestyle=':')
+    #plt.plot(np.cumsum(avg_regret_ucrl), label="UCRL", color='c', linestyle=':')
+    plt.plot(np.cumsum(avg_regret_bayes_ucrl), label="Bayes UCRL", color='g', linestyle='--')
+    plt.plot(np.cumsum(avg_regret_ofvf), label="OFVF", color='r', linestyle='-.')
+    plt.legend(loc='best', fancybox=True, framealpha=0.3)
+    plt.xlabel("num_episodes")
+    plt.ylabel("cumulative regret")
+    plt.title("Average Case Regret for RiverSwim Problem")
+    plt.grid()
+    plt.show()
+
+### Plot violations
+if __name__ == "__main__":
+    plt.plot(1-np.array(violations), label="violations of OFVF", color='r', linestyle='-.')
+    plt.plot(1-np.array(confidences), label="Actual confidence", color='g', linestyle='--')
+    plt.legend(loc='best', fancybox=True, framealpha=0.3)
+    plt.xlabel("num_episodes")
+    plt.ylabel("violations")
+    plt.title("Violations")
+    plt.grid()
+    plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
