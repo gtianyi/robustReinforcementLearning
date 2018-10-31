@@ -136,6 +136,7 @@ set (SRCS
           ${CMAKE_CURRENT_SOURCE_DIR}/craam/algorithms/bellman_mdpo.hpp
           ${CMAKE_CURRENT_SOURCE_DIR}/craam/algorithms/iteration_methods.hpp
           ${CMAKE_CURRENT_SOURCE_DIR}/craam/algorithms/linprog.hpp
+		  ${CMAKE_CURRENT_SOURCE_DIR}/craam/algorithms/bayesUCRL.hpp
           ${CMAKE_CURRENT_SOURCE_DIR}/craam/simulators/inventory.hpp
           ${CMAKE_CURRENT_SOURCE_DIR}/craam/simulators/population.hpp)
 
@@ -147,6 +148,7 @@ set (TSTS ${CMAKE_CURRENT_SOURCE_DIR}/test/test.cpp
 )
 set (DEV ${CMAKE_CURRENT_SOURCE_DIR}/test/dev.cpp)
 set (BENCH ${CMAKE_CURRENT_SOURCE_DIR}/test/benchmark.cpp)
+set (BAYESUCRL ${CMAKE_CURRENT_SOURCE_DIR}/test/bayesUCRL_test.cpp)
 
 # **** LIBRARY ****
 #add_library (craam STATIC ${SRCS} )
@@ -178,7 +180,8 @@ endif (BUILD_TESTS)
 
 
 # **** COMMAND-LINE EXECUTABLE ****
-add_executable(craam-cli EXCLUDE_FROM_ALL ${BENCH} ${SRCS} )
+# add_executable(craam-cli EXCLUDE_FROM_ALL ${BENCH} ${SRCS} )
+add_executable(craam-cli EXCLUDE_FROM_ALL ${BAYESUCRL} ${SRCS} )
 if(GUROBI_USE)
     target_link_libraries(craam-cli ${GUROBI_CXX_LIBRARY_1})
     target_link_libraries(craam-cli ${GUROBI_CXX_LIBRARY_2})
