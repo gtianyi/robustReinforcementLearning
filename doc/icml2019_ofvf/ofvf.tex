@@ -27,6 +27,25 @@
 %\usepackage[ruled,linesnumbered,vlined]{algorithm2e}
 
 %defined our command here
+\newcommand{\citeasnoun}[1]{\cite{#1}}
+\newcommand*{\rom}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+\newcommand{\E}{\mathbb{E}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\setsep}{~:~}
+\newcommand{\opt}{^\star}
+\newenvironment{mprog}{\begin{array}{>{\displaystyle}l>{\displaystyle}l>{\displaystyle}l}}{\end{array}}
+\newcommand{\stc}{\\[1ex]  \mbox{s.t.} &}
+\newcommand{\cs}{\\[1ex] & }
+\newcommand{\minimize}[1]{\min_{#1} &}
+\newcommand{\maximize}[1]{\max_{#1} &}
+\newcommand{\tr}{^{\mathsf{T}}}
+\newcommand{\one}{\mathbf{1}}
+\newcommand{\Real}{\mathbb{R}}
+\renewcommand{\ss}{~:~}
+
+\newcommand{\eye}{\mathbf{I}}
+\newcommand{\zero}{\mathbf{0}}
 
 
 % If accepted, instead use the following line for the camera-ready submission:
@@ -93,19 +112,38 @@ Gross violations will trigger corrections at the camera-ready phase.
 \end{abstract}
 
 \section{Introduction}
-We are trying to improve UCRL2 by replace the bounds by Bayesian bounds.
+%We are trying to improve UCRL2 by replace the bounds by Bayesian bounds.
 
-First, we are building a simple MDP problem using craam2.
+%First, we are building a simple MDP problem using craam2.
 
-Then, we are going to implement UCRL2 by modifying one of the algorithm in craam2.
+%Then, we are going to implement UCRL2 by modifying one of the
+%algorithm in craam2.
 
-Third, we are going to replace the bound in UCRL2 by Bayesian bounds. To generate Bayesian bounds, we generate multiple sample from the believe distribution and use the max and min in the sample set as the bounds. 
+%Third, we are going to replace the bound in UCRL2 by Bayesian bounds.
+%To generate Bayesian bounds, we generate multiple sample from the
+%believe distribution and use the max and min in the sample set as the
+%bounds. 
 
-Fourth, we do experiments to compare with UCRL2 and PSRL(TS approach). For example, One state MDP, chain MDP.
+%Fourth, we do experiments to compare with UCRL2 and PSRL(TS approach).
+%For example, One state MDP, chain MDP.
 
-Fifth, once  we have positive results, we are going to write proofs that prove the new bounds are guarantee to be asymptotic optimal. And we will show the new proof is simpler than the current proof of UCB convergence. 
+%Fifth, once  we have positive results, we are going to write proofs
+%that prove the new bounds are guarantee to be asymptotic optimal. And
+%we will show the new proof is simpler than the current proof of UCB
+%convergence. 
 
-Markov decision processes (MDPs) provide a versatile methodology for modeling dynamic decision problems under uncertainty. MDPs assume that transition probabilities are known precisely, but this is rarely the case in reinforcement learning. Errors in transition probabilities often results in probabilities often results in policies that are brittle and fail in real-world deployments. The agent has to learn the true dynamics of the MDP as it optimize the performance while interacts with its environment. The key to evaluate RL algorithms is to check how they balance between exploration that gains information about unknown states (actions) and exploitation to  achieve near-term performance. 
+Markov decision processes (MDPs) provide a versatile methodology for
+modeling dynamic decision problems under uncertainty. MDPs assume that
+transition probabilities are known precisely, but this is rarely the
+case in reinforcement learning. Errors in transition probabilities
+often results in probabilities often results in policies that are
+brittle and fail in real-world deployments. The agent has to learn the
+true dynamics of the MDP as it optimize the performance while
+interacts with its environment. The key to evaluate RL algorithms is
+to check how they balance between exploration that gains information
+about unknown states (actions) and exploitation to  achieve near-term
+performance. 
+
 
 OFU-RL
 
@@ -115,39 +153,41 @@ Our work
 
 
 \section{Problem formulation}
+We consider the problem of learning and solving an uncertain
+ MDP :$(S,A,P^Ma, R^M,)$ 
 
 \section{OFVF and Bayes UCRL}
 
-% \begin{algorithm}
-% 	\KwIn{Distribution $\theta$ over $p\opt_{s,a}$, confidence level $\delta$, sample count $m$}
-% 	\KwOut{Nominal point $\bar{p}_{s,a}$ and $L_1$ norm size $\psi_{s,a}$}
-% 	Sample $X_1, \ldots, X_m \in \Delta^S$ from $\theta$: $X_i \sim \theta $\;
-% 	Nominal point: $\bar{p}_{s,a} \gets (1/ m) \sum_{i=1}^m X_i $\;
-% 	Compute distances $d_i \gets \lVert \bar{p}_{s,a} - X_i \rVert_1$ and sort \emph{increasingly}\;
-% 	Norm size: $\psi_{s,a} \gets d_{(1-\delta)\,m}$\;
-% 	\Return{$\bar{p}_{s,a}$ and $\psi_{s,a}$}\;
-% 	\caption{Bayesian Confidence Interval (BCI)} \label{alg:bayes}
-% \end{algorithm}
+\begin{algorithm}
+	 \KwIn{Distribution $\theta$ over $p\opt_{s,a}$, confidence level $\delta$, sample count $m$}
+	 \KwOut{Nominal point $\bar{p}_{s,a}$ and $L_1$ norm size $\psi_{s,a}$}
+	 Sample $X_1, \ldots, X_m \in \Delta^S$ from $\theta$: $X_i \sim \theta $\;
+	 Nominal point: $\bar{p}_{s,a} \gets (1/ m) \sum_{i=1}^m X_i $\;
+	 Compute distances $d_i \gets \lVert \bar{p}_{s,a} - X_i \rVert_1$ and sort \emph{increasingly}\;
+	 Norm size: $\psi_{s,a} \gets d_{(1-\delta)\,m}$\;
+	 \Return{$\bar{p}_{s,a}$ and $\psi_{s,a}$}\;
+	 \caption{Bayesian Confidence Interval (BCI)} \label{alg:bayes}
+\end{algorithm}
 
-% \begin{algorithm}
-% 	\KwIn{Desired confidence level $\delta$ and prior distribution }
-% 	\KwOut{Policy with an optimistic return estimate }
-%     	\Repeat{num episodes}{
-    	
-%     	Initialize MDP: $M$\;
-% 		Compute posterior: $\tilde{p} \gets$ compute\_posterior(prior, samples) \;
+\begin{algorithm}
+	 \KwIn{Desired confidence level $\delta$ and prior distribution }
+	 \KwOut{Policy with an optimistic return estimate }
+		 \Repeat{num episodes}{
 		
-% 		\ForEach{$s \in \mathcal{S}, a \in \mathcal{A}$}{%
-% 			$\bar{p}_{s,a}, \psi_{s,a} \gets$ Invoke Algortihm \ref{alg:bayes} with $\tilde{p}$, $\delta$\;
-% 			$M \gets \text{add transition with } \bar{p}_{s,a}, \psi_{s,a}$\;
-% 		}
-% 		Compute policy by solving MDP: $\hat{\pi} \gets$ Solve $M$\;
-% 		Collect samples by executing the policy: samples $\gets$ execute $\hat{\pi}$\;
-% 		prior $\gets$ posterior\;
-% 	    }
-% 	\Return $(\pi_k, p_0\tr v_k)$ \;
-% 	\caption{Bayes UCRL}    \label{alg:IAVF}
-% \end{algorithm} 
+		 Initialize MDP: $M$\;
+		 Compute posterior: $\tilde{p} \gets$ compute\_posterior(prior, samples) \;
+		
+		 \ForEach{$s \in \mathcal{S}, a \in \mathcal{A}$}{%
+			 $\bar{p}_{s,a}, \psi_{s,a} \gets$ Invoke Algortihm \ref{alg:bayes} with $\tilde{p}$, $\delta$\;
+			 $M \gets \text{add transition with } \bar{p}_{s,a}, \psi_{s,a}$\;
+		 }
+		 Compute policy by solving MDP: $\hat{\pi} \gets$ Solve $M$\;
+		 Collect samples by executing the policy: samples $\gets$ execute $\hat{\pi}$\;
+		 prior $\gets$ posterior\;
+		 }
+	 \Return $(\pi_k, p_0\tr v_k)$ \;
+	 \caption{Bayes UCRL}    \label{alg:IAVF}
+\end{algorithm} 
 
 \section{Some shortcomings of existing UCRL2 and PSRL}
 

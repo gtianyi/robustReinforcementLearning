@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.10.12)  31 OCT 2018 14:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.10.12)  6 NOV 2018 10:48
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -500,26 +500,26 @@ Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
 ) (./ofvf.aux)
 \openout1 = `ofvf.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 39.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 58.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
-LaTeX Info: Redefining \microtypecontext on input line 39.
+LaTeX Info: Redefining \microtypecontext on input line 58.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -556,7 +556,7 @@ Package grfext Info: Graphics extension search list:
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 \AtBeginShipoutBox=\box44
-Package hyperref Info: Link coloring ON on input line 39.
+Package hyperref Info: Link coloring ON on input line 58.
  (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
  (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
@@ -564,82 +564,522 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count150
 )
-LaTeX Info: Redefining \ref on input line 39.
-LaTeX Info: Redefining \pageref on input line 39.
-LaTeX Info: Redefining \nameref on input line 39.
+LaTeX Info: Redefining \ref on input line 58.
+LaTeX Info: Redefining \pageref on input line 58.
+LaTeX Info: Redefining \nameref on input line 58.
  (./ofvf.out) (./ofvf.out)
 \@outlinefile=\write4
 \openout4 = `ofvf.out'.
 
  ABD: EveryShipout initializing macros
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 76.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 95.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 76.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 95.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 76.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 95.
 \c@@affil@anon=\count151
  (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman (RS)
 )
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 76.
+(Font)              <7> on input line 95.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 76.
+(Font)              <5> on input line 95.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <9> on input line 87.
+(Font)              <9> on input line 106.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 87.
+(Font)              <6> on input line 106.
 
 
-Package hyperref Warning: Ignoring empty anchor on input line 87.
+Package hyperref Warning: Ignoring empty anchor on input line 106.
 
-LaTeX Font Info:    Try loading font information for OML+ptm on input line 87.
+LaTeX Font Info:    Try loading font information for OML+ptm on input line 106.
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omlptm.fd
 File: omlptm.fd 
 )
 LaTeX Font Info:    Font shape `OML/ptm/m/n' in size <9> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 87.
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 106.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 89.
- (./ofvf.bbl)
-LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 188.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 190.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 108.
 
+./ofvf.tex:162: Undefined control sequence.
+<recently read> \KwIn 
+                      
+l.162 	 \KwIn
+             {Distribution $\theta$ over $p\opt_{s,a}$, confidence level $\d...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./ofvf.tex:163: Undefined control sequence.
+l.163 	 \KwOut
+              {Nominal point $\bar{p}_{s,a}$ and $L_1$ norm size $\psi_{s,a}$}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./ofvf.tex:164: Missing $ inserted.
+<inserted text> 
+                $
+l.164 ...ta^S$ from $\theta$: $X_i \sim \theta $\;
+                                                  
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./ofvf.tex:165: Missing $ inserted.
+<inserted text> 
+                $
+l.165 	 Nominal point: $\bar
+                            {p}_{s,a} \gets (1/ m) \sum_{i=1}^m X_i $\;
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./ofvf.tex:165: Missing $ inserted.
+<inserted text> 
+                $
+l.165 ...}_{s,a} \gets (1/ m) \sum_{i=1}^m X_i $\;
+                                                  
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./ofvf.tex:166: Missing $ inserted.
+<inserted text> 
+                $
+l.166 	 Compute distances $d_
+                             i \gets \lVert \bar{p}_{s,a} - X_i \rVert_1$ an...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./ofvf.tex:166: Undefined control sequence.
+l.166 	 Compute distances $d_i \gets \lVert
+                                            \bar{p}_{s,a} - X_i \rVert_1$ an...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./ofvf.tex:166: Undefined control sequence.
+l.166 ...i \gets \lVert \bar{p}_{s,a} - X_i \rVert
+                                                  _1$ and sort \emph{increas...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./ofvf.tex:166: Double subscript.
+l.166 ... \gets \lVert \bar{p}_{s,a} - X_i \rVert_
+                                                  1$ and sort \emph{increasi...
+I treat `x_1_2' essentially like `x_1{}_2'.
+
+./ofvf.tex:166: Missing $ inserted.
+<inserted text> 
+                $
+l.166 ... \rVert_1$ and sort \emph{increasingly}\;
+                                                  
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./ofvf.tex:167: Missing $ inserted.
+<inserted text> 
+                $
+l.167 	 Norm size: $\psi
+                        _{s,a} \gets d_{(1-\delta)\,m}$\;
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./ofvf.tex:167: Missing $ inserted.
+<inserted text> 
+                $
+l.167 ...e: $\psi_{s,a} \gets d_{(1-\delta)\,m}$\;
+                                                  
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./ofvf.tex:168: Undefined control sequence.
+l.168 	 \Return
+               {$\bar{p}_{s,a}$ and $\psi_{s,a}$}\;
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./ofvf.tex:168: Missing } inserted.
+<inserted text> 
+                }
+l.168 	 \Return{$
+                 \bar{p}_{s,a}$ and $\psi_{s,a}$}\;
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./ofvf.tex:168: Missing $ inserted.
+<inserted text> 
+                $
+l.168 	 \Return{$\bar
+                     {p}_{s,a}$ and $\psi_{s,a}$}\;
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 162--168
+[]\OT1/ptm/m/n/10 (+20) Distribution $\OML/cmm/m/it/10 ^^R$ \OT1/ptm/m/n/10 (+20) over $\OML/cmm/m/it/10 p[]$\OT1/ptm/m/n/10 (+20) , con-fi-dence level $\OML/cmm/m/it/10 ^^N$\OT1/ptm/m/n/10 (+20) ,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 162--168
+\OT1/ptm/m/n/10 (+20) sam-ple count $\OML/cmm/m/it/10 m$ \OT1/ptm/m/n/10 (+20) Nom-i-nal point $[]$ and $\OML/cmm/m/it/10 L[]$
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 162--168
+\OT1/ptm/m/n/10 (+20) norm size $\OML/cmm/m/it/10  []$ \OT1/ptm/m/n/10 (+20) Sam-ple $\OML/cmm/m/it/10 X[]; [] ; X[] \OMS/cmsy/m/n/10 2 \OT1/cmr/m/n/10 ^^A[]$
+ []
+
+
+Underfull \hbox (badness 5741) in paragraph at lines 162--168
+\OT1/ptm/m/n/10 (+20) from $\OML/cmm/m/it/10 ^^R$\OT1/ptm/m/n/10 (+20) : $\OML/cmm/m/it/10 X[] \OMS/cmsy/m/n/10 ^^X \OML/cmm/m/it/10 ^^R$$ Nominalpoint \OT1/cmr/m/n/10 :$$[] \OMS/cmsy/m/n/10  
+ []
+
+./ofvf.tex:168: Missing $ inserted.
+<inserted text> 
+                $
+l.168 ...eturn{$\bar{p}_{s,a}$ and $\psi_{s,a}$}\;
+                                                  
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./ofvf.tex:170: Missing $ inserted.
+<inserted text> 
+                $
+l.170 \end{algorithm}
+                     
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./ofvf.tex:170: Extra }, or forgotten \endgroup.
+\@endfloatbox ...pagefalse \outer@nobreak \egroup 
+                                                  \color@endbox 
+l.170 \end{algorithm}
+                     
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./ofvf.tex:173: Undefined control sequence.
+<recently read> \KwIn 
+                      
+l.173 	 \KwIn
+             {Desired confidence level $\delta$ and prior distribution }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./ofvf.tex:174: Undefined control sequence.
+l.174 	 \KwOut
+              {Policy with an optimistic return estimate }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./ofvf.tex:175: Undefined control sequence.
+l.175 		 \Repeat
+                {num episodes}{
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./ofvf.tex:177: Missing $ inserted.
+<inserted text> 
+                $
+l.177 		 Initialize MDP: $M$\;
+                              
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./ofvf.tex:178: Missing $ inserted.
+<inserted text> 
+                $
+l.178 		 Compute posterior: $\tilde
+                                   {p} \gets$ compute\_posterior(prior, samp...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./ofvf.tex:178: Missing $ inserted.
+<inserted text> 
+                $
+l.178 ...ts$ compute\_posterior(prior, samples) \;
+                                                  
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./ofvf.tex:179: Missing $ inserted.
+<inserted text> 
+                $
+l.179 
+      
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+Underfull \hbox (badness 1117) in paragraph at lines 177--179
+[]\OT1/ptm/m/n/10 (+20) Initialize MDP: $\OML/cmm/m/it/10 M$$ Computeposterior \OT1/cmr/m/n/10 :$$[] \OMS/cmsy/m/n/10  $ \OT1/ptm/m/n/10 (+20) com-
+ []
+
+./ofvf.tex:180: Undefined control sequence.
+l.180 		 \ForEach
+                 {$s \in \mathcal{S}, a \in \mathcal{A}$}{%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: Reference `alg:bayes' on page 1 undefined on input line 181.
+
+./ofvf.tex:181: Missing $ inserted.
+<inserted text> 
+                $
+l.181 ...f{alg:bayes} with $\tilde{p}$, $\delta$\;
+                                                  
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./ofvf.tex:182: Missing $ inserted.
+<inserted text> 
+                $
+l.182 			 $M \gets
+                   \text{add transition with } \bar{p}_{s,a}, \psi_{s,a}$\;
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./ofvf.tex:182: Undefined control sequence.
+l.182 			 $M \gets \text
+                        {add transition with } \bar{p}_{s,a}, \psi_{s,a}$\;
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./ofvf.tex:182: Missing $ inserted.
+<inserted text> 
+                $
+l.182 ...ition with } \bar{p}_{s,a}, \psi_{s,a}$\;
+                                                  
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./ofvf.tex:183: Extra }, or forgotten $.
+l.183 		 }
+          
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./ofvf.tex:184: Missing $ inserted.
+<inserted text> 
+                $
+l.184 		 Compute policy by solving MDP: $\hat
+                                             {\pi} \gets$ Solve $M$\;
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./ofvf.tex:184: Missing $ inserted.
+<inserted text> 
+                $
+l.184 ...olving MDP: $\hat{\pi} \gets$ Solve $M$\;
+                                                  
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./ofvf.tex:185: Missing $ inserted.
+<inserted text> 
+                $
+l.185 ...s by executing the policy: samples $\gets
+                                                  $ execute $\hat{\pi}$\;
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./ofvf.tex:185: Missing $ inserted.
+<inserted text> 
+                $
+l.185 ...cy: samples $\gets$ execute $\hat{\pi}$\;
+                                                  
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./ofvf.tex:186: Missing $ inserted.
+<inserted text> 
+                $
+l.186 		 prior $\gets
+                     $ posterior\;
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./ofvf.tex:186: Missing $ inserted.
+<inserted text> 
+                $
+l.186 		 prior $\gets$ posterior\;
+                                  
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./ofvf.tex:187: Extra }, or forgotten $.
+l.187 		 }
+          
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./ofvf.tex:188: Undefined control sequence.
+l.188 	 \Return
+                $(\pi_k, p_0\tr v_k)$ \;
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./ofvf.tex:188: Missing $ inserted.
+<inserted text> 
+                $
+l.188 	 \Return $(\pi
+                     _k, p_0\tr v_k)$ \;
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+Package microtype Info: Loading generic settings for font family
+(microtype)             `cmss' (encoding: OT1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+./ofvf.tex:188: Missing $ inserted.
+<inserted text> 
+                $
+l.188 	 \Return $(\pi_k, p_0\tr v_k)$ \;
+                                        
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./ofvf.tex:190: Missing $ inserted.
+<inserted text> 
+                $
+l.190 \end{algorithm}
+                     
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 180--190
+[]$\OML/cmm/m/it/10 s \OMS/cmsy/m/n/10 2 S\OML/cmm/m/it/10 ; a \OMS/cmsy/m/n/10 2 A$$[]\OML/cmm/m/it/10 ;  [] \OMS/cmsy/m/n/10  $ \OT1/ptm/m/n/10 (+20) In-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 180--190
+\OT1/ptm/m/n/10 (+20) voke Al-go-r-tihm [] with $[]$, $\OML/cmm/m/it/10 ^^N$$ $\OT1/ptm/m/n/10 (+20) M $\OMS/cmsy/m/n/10  
+ []
+
+
+Overfull \hbox (47.73941pt too wide) in paragraph at lines 180--190
+[][]\OML/cmm/m/it/10 ;  []$$ ComputepolicybysolvingMDP \OT1/cmr/m/n/10 :$$[] \OMS/cmsy/m/n/10  $
+ []
+
+
+Underfull \hbox (badness 8170) in paragraph at lines 180--190
+\OT1/ptm/m/n/10 (+20) Solve $\OML/cmm/m/it/10 M$$ Collectsamplesbyexecutingthepolicy \OT1/cmr/m/n/10 :
+ []
+
+./ofvf.tex:190: Missing } inserted.
+<inserted text> 
+                }
+l.190 \end{algorithm}
+                     
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./ofvf.tex:190: Missing } inserted.
+<inserted text> 
+                }
+l.190 \end{algorithm}
+                     
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ (./ofvf.bbl
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 
 
-]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 207.
+])
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 228.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 230.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 247.
  [2
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 207.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 247.
  (./ofvf.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 207.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 207.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 247.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 247.
 Package rerunfilecheck Info: File `ofvf.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 207.
+
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 247.
  ) 
 Here is how much of TeX's memory you used:
- 18169 strings out of 493029
- 338321 string characters out of 6136233
- 442644 words of memory out of 5000000
- 21286 multiletter control sequences out of 15000+600000
- 27293 words of font info for 91 fonts, out of 8000000 for 9000
+ 18194 strings out of 493029
+ 338570 string characters out of 6136233
+ 444807 words of memory out of 5000000
+ 21314 multiletter control sequences out of 15000+600000
+ 27957 words of font info for 89 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,11n,56p,707b,414s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on ofvf.pdf (2 pages, 60827 bytes).
+ 62i,11n,56p,435b,443s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on ofvf.pdf (2 pages, 135195 bytes).
 PDF statistics:
- 55 PDF objects out of 1000 (max. 8388607)
- 45 compressed objects within 1 object stream
- 14 named destinations out of 1000 (max. 500000)
- 21517 words of extra memory for PDF output out of 24883 (max. 10000000)
+ 89 PDF objects out of 1000 (max. 8388607)
+ 71 compressed objects within 1 object stream
+ 16 named destinations out of 1000 (max. 500000)
+ 23053 words of extra memory for PDF output out of 24883 (max. 10000000)
 
