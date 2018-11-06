@@ -1,13 +1,13 @@
 # Fdb version 3
-["bibtex ofvf"] 1541519342 "ofvf.aux" "ofvf.bbl" "ofvf" 1541519342
+["bibtex ofvf"] 1541530683 "ofvf.aux" "ofvf.bbl" "ofvf" 1541530683
   "./icml2018.bst" 1541024336 27148 5060359f4b4402c8399ebd9b161b2391 ""
-  "ofvf.aux" 1541519340 855 b27b51e0e74b4fcd873278cf26b3cfb9 ""
+  "ofvf.aux" 1541530681 1091 bdba18b352d5fbe01b41fd4bfa61c430 ""
   "ofvf.bcf" 0 -1 0 ""
   "ofvf.bib" 1541024336 2051 271917dc87acfd9d123013f431b1c906 ""
   (generated)
-  "ofvf.bbl"
   "ofvf.blg"
-["pdflatex"] 1541519339 "ofvf.tex" "ofvf.pdf" "ofvf" 1541519342
+  "ofvf.bbl"
+["pdflatex"] 1541530680 "ofvf.tex" "ofvf.pdf" "ofvf" 1541530683
   "/etc/texmf/web2c/texmf.cnf" 1534021157 1101 af7716885e081ab43982cab7b4672c1a ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
@@ -19,6 +19,8 @@
   "/usr/share/texlive/texmf-dist/fonts/tfm/adobe/times/ptmr8r.tfm" 1136768653 4408 25b74d011a4c66b7f212c0cc3c90061b ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/adobe/times/ptmri7t.tfm" 1136768653 2288 f478fc8fed18759effb59f3dad7f3084 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/adobe/times/ptmri8r.tfm" 1136768653 4640 532ca3305aad10cc01d769f3f91f1029 ""
+  "/usr/share/texlive/texmf-dist/fonts/tfm/adobe/times/ptmro7t.tfm" 1136768653 2212 ddd058020f70d31af08b213e40125079 ""
+  "/usr/share/texlive/texmf-dist/fonts/tfm/adobe/times/ptmro8r.tfm" 1136768653 4548 f370a182a02c40d95c5554802dc0f174 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmmi6.tfm" 1136768653 1512 f21f83efb36853c0b70002322c1ab3ad ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmmi9.tfm" 1136768653 1524 d89e2d087a9828407a196f428428ef4a ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr6.tfm" 1136768653 1300 b62933e007d01cfd073f79b963c01526 ""
@@ -44,6 +46,7 @@
   "/usr/share/texlive/texmf-dist/fonts/vf/adobe/times/ptmbi7t.vf" 1136768653 1384 6ac0f8b839230f5d9389287365b243c0 ""
   "/usr/share/texlive/texmf-dist/fonts/vf/adobe/times/ptmr7t.vf" 1136768653 1380 0ea3a3370054be6da6acd929ec569f06 ""
   "/usr/share/texlive/texmf-dist/fonts/vf/adobe/times/ptmri7t.vf" 1136768653 1384 a9d8adaf491ce34e5fba99dc7bbe5f39 ""
+  "/usr/share/texlive/texmf-dist/fonts/vf/adobe/times/ptmro7t.vf" 1136768653 1384 5daa35f30ad788d676a07a579b5db7fa ""
   "/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii" 1337017135 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty" 1284331290 1458 43ab4710dc82f3edeabecd0d099626b2 ""
   "/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty" 1303254447 8237 52810bdb4db2270e717422560a104aea ""
@@ -165,13 +168,15 @@
   "algorithm.sty" 1541024336 2223 ada3eaa0c1bd465a639433dfafc2fc4e ""
   "algorithmic.sty" 1541024336 7414 ce084815cf0aab483787dbc4bf2ace9c ""
   "fancyhdr.sty" 1541024336 20521 e5d13d98d57bd53d4fed3aa61bd29c86 ""
+  "figures/RiverSwim_RSVF_BAYESUCB_PSRL.png" 1541528508 28275 4c4dceb62829e00258193c26d0e124cd ""
+  "figures/SimpleProblem_PSRL_BayesUCRL_OFVF.png" 1541528508 30712 3966a3e79b8c84a8ad7918877e687dc1 ""
   "icml2018.sty" 1541024336 27191 e6739bad8dc624ef182cd77467319b44 ""
-  "ofvf.aux" 1541519340 855 b27b51e0e74b4fcd873278cf26b3cfb9 ""
-  "ofvf.bbl" 1541519342 550 64cc3583bf05aa266fe8bcfff95c15ac "bibtex ofvf"
-  "ofvf.out" 1541519339 0 d41d8cd98f00b204e9800998ecf8427e ""
-  "ofvf.tex" 1541519325 10052 2cb2ac110d08e5d97946cb756eebeb26 ""
+  "ofvf.aux" 1541530681 1091 bdba18b352d5fbe01b41fd4bfa61c430 ""
+  "ofvf.bbl" 1541530683 550 64cc3583bf05aa266fe8bcfff95c15ac "bibtex ofvf"
+  "ofvf.out" 1541530681 0 d41d8cd98f00b204e9800998ecf8427e ""
+  "ofvf.tex" 1541530671 11428 b4e3727eb711d38e954cd9611ea1e687 ""
   (generated)
-  "ofvf.aux"
-  "ofvf.out"
   "ofvf.log"
+  "ofvf.aux"
   "ofvf.pdf"
+  "ofvf.out"
