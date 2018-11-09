@@ -24,7 +24,7 @@
 %include our package here
 \usepackage[colorinlistoftodos]{todonotes}
 \usepackage{verbatim}
-%\usepackage[ruled,linesnumbered,vlined]{algorithm2e}
+\usepackage[ruled,linesnumbered,vlined]{algorithm2e}
 
 %defined our command here
 \newcommand{\citeasnoun}[1]{\cite{#1}}
@@ -155,8 +155,8 @@ Our work
 \section{Problem formulation}
 
 We consider the problem of learning and solving an uncertain
-MDP :$(S, A, P^M, R^M)$ where $S = {1,...,S}$ is the state space, $A =
-{1,...,A}$ is the action space, $R^M(a,s)$ is the believe distribution over
+MDP :$(S, A, P^M, R^M)$ where $S = \{1,...,S\}$ is the state space, $A =
+\{1,...,A\}$ is the action space, $R^M(a,s)$ is the believe distribution over
 true reward when take action $a$ at state $s$, $P^M(s'|s,a)$ is the
 believe distribution over the true transition probability of
 transitioning to state $s'$ when take action $a$ at state $s$.

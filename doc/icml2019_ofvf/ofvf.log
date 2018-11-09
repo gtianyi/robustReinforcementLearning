@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.10.12)  6 NOV 2018 13:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.10.12)  9 NOV 2018 10:17
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -224,79 +224,65 @@ Package: color 2016/01/03 v1.1b Standard LaTeX Color (DPC)
 File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
 Package color Info: Driver file: pdftex.def on input line 143.
-) (./algorithm.sty
-Package: algorithm 
-
-Document Style `algorithm' - floating environment
-(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
-Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count108
-\float@exts=\toks16
-\float@box=\box26
-\@float@everytoks=\toks17
-\@floatcapt=\box27
-) (/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
-Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
-)
-\@float@every@algorithm=\toks18
-\c@algorithm=\count109
 ) (./algorithmic.sty
 Package: algorithmic 
 
 Document Style `algorithmic' - environment
-(/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+) (/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count110
-\calc@Bcount=\count111
+\calc@Acount=\count108
+\calc@Bcount=\count109
 \calc@Adimen=\dimen125
 \calc@Bdimen=\dimen126
 \calc@Askip=\skip60
 \calc@Bskip=\skip61
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count112
+\calc@Ccount=\count110
 \calc@Cskip=\skip62
 )
-\c@ALC@line=\count113
-\c@ALC@rem=\count114
+\c@ALC@line=\count111
+\c@ALC@rem=\count112
 \ALC@tlm=\skip63
 ) (/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty
 Package: natbib 2010/09/13 8.31b (PWD, AO)
 \bibhang=\skip64
 \bibsep=\skip65
 LaTeX Info: Redefining \cite on input line 694.
-\c@NAT@ctr=\count115
+\c@NAT@ctr=\count113
 ) (/usr/share/texlive/texmf-dist/tex/latex/eso-pic/eso-pic.sty
 Package: eso-pic 2015/07/21 v2.0g eso-pic (RN)
 ) (/usr/share/texlive/texmf-dist/tex/latex/forloop/forloop.sty
 Package: forloop 2006/09/18 v3.0 For Loops for LaTeX
 )
 Package hyperref Info: Option `colorlinks' set `true' on input line 108.
-\titrun=\box28
-\c@@affiliationcounter=\count116
-\c@@affilnum=\count117
-\newcaptionbox=\box29
+\titrun=\box26
+\c@@affiliationcounter=\count114
+\c@@affilnum=\count115
+\newcaptionbox=\box27
 \newcaptionboxwid=\dimen127
-\icmlrulerbox=\box30
-\icmlrulercount=\count118
+\icmlrulerbox=\box28
+\icmlrulercount=\count116
 \icmlruleroffset=\dimen128
 \cv@lineheight=\dimen129
 \cv@boxheight=\dimen130
-\cv@tmpbox=\box31
-\cv@refno=\count119
-\cv@tot=\count120
-\cv@tmpc@=\count121
-\cv@tmpc=\count122
+\cv@tmpbox=\box29
+\cv@refno=\count117
+\cv@tot=\count118
+\cv@tmpc@=\count119
+\cv@tmpc=\count120
 ) (/usr/share/texlive/texmf-dist/tex/latex/todonotes/todonotes.sty
 Package: todonotes 2015/07/09 .dtx Todonotes source and documentation.
 Package: todonotes 2012/07/25
  (/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
 Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
  (/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkeyval.tex (/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkvutils.tex
-\XKV@toks=\toks19
-\XKV@tempa@toks=\toks20
+\XKV@toks=\toks16
+\XKV@tempa@toks=\toks17
 )
-\XKV@depth=\count123
+\XKV@depth=\count121
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 )) (/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
@@ -315,11 +301,11 @@ Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
 ) (/usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty (/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
-\pgfutil@everybye=\toks21
+\pgfutil@everybye=\toks18
 \pgfutil@tempdima=\dimen131
 \pgfutil@tempdimb=\dimen132
  (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-lists.tex)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
-\pgfutil@abb=\box32
+\pgfutil@abb=\box30
  (/usr/share/texlive/texmf-dist/tex/latex/ms/everyshi.sty
 Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
 )) (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
@@ -329,10 +315,10 @@ Package: pgf 2015/08/07 v3.0.1a (rcs-revision 1.15)
  (/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty (/usr/share/texlive/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
 Package: pgfsys 2014/07/09 v3.0.1a (rcs-revision 1.48)
  (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
-\pgfkeys@pathtoks=\toks22
-\pgfkeys@temptoks=\toks23
+\pgfkeys@pathtoks=\toks19
+\pgfkeys@temptoks=\toks20
  (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.code.tex
-\pgfkeys@tmptoks=\toks24
+\pgfkeys@tmptoks=\toks21
 ))
 \pgf@x=\dimen133
 \pgf@y=\dimen134
@@ -344,13 +330,13 @@ Package: pgfsys 2014/07/09 v3.0.1a (rcs-revision 1.48)
 \pgf@yc=\dimen140
 \w@pgf@writea=\write3
 \r@pgf@reada=\read1
-\c@pgf@counta=\count124
-\c@pgf@countb=\count125
-\c@pgf@countc=\count126
-\c@pgf@countd=\count127
-\t@pgf@toka=\toks25
-\t@pgf@tokb=\toks26
-\t@pgf@tokc=\toks27
+\c@pgf@counta=\count122
+\c@pgf@countb=\count123
+\c@pgf@countc=\count124
+\c@pgf@countd=\count125
+\t@pgf@toka=\toks22
+\t@pgf@tokb=\toks23
+\t@pgf@tokc=\toks24
  (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
 File: pgf.cfg 2008/05/14  (rcs-revision 1.7)
 )
@@ -361,22 +347,22 @@ File: pgfsys-pdftex.def 2014/10/11  (rcs-revision 1.35)
 File: pgfsys-common-pdf.def 2013/10/10  (rcs-revision 1.13)
 ))) (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
 File: pgfsyssoftpath.code.tex 2013/09/09  (rcs-revision 1.9)
-\pgfsyssoftpath@smallbuffer@items=\count128
-\pgfsyssoftpath@bigbuffer@items=\count129
-) (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
+\pgfsyssoftpath@smallbuffer@items=\count126
+\pgfsyssoftpath@bigbuffer@items=\count127
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
 File: pgfsysprotocol.code.tex 2006/10/16  (rcs-revision 1.4)
-))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
 Package: pgfcore 2010/04/11 v3.0.1a (rcs-revision 1.7)
  (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex) (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
 \pgfmath@dimen=\dimen141
-\pgfmath@count=\count130
-\pgfmath@box=\box33
-\pgfmath@toks=\toks28
-\pgfmath@stack@operand=\toks29
-\pgfmath@stack@operation=\toks30
+\pgfmath@count=\count128
+\pgfmath@box=\box31
+\pgfmath@toks=\toks25
+\pgfmath@stack@operand=\toks26
+\pgfmath@stack@operation=\toks27
 ) (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code.tex) (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonometric.code.tex) (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.code.tex) (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison.code.tex) (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.tex) (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code.tex) (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex) (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerarithmetics.code.tex))) (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
-\c@pgfmathroundto@lastzeros=\count131
+\c@pgfmathroundto@lastzeros=\count129
 )) (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex
 File: pgfcorepoints.code.tex 2013/10/07  (rcs-revision 1.27)
 \pgf@picminx=\dimen142
@@ -403,10 +389,10 @@ File: pgfcorepathusage.code.tex 2014/11/02  (rcs-revision 1.24)
 \pgf@shorten@start@additional=\dimen159
 ) (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.tex
 File: pgfcorescopes.code.tex 2015/05/08  (rcs-revision 1.46)
-\pgfpic=\box34
-\pgf@hbox=\box35
-\pgf@layerbox@main=\box36
-\pgf@picture@serial@count=\count132
+\pgfpic=\box32
+\pgf@hbox=\box33
+\pgf@layerbox@main=\box34
+\pgf@picture@serial@count=\count130
 ) (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.tex
 File: pgfcoregraphicstate.code.tex 2014/11/02  (rcs-revision 1.12)
 \pgflinewidth=\dimen160
@@ -419,21 +405,21 @@ File: pgfcoretransformations.code.tex 2015/08/07  (rcs-revision 1.20)
 File: pgfcorequick.code.tex 2008/10/09  (rcs-revision 1.3)
 ) (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.tex
 File: pgfcoreobjects.code.tex 2006/10/11  (rcs-revision 1.2)
-) (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing.code.tex
-File: pgfcorepathprocessing.code.tex 2013/09/09  (rcs-revision 1.9)
 )
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing.code.tex
+File: pgfcorepathprocessing.code.tex 2013/09/09  (rcs-revision 1.9)
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.tex
 File: pgfcorearrows.code.tex 2015/05/14  (rcs-revision 1.43)
 \pgfarrowsep=\dimen164
 ) (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
 File: pgfcoreshade.code.tex 2013/07/15  (rcs-revision 1.15)
 \pgf@max=\dimen165
-\pgf@sys@shading@range@num=\count133
+\pgf@sys@shading@range@num=\count131
 ) (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
 File: pgfcoreimage.code.tex 2013/07/15  (rcs-revision 1.18)
  (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex
 File: pgfcoreexternal.code.tex 2014/07/09  (rcs-revision 1.21)
-\pgfexternal@startupbox=\box37
+\pgfexternal@startupbox=\box35
 )) (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.tex
 File: pgfcorelayers.code.tex 2013/07/18  (rcs-revision 1.7)
 ) (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.code.tex
@@ -442,7 +428,7 @@ File: pgfcoretransparency.code.tex 2013/09/30  (rcs-revision 1.5)
 File: pgfcorepatterns.code.tex 2013/11/07  (rcs-revision 1.5)
 ))) (/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
 File: pgfmoduleshapes.code.tex 2014/03/21  (rcs-revision 1.35)
-\pgfnodeparttextbox=\box38
+\pgfnodeparttextbox=\box36
 ) (/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
 File: pgfmoduleplot.code.tex 2015/08/03  (rcs-revision 1.13)
 ) (/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty
@@ -456,13 +442,13 @@ Package: pgffor 2013/12/13 v3.0.1a (rcs-revision 1.25)
  (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)
 \pgffor@iter=\dimen168
 \pgffor@skip=\dimen169
-\pgffor@stack=\toks31
-\pgffor@toks=\toks32
+\pgffor@stack=\toks28
+\pgffor@toks=\toks29
 )) (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
 Package: tikz 2015/08/07 v3.0.1a (rcs-revision 1.151)
  (/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers.code.tex
 File: pgflibraryplothandlers.code.tex 2013/08/31 v3.0.1a (rcs-revision 1.20)
-\pgf@plot@mark@count=\count134
+\pgf@plot@mark@count=\count132
 \pgfplotmarksize=\dimen170
 )
 \tikz@lastx=\dimen171
@@ -471,32 +457,83 @@ File: pgflibraryplothandlers.code.tex 2013/08/31 v3.0.1a (rcs-revision 1.20)
 \tikz@lastysaved=\dimen174
 \tikzleveldistance=\dimen175
 \tikzsiblingdistance=\dimen176
-\tikz@figbox=\box39
-\tikz@figbox@bg=\box40
-\tikz@tempbox=\box41
-\tikz@tempbox@bg=\box42
-\tikztreelevel=\count135
-\tikznumberofchildren=\count136
-\tikznumberofcurrentchild=\count137
-\tikz@fig@count=\count138
+\tikz@figbox=\box37
+\tikz@figbox@bg=\box38
+\tikz@tempbox=\box39
+\tikz@tempbox@bg=\box40
+\tikztreelevel=\count133
+\tikznumberofchildren=\count134
+\tikznumberofcurrentchild=\count135
+\tikz@fig@count=\count136
  (/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
 File: pgfmodulematrix.code.tex 2013/09/17  (rcs-revision 1.8)
-\pgfmatrixcurrentrow=\count139
-\pgfmatrixcurrentcolumn=\count140
-\pgf@matrix@numberofcolumns=\count141
+\pgfmatrixcurrentrow=\count137
+\pgfmatrixcurrentcolumn=\count138
+\pgf@matrix@numberofcolumns=\count139
 )
-\tikz@expandcount=\count142
+\tikz@expandcount=\count140
  (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2008/06/17 v3.0.1a (rcs-revision 1.2)
 ))) (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarypositioning.code.tex
 File: tikzlibrarypositioning.code.tex 2008/10/06 v3.0.1a (rcs-revision 1.7)
 )
-\c@@todonotes@numberoftodonotes=\count143
-) (/usr/share/texlive/texmf-dist/tex/latex/tools/verbatim.sty
+\c@@todonotes@numberoftodonotes=\count141
+)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/verbatim.sty
 Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
-\every@verbatim=\toks33
-\verbatim@line=\toks34
+\every@verbatim=\toks30
+\verbatim@line=\toks31
 \verbatim@in@stream=\read2
+) (/usr/share/texlive/texmf-dist/tex/latex/algorithm2e/algorithm2e.sty
+Package: algorithm2e 2013/01/06 v5.00 algorithms environments
+\c@AlgoLine=\count142
+\algocf@hangindent=\skip66
+ (/usr/share/texlive/texmf-dist/tex/latex/tools/xspace.sty
+Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
+) (/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
+Package: relsize 2013/03/29 ver 4.1
+)
+********************************************************
+Package `algorithm2e' Release 5.1 -- october 19 2015 --
+- algorithm2e-announce@lirmm.fr mailing list for announcement about releases
+- algorithm2e-discussion@lirmm.fr mailing list for discussion about package
+subscribe by emailing sympa@lirmm.fr with 'subscribe <list> <firstname name>'
+- Author: Christophe Fiorio (christophe.fiorio@umontpellier.fr)
+********************************************************
+\skiptotal=\skip67
+\skiplinenumber=\skip68
+\skiprule=\skip69
+\skiphlne=\skip70
+\skiptext=\skip71
+\skiplength=\skip72
+\algomargin=\skip73
+\skipalgocfslide=\skip74
+\algowidth=\dimen177
+\inoutsize=\dimen178
+\inoutindent=\dimen179
+\interspacetitleruled=\dimen180
+\interspacealgoruled=\dimen181
+\interspacetitleboxruled=\dimen182
+\algocf@ruledwidth=\skip75
+\algocf@inoutbox=\box41
+\algocf@inputbox=\box42
+\AlCapSkip=\skip76
+\AlCapHSkip=\skip77
+\algoskipindent=\skip78
+\algocf@nlbox=\box43
+\algocf@hangingbox=\box44
+\algocf@untilbox=\box45
+\algocf@skipuntil=\skip79
+\algocf@capbox=\box46
+\algoheightruledefault=\skip80
+\algoheightrule=\skip81
+\algotitleheightruledefault=\skip82
+\algotitleheightrule=\skip83
+\c@algocfline=\count143
+\c@algocfproc=\count144
+\c@algocf=\count145
+\algocf@algoframe=\box47
+\algocf@algobox=\box48
 ) (./ofvf.aux)
 \openout1 = `ofvf.aux'.
 
@@ -515,8 +552,7 @@ LaTeX Font Info:    ... okay on input line 58.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 58.
 LaTeX Font Info:    ... okay on input line 58.
 LaTeX Font Info:    Try loading font information for OT1+ptm on input line 58.
-
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 LaTeX Info: Redefining \microtypecontext on input line 58.
@@ -533,17 +569,17 @@ Package microtype Info: No adjustment of character kerning.
 File: mt-ptm.cfg 2006/04/20 v1.7 microtype config. file: Times (RS)
 ) (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count144
-\scratchdimen=\dimen177
-\scratchbox=\box43
-\nofMPsegments=\count145
-\nofMParguments=\count146
-\everyMPshowfont=\toks35
-\MPscratchCnt=\count147
-\MPscratchDim=\dimen178
-\MPnumerator=\count148
-\makeMPintoPDFobject=\count149
-\everyMPtoPDFconversion=\toks36
+\scratchcounter=\count146
+\scratchdimen=\dimen183
+\scratchbox=\box49
+\nofMPsegments=\count147
+\nofMParguments=\count148
+\everyMPshowfont=\toks32
+\MPscratchCnt=\count149
+\MPscratchDim=\dimen184
+\MPnumerator=\count150
+\makeMPintoPDFobject=\count151
+\everyMPtoPDFconversion=\toks33
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
  (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
@@ -555,14 +591,14 @@ Package grfext Info: Graphics extension search list:
  (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-\AtBeginShipoutBox=\box44
+\AtBeginShipoutBox=\box50
 Package hyperref Info: Link coloring ON on input line 58.
  (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
  (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count150
+\c@section@level=\count152
 )
 LaTeX Info: Redefining \ref on input line 58.
 LaTeX Info: Redefining \pageref on input line 58.
@@ -578,7 +614,7 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 95.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 95.
-\c@@affil@anon=\count151
+\c@@affil@anon=\count153
  (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman (RS)
 )
@@ -603,55 +639,33 @@ LaTeX Font Info:    Font shape `OML/ptm/m/n' in size <9> not available
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 108.
 
-./ofvf.tex:171: Undefined control sequence.
-l.171 	 \KwIn
-             {Distribution $\theta$ over $p\opt_{s,a}$, confidence level $\d...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
 
-./ofvf.tex:172: Undefined control sequence.
-l.172 	 \KwOut
-              {Nominal point $\bar{p}_{s,a}$ and $L_1$ norm size $\psi_{s,a}$}
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+./ofvf.tex:170: LaTeX Error: [H] in two columns mode is not allowed for algorithms.
 
-./ofvf.tex:173: Missing $ inserted.
-<inserted text> 
-                $
-l.173 ...ta^S$ from $\theta$: $X_i \sim \theta $\;
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
                                                   
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
+l.170 \begin{algorithm}[H]
+                          
+This error message was generated by an \errmessage
+command, so I can't give any explicit help.
+Pretend that you're Hercule Poirot: Examine all clues,
+and deduce the truth by order and method.
 
-./ofvf.tex:174: Missing $ inserted.
-<inserted text> 
-                $
-l.174 	 Nominal point: $\bar
-                            {p}_{s,a} \gets (1/ m) \sum_{i=1}^m X_i $\;
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
 
-./ofvf.tex:174: Missing $ inserted.
-<inserted text> 
-                $
-l.174 ...}_{s,a} \gets (1/ m) \sum_{i=1}^m X_i $\;
-                                                  
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
+Package relsize Warning: Font size 6.94446pt is too small.
+(relsize)                Using 7.0pt instead on input line 173.
 
-./ofvf.tex:175: Missing $ inserted.
-<inserted text> 
-                $
-l.175 	 Compute distances $d_
-                             i \gets \lVert \bar{p}_{s,a} - X_i \rVert_1$ an...
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 173.
+
+Package relsize Warning: Font size 6.94446pt is too small.
+(relsize)                Using 7.0pt instead on input line 174.
+
+
+Package relsize Warning: Font size 6.94446pt is too small.
+(relsize)                Using 7.0pt instead on input line 175.
 
 ./ofvf.tex:175: Undefined control sequence.
 l.175 	 Compute distances $d_i \gets \lVert
@@ -676,369 +690,112 @@ l.175 ... \gets \lVert \bar{p}_{s,a} - X_i \rVert_
                                                   1$ and sort \emph{increasi...
 I treat `x_1_2' essentially like `x_1{}_2'.
 
-./ofvf.tex:175: Missing $ inserted.
-<inserted text> 
-                $
-l.175 ... \rVert_1$ and sort \emph{increasingly}\;
+
+Package relsize Warning: Font size 6.94446pt is too small.
+(relsize)                Using 7.0pt instead on input line 176.
+
+
+Package relsize Warning: Font size 6.94446pt is too small.
+(relsize)                Using 7.0pt instead on input line 177.
+
+
+./ofvf.tex:181: LaTeX Error: [H] in two columns mode is not allowed for algorithms.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
                                                   
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-./ofvf.tex:176: Missing $ inserted.
-<inserted text> 
-                $
-l.176 	 Norm size: $\psi
-                        _{s,a} \gets d_{(1-\delta)\,m}$\;
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-./ofvf.tex:176: Missing $ inserted.
-<inserted text> 
-                $
-l.176 ...e: $\psi_{s,a} \gets d_{(1-\delta)\,m}$\;
-                                                  
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-./ofvf.tex:177: Undefined control sequence.
-l.177 	 \Return
-               {$\bar{p}_{s,a}$ and $\psi_{s,a}$}\;
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-./ofvf.tex:177: Missing } inserted.
-<inserted text> 
-                }
-l.177 	 \Return{$
-                 \bar{p}_{s,a}$ and $\psi_{s,a}$}\;
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-./ofvf.tex:177: Missing $ inserted.
-<inserted text> 
-                $
-l.177 	 \Return{$\bar
-                     {p}_{s,a}$ and $\psi_{s,a}$}\;
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
+l.181 \begin{algorithm}[H]
+                          
+(That was another \errmessage.)
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 171--177
-[]\OT1/ptm/m/n/10 (+20) Distribution $\OML/cmm/m/it/10 ^^R$ \OT1/ptm/m/n/10 (+20) over $\OML/cmm/m/it/10 p[]$\OT1/ptm/m/n/10 (+20) , con-fi-dence level $\OML/cmm/m/it/10 ^^N$\OT1/ptm/m/n/10 (+20) ,
- []
+Package relsize Warning: Font size 6.94446pt is too small.
+(relsize)                Using 7.0pt instead on input line 196.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 171--177
-\OT1/ptm/m/n/10 (+20) sam-ple count $\OML/cmm/m/it/10 m$ \OT1/ptm/m/n/10 (+20) Nom-i-nal point $[]$ and $\OML/cmm/m/it/10 L[]$
- []
+Package relsize Warning: Font size 6.94446pt is too small.
+(relsize)                Using 7.0pt instead on input line 196.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 171--177
-\OT1/ptm/m/n/10 (+20) norm size $\OML/cmm/m/it/10  []$ \OT1/ptm/m/n/10 (+20) Sam-ple $\OML/cmm/m/it/10 X[]; [] ; X[] \OMS/cmsy/m/n/10 2 \OT1/cmr/m/n/10 ^^A[]$
- []
+Package relsize Warning: Font size 6.94446pt is too small.
+(relsize)                Using 7.0pt instead on input line 196.
 
 
-Underfull \hbox (badness 5741) in paragraph at lines 171--177
-\OT1/ptm/m/n/10 (+20) from $\OML/cmm/m/it/10 ^^R$\OT1/ptm/m/n/10 (+20) : $\OML/cmm/m/it/10 X[] \OMS/cmsy/m/n/10 ^^X \OML/cmm/m/it/10 ^^R$$ Nominalpoint \OT1/cmr/m/n/10 :$$[] \OMS/cmsy/m/n/10  
- []
-
-./ofvf.tex:177: Missing $ inserted.
-<inserted text> 
-                $
-l.177 ...eturn{$\bar{p}_{s,a}$ and $\psi_{s,a}$}\;
-                                                  
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-./ofvf.tex:179: Missing $ inserted.
-<inserted text> 
-                $
-l.179 \end{algorithm}
-                     
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-./ofvf.tex:179: Extra }, or forgotten \endgroup.
-\@endfloatbox ...pagefalse \outer@nobreak \egroup 
-                                                  \color@endbox 
-l.179 \end{algorithm}
-                     
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-./ofvf.tex:182: Undefined control sequence.
-l.182 	 \KwIn
-             {Desired confidence level $\delta$ and prior distribution }
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-./ofvf.tex:183: Undefined control sequence.
-l.183 	 \KwOut
-              {Policy with an optimistic return estimate }
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-./ofvf.tex:184: Undefined control sequence.
-l.184 		 \Repeat
-                {num episodes}{
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-./ofvf.tex:186: Missing $ inserted.
-<inserted text> 
-                $
-l.186 		 Initialize MDP: $M$\;
-                              
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-./ofvf.tex:187: Missing $ inserted.
-<inserted text> 
-                $
-l.187 		 Compute posterior: $\tilde
-                                   {p} \gets$ compute\_posterior(prior, samp...
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-./ofvf.tex:187: Missing $ inserted.
-<inserted text> 
-                $
-l.187 ...ts$ compute\_posterior(prior, samples) \;
-                                                  
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-./ofvf.tex:188: Missing $ inserted.
-<inserted text> 
-                $
-l.188 
-      
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
+Package relsize Warning: Font size 6.94446pt is too small.
+(relsize)                Using 7.0pt instead on input line 196.
 
 
-Underfull \hbox (badness 1117) in paragraph at lines 186--188
-[]\OT1/ptm/m/n/10 (+20) Initialize MDP: $\OML/cmm/m/it/10 M$$ Computeposterior \OT1/cmr/m/n/10 :$$[] \OMS/cmsy/m/n/10  $ \OT1/ptm/m/n/10 (+20) com-
- []
-
-./ofvf.tex:189: Undefined control sequence.
-l.189 		 \ForEach
-                 {$s \in \mathcal{S}, a \in \mathcal{A}$}{%
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+Package relsize Warning: Font size 6.94446pt is too small.
+(relsize)                Using 7.0pt instead on input line 196.
 
 
-Package xcolor Warning: Incompatible color definition on input line 190.
+Package xcolor Warning: Incompatible color definition on input line 196.
 
-./ofvf.tex:190: Missing $ inserted.
-<inserted text> 
-                $
-l.190 ...f{alg:bayes} with $\tilde{p}$, $\delta$\;
-                                                  
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
 
-./ofvf.tex:191: Missing $ inserted.
-<inserted text> 
-                $
-l.191 			 $M \gets
-                   \text{add transition with } \bar{p}_{s,a}, \psi_{s,a}$\;
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
+Package relsize Warning: Font size 6.94446pt is too small.
+(relsize)                Using 7.0pt instead on input line 196.
 
-./ofvf.tex:191: Undefined control sequence.
-l.191 			 $M \gets \text
-                        {add transition with } \bar{p}_{s,a}, \psi_{s,a}$\;
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-./ofvf.tex:191: Missing $ inserted.
-<inserted text> 
-                $
-l.191 ...ition with } \bar{p}_{s,a}, \psi_{s,a}$\;
-                                                  
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-./ofvf.tex:192: Extra }, or forgotten $.
-l.192 		 }
-          
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-./ofvf.tex:193: Missing $ inserted.
-<inserted text> 
-                $
-l.193 		 Compute policy by solving MDP: $\hat
-                                             {\pi} \gets$ Solve $M$\;
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-./ofvf.tex:193: Missing $ inserted.
-<inserted text> 
-                $
-l.193 ...olving MDP: $\hat{\pi} \gets$ Solve $M$\;
-                                                  
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-./ofvf.tex:194: Missing $ inserted.
-<inserted text> 
-                $
-l.194 ...s by executing the policy: samples $\gets
-                                                  $ execute $\hat{\pi}$\;
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-./ofvf.tex:194: Missing $ inserted.
-<inserted text> 
-                $
-l.194 ...cy: samples $\gets$ execute $\hat{\pi}$\;
-                                                  
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-./ofvf.tex:195: Missing $ inserted.
-<inserted text> 
-                $
-l.195 		 prior $\gets
-                     $ posterior\;
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-./ofvf.tex:195: Missing $ inserted.
-<inserted text> 
-                $
-l.195 		 prior $\gets$ posterior\;
-                                  
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-./ofvf.tex:196: Extra }, or forgotten $.
+./ofvf.tex:196: Undefined control sequence.
+<argument> ...de {p}$, $\delta $\; $M \gets \text 
+                                                  {add transition with } \ba...
 l.196 		 }
           
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-./ofvf.tex:197: Undefined control sequence.
-l.197 	 \Return
-                $(\pi_k, p_0\tr v_k)$ \;
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-./ofvf.tex:197: Missing $ inserted.
-<inserted text> 
-                $
-l.197 	 \Return $(\pi
-                     _k, p_0\tr v_k)$ \;
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
+
+Package relsize Warning: Font size 6.94446pt is too small.
+(relsize)                Using 7.0pt instead on input line 196.
+
+
+Package relsize Warning: Font size 6.94446pt is too small.
+(relsize)                Using 7.0pt instead on input line 196.
+
+
+Package relsize Warning: Font size 6.94446pt is too small.
+(relsize)                Using 7.0pt instead on input line 196.
+
+
+Package relsize Warning: Font size 6.94446pt is too small.
+(relsize)                Using 7.0pt instead on input line 196.
+
+
+Package relsize Warning: Font size 6.94446pt is too small.
+(relsize)                Using 7.0pt instead on input line 197.
 
 Package microtype Info: Loading generic settings for font family
 (microtype)             `cmss' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-./ofvf.tex:197: Missing $ inserted.
-<inserted text> 
-                $
-l.197 	 \Return $(\pi_k, p_0\tr v_k)$ \;
-                                        
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
 
-./ofvf.tex:199: Missing $ inserted.
-<inserted text> 
-                $
-l.199 \end{algorithm}
-                     
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 189--199
-[]$\OML/cmm/m/it/10 s \OMS/cmsy/m/n/10 2 S\OML/cmm/m/it/10 ; a \OMS/cmsy/m/n/10 2 A$$[]\OML/cmm/m/it/10 ;  [] \OMS/cmsy/m/n/10  $ \OT1/ptm/m/n/10 (+20) In-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 189--199
-\OT1/ptm/m/n/10 (+20) voke Al-go-rithm [][]1[][] with $[]$, $\OML/cmm/m/it/10 ^^N$$ $\OT1/ptm/m/n/10 (+20) M $\OMS/cmsy/m/n/10  
- []
-
-
-Overfull \hbox (47.73941pt too wide) in paragraph at lines 189--199
-[][]\OML/cmm/m/it/10 ;  []$$ ComputepolicybysolvingMDP \OT1/cmr/m/n/10 :$$[] \OMS/cmsy/m/n/10  $
- []
-
-
-Underfull \hbox (badness 8170) in paragraph at lines 189--199
-\OT1/ptm/m/n/10 (+20) Solve $\OML/cmm/m/it/10 M$$ Collectsamplesbyexecutingthepolicy \OT1/cmr/m/n/10 :
- []
-
-./ofvf.tex:199: Missing } inserted.
-<inserted text> 
-                }
-l.199 \end{algorithm}
-                     
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-./ofvf.tex:199: Missing } inserted.
-<inserted text> 
-                }
-l.199 \end{algorithm}
-                     
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+ [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 
 
-] <figures/SimpleProblem_PSRL_BayesUCRL_OFVF.png, id=32, 462.528pt x 346.896pt>
+]
+
+./ofvf.tex:239: LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.239 \begin{figure}[H]
+                       
+Option `H' ignored and `p' used.
+
+<figures/SimpleProblem_PSRL_BayesUCRL_OFVF.png, id=50, 462.528pt x 346.896pt>
 File: figures/SimpleProblem_PSRL_BayesUCRL_OFVF.png Graphic file (type png)
  <use figures/SimpleProblem_PSRL_BayesUCRL_OFVF.png>
 Package pdftex.def Info: figures/SimpleProblem_PSRL_BayesUCRL_OFVF.png used on input line 243.
 (pdftex.def)             Requested size: 105.69415pt x 79.27095pt.
- <figures/RiverSwim_RSVF_BAYESUCB_PSRL.png, id=34, 462.528pt x 346.896pt>
+ <figures/RiverSwim_RSVF_BAYESUCB_PSRL.png, id=52, 462.528pt x 346.896pt>
 File: figures/RiverSwim_RSVF_BAYESUCB_PSRL.png Graphic file (type png)
  <use figures/RiverSwim_RSVF_BAYESUCB_PSRL.png>
 Package pdftex.def Info: figures/RiverSwim_RSVF_BAYESUCB_PSRL.png used on input line 247.
@@ -1050,51 +807,50 @@ Package natbib Warning: Citation `Osband2013' on page 2 undefined on input line 
 
 Package natbib Warning: Citation `Osband2013' on page 2 undefined on input line 249.
 
-
-Package natbib Warning: Citation `langley00' undefined on input line 273.
-
 (./ofvf.bbl)
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <12> not available
 (Font)              Font shape `OT1/ptm/b/it' tried instead on input line 285.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <10> not available
 (Font)              Font shape `OT1/ptm/b/it' tried instead on input line 287.
 
+Underfull \vbox (badness 2042) has occurred while \output is active []
+
+
 
 Package natbib Warning: There were undefined citations.
 
-[2pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.304 \end{document}
-                     <./figures/SimpleProblem_PSRL_BayesUCRL_OFVF.png> <./figures/RiverSwim_RSVF_BAYESUCB_PSRL.png>]
+[2]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 304.
+ [3
+
+ <./figures/SimpleProblem_PSRL_BayesUCRL_OFVF.png> <./figures/RiverSwim_RSVF_BAYESUCB_PSRL.png>]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 304.
- (./ofvf.aux
-
-Package natbib Warning: Citation(s) may have changed.
-(natbib)                Rerun to get citations correct.
-
-)
+ (./ofvf.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 304.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 304.
 Package rerunfilecheck Info: File `ofvf.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 304.
  ) 
 Here is how much of TeX's memory you used:
- 18228 strings out of 493029
- 339266 string characters out of 6136233
- 443985 words of memory out of 5000000
- 21327 multiletter control sequences out of 15000+600000
- 30189 words of font info for 99 fonts, out of 8000000 for 9000
+ 19071 strings out of 493029
+ 353068 string characters out of 6136233
+ 469861 words of memory out of 5000000
+ 22142 multiletter control sequences out of 15000+600000
+ 32019 words of font info for 104 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,12n,56p,435b,414s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,15n,56p,435b,476s stack positions out of 5000i,500n,10000p,200000b,80000s
+pdfTeX warning (dest): name{algorithm.1} has been referenced but does not exist, replaced by a fixed one
+
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on ofvf.pdf (2 pages, 190681 bytes).
+Output written on ofvf.pdf (3 pages, 191673 bytes).
 PDF statistics:
- 100 PDF objects out of 1000 (max. 8388607)
- 77 compressed objects within 1 object stream
- 17 named destinations out of 1000 (max. 500000)
- 27159 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 130 PDF objects out of 1000 (max. 8388607)
+ 105 compressed objects within 2 object streams
+ 37 named destinations out of 1000 (max. 500000)
+ 27671 words of extra memory for PDF output out of 29859 (max. 10000000)
 
