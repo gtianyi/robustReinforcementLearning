@@ -154,12 +154,24 @@ Our work
 
 \section{Problem formulation}
 
-We consider the problem of learning and solving an uncertain
-MDP :$(S, A, P^M, R^M)$ where $S = \{1,...,S\}$ is the state space, $A =
-\{1,...,A\}$ is the action space, $R^M(a,s)$ is the believe distribution over
-true reward when take action $a$ at state $s$, $P^M(s'|s,a)$ is the
-believe distribution over the true transition probability of
-transitioning to state $s'$ when take action $a$ at state $s$.
+We consider the problem of learning and solving an episodic
+finite-horizon uncertain MDP :$(S, A, P^M, R^M, H, \rho)$ where $S =
+\{1,...,S\}$ is the state space, $A = \{1,...,A\}$ is the action
+space,  $P^M(s'|s,a)$ is the believe distribution over the true
+transition probability $P(s'|s,a)$ of transitioning to state $s'$ when
+take action $a$ at state $s$, $R^M(s,a,s')$ is the believe
+distribution over the true reward $R(s,a,s')$ when take action $a$ at
+state $s$ and transition to state $s'$, $H$ is the time horizon, and
+$\rho$ is the initial state distribution. In each episode, the initial
+state $s_0$ is sampled from $\rho$, and in time period
+$h=0,1,...,H-1$, if an action $a_h$ is taken in state $s_h$, then a
+next state $s_{h+1}$ is sampled from $P(s_{h+1}|s_h,a_h)$ and a reward
+$r_h$ is sampled from $R(s_h,s_a,s_{h+1})$. The episode terminates
+when $s_H$ is reached. 
+
+A policy $\mu$ is a function mapping $S$ to $A$. 
+
+
 
 value function
 
