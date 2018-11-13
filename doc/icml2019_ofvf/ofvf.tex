@@ -25,6 +25,7 @@
 \usepackage[colorinlistoftodos]{todonotes}
 \usepackage{verbatim}
 \usepackage[ruled,linesnumbered,vlined]{algorithm2e}
+\usepackage{amssymb}
 
 %defined our command here
 \newcommand{\citeasnoun}[1]{\cite{#1}}
@@ -47,6 +48,8 @@
 \newcommand{\eye}{\mathbf{I}}
 \newcommand{\zero}{\mathbf{0}}
 
+%\newcommand{\fix}[1]{}
+\newcommand{\fix}[1]{{$\langle${\color{red}\sc Fix: #1}$\rangle$}}
 
 % If accepted, instead use the following line for the camera-ready submission:
 %\usepackage[accepted]{icml2018}
@@ -151,10 +154,9 @@ Posterior sampling
 
 Our work
 
-
 \section{Problem formulation}
 
-We consider the problem of learning and solving an episodic
+We consider the problem of episodically learning and solving an 
 finite-horizon uncertain MDP :$(S, A, P^M, R^M, H, \rho)$ where $S =
 \{1,...,S\}$ is the state space, $A = \{1,...,A\}$ is the action
 space,  $P^M(s'|s,a)$ is the believe distribution over the true
@@ -164,18 +166,27 @@ distribution over the true reward $R(s,a,s')$ when take action $a$ at
 state $s$ and transition to state $s'$, $H$ is the time horizon, and
 $\rho$ is the initial state distribution. In each episode, the initial
 state $s_0$ is sampled from $\rho$, and in time period
-$h=0,1,...,H-1$, if an action $a_h$ is taken in state $s_h$, then a
+$h=1,2,...,H$, if an action $a_h$ is taken in state $s_h$, then a
 next state $s_{h+1}$ is sampled from $P(s_{h+1}|s_h,a_h)$ and a reward
 $r_h$ is sampled from $R(s_h,s_a,s_{h+1})$. The episode terminates
 when $s_H$ is reached. 
 
-A policy $\mu$ is a function mapping $S$ to $A$. 
+A policy $\mu$ is a function mapping $S$ to $A$. For each MDP $M$ and
+policy $\mu$, we define a value function for each time period
+$h=1,2,...,H$:
 
+$V_h^\mu(s):=\mathbb{E}[\sum_{\tau=h}^H
+r_\tau|s_h=s,a_\tau=\mu(s_\tau)]$
 
+The optimal value function is
+defined by $V^*_h(s)=\max_\mu V_h^\mu(s)$. A policy $\mu^*$ is said to
+be optimal if $V^{\mu^*}=V^*$ for all $s\in S$ and $h=1,...,H$.
 
-value function
+\fix{talk about state-action optimal value function? see RLSVI}
 
-regret definition
+\fix{talk about regret}
+
+A reinforcement learning 
 
 \section{OFVF and Bayes UCRL}
 
