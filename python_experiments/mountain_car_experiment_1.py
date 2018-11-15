@@ -101,15 +101,20 @@ def set_parametric_prior(p_index, v_index, action):
     --------
     prior: Dirichlet distribution for the prior
     """
+    # define the magnitude of action effects over the bounded region. e.g. if action 'left' or '0' is chosen, the probability for
+    # the car to be in a state in the left is higher. This simple heuristic is applied on the prior distribution.
     effect_left = -3 if action==0 else -2 if action==1 else -1
     effect_right = 1 if action==0 else 2 if action==1 else 3
     
+    # compute the bounding box for the position and velocity values on the discritized state space
     p_min = max(p_index+effect_left, 0)
     p_max = min(p_index+effect_right, resolution-1)
     
     v_min = max(v_index+effect_left, 0)
     v_max = min(v_index+effect_right, resolution-1)
     
+    # assign Dirichlet conjugate values, proportional to the nearby likelihood heuristic: the car is more likely to be in a nearby 
+    # state of the current state.
     prior = {}
     for p in range(p_min, p_max+1):
         for v in range(v_min, v_max+1):
@@ -176,17 +181,19 @@ def PSRL(discount_factor, num_episodes, num_runs, horizon):
     """
     regret_psrl = np.zeros( (num_runs, num_episodes) )
     prior = obtain_parametric_priors()
+    
+    # initially the posterior is the same as prior
     posterior = prior
         
     for run in range(num_runs):
         print("run: ", run)
         
-        # Run episodes for the PSRL
+        # run episodes for the PSRL
         for episode in range(num_episodes):
             print("episode: ", episode)
             sampled_mdp = crobust.MDP(0, discount_factor)
             
-            print("build the MDP")
+            # iterate over all state-actions, sample from the posterior distribution and construct the sampled MDP
             for s in all_states:
                 p,v = obs_to_index(s)
                 cur_state = index_to_single_index(p,v)
@@ -196,21 +203,22 @@ def PSRL(discount_factor, num_episodes, num_runs, horizon):
                     
                     next_states = []
                     visit_stats = []
-                
+                    
+                    # unbox key(next states) and values(Dirichlet prior parameters) from the samples dictionary.
                     for key, value in samples.items():
                         next_states.append(index_to_single_index(key[0],key[1]))
                         visit_stats.append(value)
+                    
+                    # sample from the drichlet distribution stated with the prior parameters
                     trp = np.random.dirichlet(visit_stats, 1)[0]
                     
                     for s_index, s_next in enumerate(next_states):
                         sampled_mdp.add_transition(cur_state, action, s_next, trp[s_index], get_reward(s_next))
             
-            print("Solve the problem")
             # Compute current solution
             cur_solution = sampled_mdp.solve_mpi()
             cur_policy = cur_solution.policy
             
-            print("compute return and execute policy to collect samples")
             # Initial state is uniformly distributed, compute the expected value over them.
             expected_value_initial_state = 0
             for init in init_states:
@@ -218,6 +226,8 @@ def PSRL(discount_factor, num_episodes, num_runs, horizon):
                 expected_value_initial_state += cur_solution[0][state]
             expected_value_initial_state /= len(init_states)
             
+            # regret computation needs to be implemented. The Q-learning solution can be considered as the true soultion.
+            # the solution produced here by PSRL is the approximate solution and the difference between them is the regret
             regret_psrl[run,episode] = expected_value_initial_state #abs(cur_solution[0][0]-true_solution[0][0])
             
             # Follow the policy to collect transition samples
@@ -227,7 +237,8 @@ def PSRL(discount_factor, num_episodes, num_runs, horizon):
                 next_state, reward, done, info = env.step(action)
                 next_state = obs_to_index(next_state)
                 
-                # posterior[cur_position, cur_velocity, action][next_position, next_velocity] is the entry that we wanna update with the sample
+                # posterior[cur_position, cur_velocity, action][next_position, next_velocity] is the entry that we wanna update 
+                # with the sample. This is really combining the current sample with the prior, which constitutes the posterior.
                 if (next_state[0],next_state[1]) not in posterior[cur_state[0],cur_state[1],action]:
                     posterior[cur_state[0],cur_state[1],action][next_state[0],next_state[1]] = 0
                 posterior[cur_state[0],cur_state[1],action][next_state[0],next_state[1]] += 1
@@ -240,15 +251,16 @@ def PSRL(discount_factor, num_episodes, num_runs, horizon):
     return np.amin(regret_psrl, axis=0), np.mean(regret_psrl, axis=0), cur_solution
 
 ### set experiment parameters
-if __name__ == "__main__":
-    resolution = 40
-    max_episodes = 100#00
-    discount_factor = 1.0
-    eps = 0.02
+if __name__ == "__main__": 
     env_name = 'MountainCar-v0'
     env = gym.make(env_name)
     env.seed(0)
     np.random.seed(0)
+
+    # discritization resolution parameter
+    resolution = 40
+    
+    # maximum prior magnitude for any discritized state
     max_prior = 10
     
     env_low = env.observation_space.low
@@ -256,21 +268,30 @@ if __name__ == "__main__":
     env_dx = (env_high - env_low) / resolution
     num_actions = env.action_space.n
     
+    # discritize the whole state space, both for position and velocity
     grid_x = np.clip(np.linspace(env_low[0], env_high[0], resolution), -1.2, 0.6)
     grid_y = np.clip(np.linspace(env_low[1], env_high[1], resolution), -0.07, 0.07)
     
+    # enumerate all possible discritized states
     all_states = np.array(list(itertools.product(grid_x, grid_y)))
 
-    # Initial state is a random position between -0.6 to -0.4 with no velocity
+    # Initial state is a random position between -0.6 to -0.4 with no velocity, construct the corresponding discritized initial states.
     position_step = (env_high[0]-env_low[0])/resolution
     init_positions = np.arange(-0.6, -0.4, position_step)
     init_states = np.unique(np.array([obs_to_index((x,0)) for x in init_positions]), axis=0)
     
 ### invoke PSRL method and run experiments
 if __name__ == "__main__":
+    
     discount_factor = 1.0
-    num_episodes = 50
+    
+    # number of times to run the experiment
     num_runs = 30
+    
+    # number of episodes for each run
+    num_episodes = 50
+    
+    # horizon for policy execution to collect samples for the next episode
     horizon = 100
     
     res = PSRL(discount_factor, num_episodes, num_runs, horizon)
@@ -315,8 +336,6 @@ for i in range(3):
 plt.legend(loc='best', fancybox=True, framealpha=0.7)
 plt.xlabel("position")
 plt.ylabel("velocity")
-#plt.colorbar()
-#plt.grid()
 plt.show()
 
 ### Run the obtained policy to see it in action in OpenAI
