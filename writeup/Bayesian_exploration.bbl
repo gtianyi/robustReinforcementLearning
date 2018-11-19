@@ -1,0 +1,33 @@
+\begin{thebibliography}{}
+
+\bibitem [\protect \citeauthoryear {%
+Osband%
+, Russo%
+\BCBL {}\ \BBA {} {Van Roy}%
+}{%
+Osband%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2013}}%
+}]{%
+Osband2013}
+\APACinsertmetastar {%
+Osband2013}%
+\begin{APACrefauthors}%
+Osband, I.%
+, Russo, D.%
+\BCBL {}\ \BBA {} {Van Roy}, B.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2013}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {{(More) Efficient Reinforcement Learning via Posterior
+  Sampling}} {{(More) Efficient Reinforcement Learning via Posterior
+  Sampling}}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{}{}{}{1--10}.
+\newblock
+\begin{APACrefURL} \url{http://arxiv.org/abs/1306.0940} \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\end{thebibliography}

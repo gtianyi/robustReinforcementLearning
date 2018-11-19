@@ -9,7 +9,9 @@ import matplotlib.pyplot as plt
 import pickle
 import datetime
 import itertools
+import datetime
 
+print(datetime.datetime.now())
 # cd /home/reazul/PhD_Research/Bayesian_Exploration/Codes/Bayes_explore/bayesian_exploration/python_experiments
 
 """
@@ -35,6 +37,7 @@ if __name__ == "__main__":
     states = np.arange(num_states)
     rewards = np.zeros(num_states)
     rewards[0], rewards[num_states-1] = 5/1000, 1
+    date_time = str(datetime.datetime.now())
     
     transitions = np.zeros( (num_states, num_actions, num_states) )
     
@@ -63,7 +66,7 @@ if __name__ == "__main__":
     #print(true_mdp.to_json())
     true_solution = true_mdp.solve_mpi()
     
-    with open('dumped_results/truesolution','wb') as fp:
+    with open('dumped_results/truesolution'+date_time,'wb') as fp:
         pickle.dump(true_solution.valuefunction, fp)
     
     print("true_solution", true_solution)
@@ -74,32 +77,67 @@ if __name__ == "__main__":
     #worst_regret_ucrl, avg_regret_ucrl = UCRL2(num_states, num_actions, num_states, transitions, rewards, discount_factor, num_episodes, num_runs, true_solution)
     print("executing PSRL...")
     worst_regret_psrl, avg_regret_psrl = PSRL(num_states, num_actions, num_states, transitions, rewards, discount_factor, num_episodes, num_runs, true_solution)
-    with open('dumped_results/worst_regret_psrl','wb') as fp:
+    with open('dumped_results/worst_regret_psrl'+date_time,'wb') as fp:
         pickle.dump(worst_regret_psrl, fp)
-    with open('dumped_results/avg_regret_psrl','wb') as fp:
+    with open('dumped_results/avg_regret_psrl'+date_time,'wb') as fp:
         pickle.dump(worst_regret_psrl, fp)
     
     
     print("executing Bayes UCRL...")
     worst_regret_bayes_ucrl, avg_regret_bayes_ucrl =  BayesUCRL(num_states, num_actions, num_states, transitions, rewards, discount_factor, confidence, num_bayes_samples, num_episodes, num_runs, true_solution)
-    with open('dumped_results/worst_regret_bayes_ucrl','wb') as fp:
+    with open('dumped_results/worst_regret_bayes_ucrl'+date_time,'wb') as fp:
         pickle.dump(worst_regret_bayes_ucrl, fp)
-    with open('dumped_results/avg_regret_bayes_ucrl','wb') as fp:
+    with open('dumped_results/avg_regret_bayes_ucrl'+date_time,'wb') as fp:
         pickle.dump(avg_regret_bayes_ucrl, fp)
     
     
     print("executing OFVF...")
     worst_regret_ofvf, avg_regret_ofvf,  violations, confidences = Optimism_VF(num_states, num_actions, num_states, transitions, rewards, discount_factor, confidence, num_bayes_samples, num_episodes, num_runs, true_solution)
-    with open('dumped_results/worst_regret_ofvf','wb') as fp:
+    with open('dumped_results/worst_regret_ofvf'+date_time,'wb') as fp:
         pickle.dump(worst_regret_ofvf, fp)
-    with open('dumped_results/avg_regret_ofvf','wb') as fp:
+    with open('dumped_results/avg_regret_ofvf'+date_time,'wb') as fp:
         pickle.dump(avg_regret_ofvf, fp)
-    with open('dumped_results/violations_ofvf','wb') as fp:
+    with open('dumped_results/violations_ofvf'+date_time,'wb') as fp:
         pickle.dump(violations, fp)
-    with open('dumped_results/confidences_ofvf','wb') as fp:
+    with open('dumped_results/confidences_ofvf'+date_time,'wb') as fp:
         pickle.dump(confidences, fp)
     
 ### Plot worst case results
+if __name__ == "__main__":
+    f = open('dumped_results/worst_regret_psrl', 'rb')
+    worst_regret_psrl = pickle.load(f)
+    f.close()
+    
+    f = open('dumped_results/worst_regret_bayes_ucrl', 'rb')
+    worst_regret_bayes_ucrl = pickle.load(f)
+    f.close()
+
+    f = open('dumped_results/worst_regret_ofvf', 'rb')
+    worst_regret_ofvf = pickle.load(f)
+    f.close()
+
+    f = open('dumped_results/avg_regret_psrl', 'rb')
+    avg_regret_psrl = pickle.load(f)
+    f.close()
+
+    f = open('dumped_results/avg_regret_bayes_ucrl', 'rb')
+    avg_regret_bayes_ucrl = pickle.load(f)
+    f.close()
+
+    f = open('dumped_results/avg_regret_ofvf', 'rb')
+    avg_regret_ofvf = pickle.load(f)
+    f.close()
+
+    f = open('dumped_results/violations_ofvf', 'rb')
+    violations = pickle.load(f)
+    f.close()
+
+    f = open('dumped_results/confidences_ofvf', 'rb')
+    confidences = pickle.load(f)
+    f.close()
+
+
+###
 if __name__ == "__main__":
     plt.plot(np.cumsum(worst_regret_psrl), label="PSRL", color='b', linestyle=':')
     #plt.plot(np.cumsum(worst_regret_ucrl), label="UCRL", color='c', linestyle=':')
@@ -127,8 +165,8 @@ if __name__ == "__main__":
 
 ### Plot violations
 if __name__ == "__main__":
-    plt.plot(1-np.array(violations), label="violations of OFVF", color='r', linestyle='-.')
-    plt.plot(1-np.array(confidences), label="Actual confidence", color='g', linestyle='--')
+    plt.plot(np.array(violations), label="violations of OFVF", color='r', linestyle='-.')
+    plt.plot(np.array(confidences), label="Actual confidence", color='g', linestyle='--')
     plt.legend(loc='best', fancybox=True, framealpha=0.3)
     plt.xlabel("num_episodes")
     plt.ylabel("violations")
@@ -137,7 +175,9 @@ if __name__ == "__main__":
     plt.show()
 
 
-
+###
+a = np.array([0.6, 0.07, 0.33])
+print(1-a)
 
 
 
