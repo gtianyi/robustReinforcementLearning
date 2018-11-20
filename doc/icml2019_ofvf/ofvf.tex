@@ -156,8 +156,8 @@ Our work
 
 \section{Problem formulation}
 
-We consider the problem of episodically learning and solving an 
-finite-horizon uncertain MDP :$(S, A, P^M, R^M, H, \rho)$ where $S =
+We consider the problem of episodically learning and solving a 
+finite-horizon uncertain MDP: $M = (S, A, P^M, R^M, H, \rho)$ where $S =
 \{1,...,S\}$ is the state space, $A = \{1,...,A\}$ is the action
 space,  $P^M(s'|s,a)$ is the believe distribution over the true
 transition probability $P(s'|s,a)$ of transitioning to state $s'$ when
@@ -184,9 +184,19 @@ be optimal if $V^{\mu^*}=V^*$ for all $s\in S$ and $h=1,...,H$.
 
 \fix{talk about state-action optimal value function? see RLSVI}
 
-\fix{talk about regret}
+A reinforcement learning algorithm interacts with the MDP over
+episodes from time period $\tau=1$ to $\tau=H$. At each time $\tau$,
+the algorithm selects an action $a_\tau$, realizes a reward $r_\tau$,
+and then transitions to state $s_{\tau+1}$. Over each episode $k$, the
+algorithm realizes reward $\sum_{\tau=1}^H$. One way to quantify the
+performance of a reinforcement algorithm is in terms of the expected
+cumulative regret up to time $T$ over $K$ episodes, defined by
 
-A reinforcement learning 
+\begin{tabular}{l l l}
+		$Regret(T,M)$ & $=$ &$
+	\sum_{k=1}^{T/H}\mathbb{E}_M[V_1^*(s_{k1})-\sum_{\tau=1}^Hr_{k\tau}]$\\
+	&$=$&$ \sum_{k=1}^{T/H}\mathbb{E}_M[V_1^*(s_{k1})-V_1^{\mu_k}(s_{k1})]$
+\end{tabular}
 
 \section{OFVF and Bayes UCRL}
 
@@ -223,7 +233,7 @@ A reinforcement learning
 
 Description about Bayes UCRL
 
-pseudocode of OFVF and description
+pseudocode of OFVF and descriptions
 
 \section{Some shortcomings of existing UCRL2 and PSRL}
 
@@ -253,25 +263,44 @@ Conjecture 1
 
 \section{Simulation results}
 
-something about RiverSwim
+\subsection{Single-state Bellman Update}
 
-something about Inventory
-
-something about MountainCar
-
-\begin{figure}[H]
+\begin{figure}[h!]
 	\centering
-	\begin{minipage}[c]{.45\columnwidth}
-		\centering
-		\includegraphics[width=\linewidth]{figures/SimpleProblem_PSRL_BayesUCRL_OFVF.png}
-	\end{minipage}%
-	\begin{minipage}[c]{.45\columnwidth}
-		\centering
-		\includegraphics[width=\linewidth]{figures/RiverSwim_RSVF_BAYESUCB_PSRL.png}
-	\end{minipage}%
-	\caption{Cumulative regrets of PSRL and Bayes UCRL: left) above described simple problem, right) RiverSwim Problem described in \citep{Osband2013}}
-	\label{fig:dirichlet_result}
+	\includegraphics[width=\linewidth]{figures/SimpleProblem_PSRL_BayesUCRL_OFVF.png}
+	\caption{Cumulative regrets of PSRL and Bayes UCRL:  simple problem}
+	\label{fig:dirichlet_result_simple}
 \end{figure}
+
+We initially consider simple problems where transition from a single
+non-terminal state following a single action leads to multiple
+terminal states. The value function for the terminal states are fixed
+and assumed to be provided. We evaluate different priors over the
+transition probabilities: i) uniformative Dirichlet prior and ii)
+inforamtive Gaussian prior. Note that OFVF is optimal in this
+simplistic setting, as \fix{figure} shows. As expected, the mean
+estiamte provides the tightest bound, but \fix{figure} illustrates
+that it does not provide any meaningful safety guarantees.
+
+\fix{something about RiverSwim}
+
+\begin{figure}[h!]
+	\centering
+		\includegraphics[width=\linewidth]{figures/RiverSwim_RSVF_BAYESUCB_PSRL.png}
+	\caption{Cumulative regrets of PSRL and Bayes UCRL: RiverSwim Problem }
+	\label{fig:dirichlet_result_RiverSwim}
+\end{figure}
+
+We then compare the performance of OFVF to PSRL and BayesUCRL and
+UCRL2. We use the standard domain problem of
+RiverSwim \cite{strehl2008analysis}.
+
+RiverSwim consists of six states arranged in a chain as shown in
+\fix{figure}.
+
+\fix{something about Inventory}
+
+\fix{something about MountainCar}
 
 \section{Conclusion}
 
