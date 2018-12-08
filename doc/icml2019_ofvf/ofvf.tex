@@ -251,7 +251,7 @@ performance.
 
 \section{Analysis}
 
-Theoretical proof:
+Proof:
 
 Definition 1
 
@@ -268,7 +268,7 @@ Conjecture 1
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\linewidth]{figures/SimpleProblem_PSRL_BayesUCRL_OFVF.png}
-	\caption{Cumulative regrets of PSRL and Bayes UCRL:  simple problem}
+	\caption{Cumulative regrets of OFVF, PSRL and Bayes UCRL:  simple problem}
 	\label{fig:dirichlet_result_simple}
 \end{figure}
 
@@ -276,18 +276,18 @@ We initially consider simple problems where transition from a single
 non-terminal state following a single action leads to multiple
 terminal states. The value function for the terminal states are fixed
 and assumed to be provided. We evaluate different priors over the
-transition probabilities: i) uniformative Dirichlet prior and ii)
-inforamtive Gaussian prior. Note that OFVF is optimal in this
+transition probabilities: i) uninformative Dirichlet prior and ii)
+informative Gaussian prior. Note that OFVF is optimal in this
 simplistic setting, as \fix{figure} shows. As expected, the mean
-estiamte provides the tightest bound, but \fix{figure} illustrates
+estimate provides the tightest bound, but \fix{figure} illustrates
 that it does not provide any meaningful safety guarantees.
 
-\fix{something about RiverSwim}
+\subsection{RiverSwim}
 
 \begin{figure}[h!]
 	\centering
 		\includegraphics[width=\linewidth]{figures/RiverSwim_RSVF_BAYESUCB_PSRL.png}
-	\caption{Cumulative regrets of PSRL and Bayes UCRL: RiverSwim Problem }
+	\caption{Cumulative regrets of OFVF, PSRL and Bayes UCRL: RiverSwim Problem }
 	\label{fig:dirichlet_result_RiverSwim}
 \end{figure}
 
