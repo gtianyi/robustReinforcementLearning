@@ -175,9 +175,6 @@ if __name__ == "__main__":
     plt.show()
 
 
-###
-a = np.array([0.6, 0.07, 0.33])
-print(1-a)
 
 
 

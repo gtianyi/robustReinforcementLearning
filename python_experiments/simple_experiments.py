@@ -244,6 +244,8 @@ if __name__ == "__main__":
             posterior = posterior+samples
             thresholds = [[] for _ in range(3)]
             
+            #sa_confidence = confidence = 1 - 1/(k+1)
+            
             posterior_transition_points = []
             for a in range(num_actions):
                 bayes_samples = np.random.dirichlet(posterior[a], num_bayes_samples)
@@ -288,11 +290,24 @@ if __name__ == "__main__":
     plt.plot(np.cumsum(regret_bayes_ucrl), label="Bayes UCRL", color='g', linestyle=':')
     plt.plot(np.cumsum(regret_OFVF), label="OFVF", color='r', linestyle='-.')
     plt.legend(loc='best', fancybox=True, framealpha=0.3)
+    plt.xlabel("num_episodes")
+    plt.ylabel("cumulative regret")
+    plt.title("Worst Case Regret for Single State problem")
     plt.grid()
     plt.show()
 
 
-
+###
+    plt.plot(np.cumsum(worst_regret_psrl), label="PSRL", color='b', linestyle=':')
+    #plt.plot(np.cumsum(worst_regret_ucrl), label="UCRL", color='c', linestyle=':')
+    plt.plot(np.cumsum(worst_regret_bayes_ucrl), label="Bayes UCRL", color='g', linestyle='--')
+    plt.plot(np.cumsum(worst_regret_ofvf), label="OFVF", color='r', linestyle='-.')
+    plt.legend(loc='best', fancybox=True, framealpha=0.3)
+    plt.xlabel("num_episodes")
+    plt.ylabel("cumulative regret")
+    plt.title("Worst Case Regret for RiverSwim Problem")
+    plt.grid()
+    plt.show()
 
 
 

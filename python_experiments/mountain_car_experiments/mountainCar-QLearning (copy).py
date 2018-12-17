@@ -4,18 +4,20 @@ from gym import wrappers
 import matplotlib.pyplot as plt
 
 ###
-n_states = 40
-max_episodes = 100#00
-initial_lr = 1.0 #Initial Learning rate
-min_lr = 0.003
-discount_factor = 1.0
-max_iterations = 10000
-eps = 0.02
-env_name = 'MountainCar-v0'
-env = gym.make(env_name)
-env.seed(0)
-np.random.seed(0)
-q_table = np.zeros((n_states, n_states, env.action_space.n))
+#if __name__ == '__main__':
+def init():
+    n_states = 40
+    max_episodes = 10000
+    initial_lr = 1.0 #Initial Learning rate
+    min_lr = 0.003
+    discount_factor = 1.0
+    max_iterations = 10000
+    eps = 0.02
+    env_name = 'MountainCar-v0'
+    env = gym.make(env_name)
+    env.seed(0)
+    np.random.seed(0)
+    q_table = np.zeros((n_states, n_states, env.action_space.n))
 
 ###
 def train(render=False):
@@ -75,57 +77,61 @@ def obs_to_state(obs):
     return a, b
 
 ###
-print(obs_to_state((0.45,0.12)))
-###
-if __name__ == '__main__':
+#if __name__ == '__main__':
+def run_qlearning():
     train(render=False)
     solution_policy = np.argmax(q_table, axis=2)
+    print("Q-table", q_table)
     #print("Solution policy")
     #print(q_table)
 ###
+if __name__ == '__main__':
     # Animate it
     solution_policy_scores = [run(render=False, policy=solution_policy) for _ in range(100)]
     print("Average score of solution = ", np.mean(solution_policy_scores))
     run(render=True, policy=solution_policy)
 
 ###
-env.close()
-
+if __name__ == '__main__':
+    env.close()
 
 ### Prepare data from learned policy-valuefunction for plotting
-position_lowest = env.observation_space.low[0]
-position_highest = env.observation_space.high[0]
-
-velocity_lowest = env.observation_space.low[1]
-velocity_highest = env.observation_space.high[1]
-
-position_step = (position_highest-position_lowest)/n_states
-velocity_step = (velocity_highest-velocity_lowest)/n_states
-
-position, velocity, policy = [], [], []
-
-for i in np.arange(position_lowest,position_highest, position_step):
-    for j in np.arange(velocity_lowest, velocity_highest, velocity_step):
-        position.append(i)
-        velocity.append(j)
-        state = obs_to_state((i,j))
-        act = solution_policy[state]
-        policy.append(act) 
-        #print("position", i,"velocity", j,"state index", state_index, "value function", cur_solution[0][state_index], "policy", cur_policy[state_index])
-position, velocity, policy = np.array(position), np.array(velocity), np.array(policy)
-print(len(position), len(velocity), len(policy))
+if __name__ == '__main__':
+    position_lowest = env.observation_space.low[0]
+    position_highest = env.observation_space.high[0]
+    
+    velocity_lowest = env.observation_space.low[1]
+    velocity_highest = env.observation_space.high[1]
+    
+    position_step = (position_highest-position_lowest)/n_states
+    velocity_step = (velocity_highest-velocity_lowest)/n_states
+    
+    position, velocity, policy = [], [], []
+    
+    for i in np.arange(position_lowest,position_highest, position_step):
+        for j in np.arange(velocity_lowest, velocity_highest, velocity_step):
+            position.append(i)
+            velocity.append(j)
+            state = obs_to_state((i,j))
+            act = solution_policy[state]
+            policy.append(act) 
+            #print("position", i,"velocity", j,"state index", state_index, "value function", cur_solution[0][state_index], "policy", cur_policy[state_index])
+    position, velocity, policy = np.array(position), np.array(velocity), np.array(policy)
+    print(len(position), len(velocity), len(policy))
 
 ### Plot the obtained policy over the discretized states
-cdict = {0: 'red', 1: 'blue', 2: 'green'}
-labels = ["left", "neutral", "right"]
-marker = ['<','o','>']
+if __name__ == '__main__':
+    cdict = {0: 'red', 1: 'blue', 2: 'green'}
+    labels = ["left", "neutral", "right"]
+    marker = ['<','o','>']
+    
+    for i in range(3):
+        ix = np.where(policy == i)
+        plt.scatter(position[ix], velocity[ix], c=cdict[i], label=labels[i], marker=marker[i], alpha=0.5)
+    plt.legend(loc='best', fancybox=True, framealpha=0.7)
+    plt.xlabel("position")
+    plt.ylabel("velocity")
+    #plt.colorbar()
+    #plt.grid()
+    plt.show()
 
-for i in range(3):
-    ix = np.where(policy == i)
-    plt.scatter(position[ix], velocity[ix], c=cdict[i], label=labels[i], marker=marker[i], alpha=0.5)
-plt.legend(loc='best', fancybox=True, framealpha=0.7)
-plt.xlabel("position")
-plt.ylabel("velocity")
-#plt.colorbar()
-#plt.grid()
-plt.show()
