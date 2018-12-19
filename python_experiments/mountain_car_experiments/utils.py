@@ -7,6 +7,7 @@ from scipy.stats import norm
 from craam import crobust
 from scipy import stats
 import matplotlib.pyplot as plt
+from gurobipy import *
 #import tqdm
 import pickle
 import datetime
@@ -192,7 +193,7 @@ def compute_bayesian_threshold(points, nominal_point, confidence_level):
     return threshold
     
 
-def construct_uset_known_value_function(transition_points, value_function, confidence):
+def construct_uset_known_value_function(transition_points, value_function, confidence, next_states=None):
     """
     Computes the robust return and a threshold that achieves the desired confidence level
     for a single state and action.
@@ -204,7 +205,16 @@ def construct_uset_known_value_function(transition_points, value_function, confi
     points = []
 
     for p in transition_points:
-        points.append( (p,p@value_function) )
+        # next_states contains the states with non-zero transition probabilities, which is smaller than total number of states
+        # the value function contains a value for each state, direct dot product is not computable when next_states has fewer states.
+        dot_prod = 0
+        if next_states is not None:
+            for index, val in enumerate(next_states):
+                dot_prod += p[index]*value_function[val]
+        else:
+            dot_prod = p@value_function
+        points.append( (p,dot_prod) )
+        
     points.sort(key=lambda x: x[1])
 
     conf_rank = min(math.ceil(len(transition_points)*confidence),len(transition_points)-1 )

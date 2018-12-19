@@ -81,7 +81,7 @@ class OFVF:
                 
                 posterior_transition_points = {}
                 for s in self.all_states:
-                    print("--- state ---", s)
+                    #print("--- state ---", s)
                     p,v = obs_to_index(s, self.env_low, self.env_dx)
                     cur_state = index_to_single_index(p,v, self.resolution)
                         
@@ -97,7 +97,7 @@ class OFVF:
                             visit_stats.append(value) 
                                             
                         bayes_samples = np.random.dirichlet(visit_stats, num_bayes_samples)
-                        posterior_transition_points[(totuple(s),action)] = (bayes_samples, next_states)
+                        posterior_transition_points[(cur_state,action)] = (bayes_samples, next_states)
                         
                         nominal_point_bayes = np.mean(bayes_samples, axis=0)
                         nominal_point_bayes /= np.sum(nominal_point_bayes)
@@ -157,7 +157,7 @@ class OFVF:
         
         violations = np.mean(violations<0, axis=0)
         
-        return np.amin(regret_OFVF, axis=0), np.mean(regret_OFVF, axis=0), violations, confidences
+        return np.amin(regret_OFVF, axis=0), np.mean(regret_OFVF, axis=0), violations, confidences, cur_solution
     
     def Optimism_VF(self, valuefunctions, posterior_transition_points, num_update, sa_confidence):
         """
@@ -190,29 +190,33 @@ class OFVF:
             #keep track whether the current iteration keeps the mdp unchanged
             is_mdp_unchanged = True
             threshold = [[] for _ in range(3)]
-            rmdp = crobust.MDP(0, discount_factor)
+            rmdp = crobust.MDP(0, self.discount_factor)
             
             for s in self.all_states:
+                #hashable_state_index = totuple(s)
+                p,v = obs_to_index(s, self.env_low, self.env_dx)
+                state_index = index_to_single_index(p, v, self.resolution)
                 for a in range(self.num_actions):
                     
-                    bayes_points = np.asarray(posterior_transition_points[totuple(s),a][0])
-        
+                    bayes_points = np.asarray(posterior_transition_points[state_index,a][0])
+                    next_states = np.asarray(posterior_transition_points[state_index,a][1])
+                        
                     RSVF_nomianlPoints = []
                     
                     #for bayes_points in trans:
-                    #print("bayes_points", bayes_points, "valuefunctions[-1]", valuefunctions[-1])
-                    ivf = construct_uset_known_value_function(bayes_points, valuefunctions[-1], sa_confidence)
+                    #print("bayes_points", bayes_points, "next_states", next_states)
+                    ivf = construct_uset_known_value_function(bayes_points, valuefunctions[-1], sa_confidence, next_states)
                     RSVF_nomianlPoints.append(ivf[2])
                     new_trp = np.mean(RSVF_nomianlPoints, axis=0)
                     
-                    if (s,a) not in nomianl_points:
-                        nomianl_points[(s,a)] = []
+                    if (state_index,a) not in nomianl_points:
+                        nomianl_points[(state_index,a)] = []
                     
                     trp, th = None, 0
                     #If there's a previously constructed L1 ball. Check whether the new nominal point
                     #resides outside of the current L1 ball & needs to be considered.
-                    if (s,a) in nominal_threshold:
-                        old_trp, old_th = nominal_threshold[(s,a)][0], nominal_threshold[(s,a)][1]
+                    if (state_index,a) in nominal_threshold:
+                        old_trp, old_th = nominal_threshold[(state_index,a)][0], nominal_threshold[(state_index,a)][1]
                         
                         #Compute the L1 distance between the newly computed nominal point & the previous 
                         #nominal of nominal points
@@ -228,22 +232,21 @@ class OFVF:
                     #resides outside of the existing L1 ball
                     if trp is None:
                         is_mdp_unchanged = False
-                        nomianl_points[(s,a)].append(new_trp)
+                        nomianl_points[(state_index,a)].append(new_trp)
                         
                         #Find the center of the L1 ball for the nominal points with different 
                         #value functions
-                        trp, th = find_nominal_point(np.asarray(nomianl_points[(s,a)]))
-                        nominal_threshold[(s,a)] = (trp, th)
+                        trp, th = find_nominal_point(np.asarray(nomianl_points[(state_index,a)]))
+                        nominal_threshold[(state_index,a)] = (trp, th)
                     
-                    threshold[0].append(s)
+                    threshold[0].append(state_index)
                     threshold[1].append(a)
                     threshold[2].append(th)
                     
                     trp /= np.sum(trp)
                     
-                    next_states = np.asarray(posterior_transition_points[totuple(s),a][1])
                     for s_index, s_next in enumerate(next_states):
-                        rmdp.add_transition(s, a, s_next, trp[s_index], get_reward(s_next, self.resolution, self.grid_x, self.grid_y))
+                        rmdp.add_transition(state_index, a, s_next, trp[s_index], get_reward(s_next, self.resolution, self.grid_x, self.grid_y))
                     
                     #Add the current transition to the RMDP
                     #for next_st in range():
@@ -290,15 +293,15 @@ if __name__ == "__main__":
     ofvf_learn = OFVF(env, resolution, num_runs, num_episodes, horizon)
     
     res = ofvf_learn.train(num_bayes_samples, 0.0)
-    print(res[2])
+    print(res[4])
 
 ### save the result
 if __name__ == "__main__":
     with open('dumped_results/mountain_car_PSRL_Policy-'+date_time,'wb') as fp:
-        pickle.dump(res[2].policy, fp)
+        pickle.dump(res[4].policy, fp)
         
     with open('dumped_results/mountain_car_PSRL_ValueFunction-'+date_time,'wb') as fp:
-        pickle.dump(res[2].policy, fp)
+        pickle.dump(res[4].policy, fp)
         
 ### load a specific result file
 if __name__ == "__main__":
@@ -310,12 +313,12 @@ if __name__ == "__main__":
 if __name__ == "__main__":
     position, velocity, policy = [], [], []
     
-    for i in bucrl_learn.grid_x:
-        for j in bucrl_learn.grid_y:
-            p,v = obs_to_index((i,j), bucrl_learn.env_low, bucrl_learn.env_dx)
+    for i in ofvf_learn.grid_x:
+        for j in ofvf_learn.grid_y:
+            p,v = obs_to_index((i,j), ofvf_learn.env_low, ofvf_learn.env_dx)
             position.append(i)
             velocity.append(j)
-            act = res[2].policy[index_to_single_index(p,v, resolution)]
+            act = res[4].policy[index_to_single_index(p,v, resolution)]
             policy.append(act) 
     
     position, velocity, policy = np.array(position), np.array(velocity), np.array(policy)
