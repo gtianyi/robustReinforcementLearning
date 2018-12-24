@@ -200,7 +200,7 @@ cumulative regret up to time $T$ over $K$ episodes, defined by
 
 \section{OFVF and Bayes UCRL}
 
-\begin{algorithm}[H]
+\begin{algorithm}
 	 \KwIn{Distribution $\theta$ over $p\opt_{s,a}$, confidence level $\delta$, sample count $m$}
 	 \KwOut{Nominal point $\bar{p}_{s,a}$ and $L_1$ norm size $\psi_{s,a}$}
 	 Sample $X_1, \ldots, X_m \in \Delta^S$ from $\theta$: $X_i \sim \theta $\;
@@ -211,7 +211,7 @@ cumulative regret up to time $T$ over $K$ episodes, defined by
 	 \caption{Bayesian Confidence Interval (BCI)} \label{alg:bayes}
 \end{algorithm}
 
-\begin{algorithm}[H]
+\begin{algorithm}
 	 \KwIn{Desired confidence level $\delta$ and prior distribution }
 	 \KwOut{Policy with an optimistic return estimate }
 		 \Repeat{num episodes}{

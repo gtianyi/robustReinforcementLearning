@@ -13,7 +13,7 @@ if __name__ == "__main__":
     discount_factor = 1.0
     
     # discretization resolution
-    resolution = 50
+    resolution = 40
     
     # number of times to run the experiment
     num_runs = 200
@@ -55,3 +55,18 @@ if __name__ == "__main__":
     plt.title("Worst Case Regret for RiverSwim Problem")
     plt.grid()
     plt.show()
+    
+###
+doubles1 = [2 * n for n in range(50)]
+
+doubles2 = list(2 * n for n in range(50))
+
+print(doubles1)
+print(doubles2)
+
+
+   
+   
+   
+   
+   

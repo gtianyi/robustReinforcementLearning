@@ -1,0 +1,174 @@
+\begin{thebibliography}{}
+
+\bibitem[\protect\citeauthoryear{Agrawal and Goyal}{2012a}]{Agrawal2012}
+S.~Agrawal and N.~Goyal.
+\newblock {Thompson Sampling for contextual bandits with linear payoffs}.
+\newblock {\em Proceedings of the 30th International Conference on Machine
+  Learning (ICML)}, 28:127--135, 2012.
+
+\bibitem[\protect\citeauthoryear{Agrawal and Goyal}{2012b}]{Agrawal2011}
+Shipra Agrawal and N~Goyal.
+\newblock {Analysis of Thompson sampling for the multi-armed bandit problem}.
+\newblock In {\em Annual Conference on Learning Theory (COLT)}, pages
+  39.1--39.26, 2012.
+
+\bibitem[\protect\citeauthoryear{Auer}{2006}]{Auer2006}
+Peter Auer.
+\newblock {Logarithmic Online Regret Bounds for Undiscounted Reinforcement
+  Learning}.
+\newblock {\em Advances in Neural Information Processing Systems (NIPS)}, 2006.
+
+\bibitem[\protect\citeauthoryear{Bertsekas and
+  Tsitsiklis}{1996}]{Bertsekas1996}
+Dimitri~P Bertsekas and John~N Tsitsiklis.
+\newblock {\em {Neuro-dynamic programming}}.
+\newblock 1996.
+
+\bibitem[\protect\citeauthoryear{Brafman and Tennenholtz}{2001}]{Brafman2001}
+Ronen~I. Brafman and Moshe Tennenholtz.
+\newblock {R-MAX - A general polynomial time algorithm for near-optimal
+  reinforcement learning}.
+\newblock {\em International Joint Conference on Artificial Intelligence
+  (IJCAI)}, 2001.
+
+\bibitem[\protect\citeauthoryear{Delgado \bgroup \em et al.\egroup
+  }{2016}]{Delgado2016}
+Karina~V. Delgado, Leliane~N. {De Barros}, Daniel~B. Dias, and Scott Sanner.
+\newblock {Real-time dynamic programming for Markov decision processes with
+  imprecise probabilities}.
+\newblock {\em Artificial Intelligence}, 230:192--223, 2016.
+
+\bibitem[\protect\citeauthoryear{Gelman \bgroup \em et al.\egroup
+  }{2014}]{Gelman2004}
+Andrew Gelman, John~B Carlin, Hal~S Stern, and Donald~B Rubin.
+\newblock {\em {Bayesian Data Analysis}}.
+\newblock 3rd edition, 2014.
+
+\bibitem[\protect\citeauthoryear{Hanasusanto and Kuhn}{2013}]{Hanasusanto2013}
+GA~Hanasusanto and Daniel Kuhn.
+\newblock {Robust Data-Driven Dynamic Programming}.
+\newblock In {\em Advances in Neural Information Processing Systems (NIPS)},
+  2013.
+
+\bibitem[\protect\citeauthoryear{Iyengar}{2005}]{Iyengar2005}
+Garud~N. Iyengar.
+\newblock {Robust dynamic programming}.
+\newblock {\em Mathematics of Operations Research}, 30(2):257--280, may 2005.
+
+\bibitem[\protect\citeauthoryear{Jaksch \bgroup \em et al.\egroup
+  }{2010}]{Jaksch2010}
+Thomas Jaksch, Ronald Ortner, and Peter Auer.
+\newblock {Near-optimal Regret Bounds for Reinforcement Learning}.
+\newblock {\em Journal of Machine Learning Research}, 11(1):1563--1600, 2010.
+
+\bibitem[\protect\citeauthoryear{Kearns and Singh}{1998}]{Kearns1998a}
+Michael Kearns and Satinder Singh.
+\newblock {Near-optimal reinforcement learning in polynomial time}.
+\newblock In {\em International Conference on Machine Learning}, volume~49,
+  pages 260--268. Morgan Kaufmann, 1998.
+
+\bibitem[\protect\citeauthoryear{Mannor \bgroup \em et al.\egroup
+  }{2012}]{Mannor2012}
+Shie Mannor, O~Mebel, and H~Xu.
+\newblock {Lightning does not strike twice: Robust MDPs with coupled
+  uncertainty}.
+\newblock In {\em International Conference on Machine Learning}, 2012.
+
+\bibitem[\protect\citeauthoryear{Osband and {Van Roy}}{2017}]{Osband2016}
+Ian Osband and Benjamin {Van Roy}.
+\newblock {Why is Posterior Sampling Better than Optimism for Reinforcement
+  Learning?}
+\newblock {\em International Conference on Machine Learning (ICML)}, 2017.
+
+\bibitem[\protect\citeauthoryear{Osband \bgroup \em et al.\egroup
+  }{2013}]{Osband2013}
+Ian Osband, Daniel Russo, and Benjamin {Van Roy}.
+\newblock {(More) Efficient Reinforcement Learning via Posterior Sampling?}
+\newblock {\em Advances in Neural Information Processing Systems (NIPS)}, 2013.
+
+\bibitem[\protect\citeauthoryear{Petrik and Subramanian}{2014}]{Petrik2014}
+Marek Petrik and Dharmashankar Subramanian.
+\newblock {RAAM : The benefits of robustness in approximating aggregated MDPs
+  in reinforcement learning}.
+\newblock In {\em Neural Information Processing Systems (NIPS)}, 2014.
+
+\bibitem[\protect\citeauthoryear{Petrik \bgroup \em et al.\egroup
+  }{2016}]{Petrik2016a}
+Marek Petrik, {Mohammad Ghavamzadeh}, and Yinlam Chow.
+\newblock {Safe Policy Improvement by Minimizing Robust Baseline Regret}.
+\newblock In {\em Advances in Neural Information Processing Systems}, 2016.
+
+\bibitem[\protect\citeauthoryear{Petrik}{2012}]{Petrik2012}
+Marek Petrik.
+\newblock {Approximate dynamic programming by minimizing distributionally
+  robust bounds}.
+\newblock In {\em International Conference of Machine Learning}, 2012.
+
+\bibitem[\protect\citeauthoryear{Puterman}{2005}]{Puterman2005}
+Martin~L Puterman.
+\newblock {\em {Markov decision processes: Discrete stochastic dynamic
+  programming}}.
+\newblock John Wiley {\&} Sons, Inc., 2005.
+
+\bibitem[\protect\citeauthoryear{Strehl and Littman}{2004}]{Strehl2004}
+a.~L. Strehl and M.~L. Littman.
+\newblock {An empirical evaluation of interval estimation for markov decision
+  processes}.
+\newblock (April 2007):128--135, 2004.
+
+\bibitem[\protect\citeauthoryear{Strens}{2000}]{Strens2002}
+Malcolm Strens.
+\newblock {A Bayesian Framework for Reinforcement Learning}.
+\newblock {\em International Conference on Machine Learning (ICML)}, 2000.
+
+\bibitem[\protect\citeauthoryear{Sutton and Barto}{1998}]{Sutton1998}
+Richard~S Sutton and Andrew Barto.
+\newblock {\em {Reinforcement learning}}.
+\newblock 1998.
+
+\bibitem[\protect\citeauthoryear{Taleghan \bgroup \em et al.\egroup
+  }{2015}]{Taleghan2015}
+Majid~Alkaee Taleghan, Thomas~G. Dietterich, Mark Crowley, Kim Hall, and H.~Jo
+  Albers.
+\newblock {PAC Optimal MDP Planning with Application to Invasive Species
+  Management}.
+\newblock {\em Journal of Machine Learning Research}, 16(1):3877--3903, 2015.
+
+\bibitem[\protect\citeauthoryear{Tamar \bgroup \em et al.\egroup
+  }{2014}]{Tamar2014a}
+Aviv Tamar, Shie Mannor, and Huan Xu.
+\newblock {Scaling Up Robust MDPs using Function Approximation}.
+\newblock In {\em International Conference of Machine Learning (ICML)}, 2014.
+
+\bibitem[\protect\citeauthoryear{Thompson}{1933}]{Thompson1933}
+W.R. Thompson.
+\newblock {On the Likelihood that One Unknown Probability Exceeds Another in
+  View of the Evidence of Two Samples}.
+\newblock {\em Oxford University Press}, 25(3):285--294, 1933.
+
+\bibitem[\protect\citeauthoryear{Weissman \bgroup \em et al.\egroup
+  }{2003}]{Weissman2003xx}
+Tsachy Weissman, Erik Ordentlich, Gadiel Seroussi, Sergio Verdu, and Marcelo~J
+  Weinberger.
+\newblock {Inequalities for the L{\_}1 deviation of the empirical
+  distribution}.
+\newblock jun 2003.
+
+\bibitem[\protect\citeauthoryear{Wiesemann \bgroup \em et al.\egroup
+  }{2013}]{Wiesemann2013}
+Wolfram Wiesemann, Daniel Kuhn, and Berc Rustem.
+\newblock {Robust Markov decision processes}.
+\newblock {\em Mathematics of Operations Research}, 38(1):153--183, 2013.
+
+\bibitem[\protect\citeauthoryear{Xu and Mannor}{2006}]{Xu2006}
+Huan Xu and Shie Mannor.
+\newblock {The robustness-performance tradeoff in Markov decision processes}.
+\newblock {\em Advances in Neural Information Processing Systems}, 2006.
+
+\bibitem[\protect\citeauthoryear{Xu and Mannor}{2009}]{Xu2009}
+Huan Xu and Shie Mannor.
+\newblock {Parametric regret in uncertain Markov decision processes}.
+\newblock {\em Proceedings of the IEEE Conference on Decision and Control},
+  pages 3606--3613, 2009.
+
+\end{thebibliography}
