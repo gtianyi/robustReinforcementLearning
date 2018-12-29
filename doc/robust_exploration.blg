@@ -11,22 +11,10 @@ Repeated entry---line 3484 of file marek.bib
  : @inproceedings{Kearns1998a
  :                           ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 14956 of file marek.bib
- : @article{Taleghan2015
- :                      ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 16090 of file marek.bib
- : @article{Taleghan2015
- :                      ,
-I'm skipping whatever remains of this entry
 Database file #2: reazul_lib.bib
-Repeated entry---line 12 of file reazul_lib.bib
- : @article{Wiesemann2013
- :                       ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 23 of file reazul_lib.bib
- : @article{Taleghan2015
- :                      ,
+Repeated entry---line 176 of file reazul_lib.bib
+ : @article{Petrik2016
+ :                    ,
 I'm skipping whatever remains of this entry
 I was expecting a `,' or a `}'---line 188 of file reazul_lib.bib
  : 
@@ -37,175 +25,148 @@ Repeated entry---line 455 of file reazul_lib.bib
  : @article{Brafman2001
  :                     ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 581 of file reazul_lib.bib
- : @article{Xu2009
- :                ,
+I was expecting a `,' or a `}'---line 608 of file reazul_lib.bib
+ :  
+ :  title = {{An Analysis of Model-Based Interval Estimation for Markov Decision Processes}}
+(Error may have been on previous line)
 I'm skipping whatever remains of this entry
-Repeated entry---line 698 of file reazul_lib.bib
- : @article{Kearns1998a
- :                     ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 845 of file reazul_lib.bib
- : @article{Agrawal2012
- :                     ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 1162 of file reazul_lib.bib
- : @article{Petrik2014
- :                    ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 2182 of file reazul_lib.bib
- : @article{Agrawal2012
- :                     ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 2869 of file reazul_lib.bib
- : @book{Bertsekas1996
- :                    ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 3058 of file reazul_lib.bib
- : @book{Gelman2004
- :                 ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 3176 of file reazul_lib.bib
- : @article{Xu2006
- :                ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 3663 of file reazul_lib.bib
- : @article{Hanasusanto2013
- :                         ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 3814 of file reazul_lib.bib
- : @article{Taleghan2015
- :                      ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 3875 of file reazul_lib.bib
- : @article{Xu2009
- :                ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 4063 of file reazul_lib.bib
- : @inproceedings{Kearns1998a
- :                           ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 4790 of file reazul_lib.bib
- : @book{Sutton1998
- :                 ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 6414 of file reazul_lib.bib
- : @inproceedings{Petrik2012
- :                          ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 7374 of file reazul_lib.bib
- : @article{Wiesemann2013
- :                       ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 7592 of file reazul_lib.bib
- : @article{Petrik2016a
- :                     ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 8331 of file reazul_lib.bib
+Repeated entry---line 610 of file reazul_lib.bib
  : @article{Strehl2004
  :                    ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 9398 of file reazul_lib.bib
+I was expecting a `,' or a `}'---line 623 of file reazul_lib.bib
+ :  
+ :  title = {{Efficient Model-Based Exploration}}
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Repeated entry---line 723 of file reazul_lib.bib
+ : @article{Kearns1998a
+ :                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 841 of file reazul_lib.bib
+ : @article{Auer2010a
+ :                   ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 870 of file reazul_lib.bib
+ : @article{Agrawal2012
+ :                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 2207 of file reazul_lib.bib
+ : @article{Agrawal2012
+ :                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 2894 of file reazul_lib.bib
+ : @book{Bertsekas1996
+ :                    ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 3083 of file reazul_lib.bib
+ : @book{Gelman2004
+ :                 ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 4088 of file reazul_lib.bib
+ : @inproceedings{Kearns1998a
+ :                           ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 4815 of file reazul_lib.bib
+ : @book{Sutton1998
+ :                 ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 5144 of file reazul_lib.bib
+ : @book{Shapiro2014
+ :                  ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 8356 of file reazul_lib.bib
+ : @article{Strehl2004
+ :                    ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 9423 of file reazul_lib.bib
  : @article{Agrawal2011
  :                     ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 10114 of file reazul_lib.bib
- : @inproceedings{Tamar2014a
+Repeated entry---line 11930 of file reazul_lib.bib
+ : @inproceedings{Petrik2016
  :                          ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 10366 of file reazul_lib.bib
- : @unpublished{Weissman2003xx
- :                            ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 11829 of file reazul_lib.bib
- : @inproceedings{Mannor2012
- :                          ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 12003 of file reazul_lib.bib
- : @article{Delgado2016
- :                     ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 13650 of file reazul_lib.bib
+Repeated entry---line 13675 of file reazul_lib.bib
  : @book{Puterman2005
  :                   ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 13958 of file reazul_lib.bib
- : @article{Iyengar2005
- :                     ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 15445 of file reazul_lib.bib
- : @article{Taleghan2015
- :                      ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 16574 of file reazul_lib.bib
- : @article{Taleghan2015
- :                      ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 16901 of file reazul_lib.bib
- : @book{Puterman2005
- :                   ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 16947 of file reazul_lib.bib
- : @article{Taleghan2015
- :                      ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 17654 of file reazul_lib.bib
- : @article{Wiesemann2013
+Repeated entry---line 13929 of file reazul_lib.bib
+ : @incollection{Auer2009
  :                       ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 17726 of file reazul_lib.bib
- : @article{Iyengar2005
- :                     ,
+Repeated entry---line 15565 of file reazul_lib.bib
+ : @article{Wiesemann2013a
+ :                        ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 18400 of file reazul_lib.bib
+Repeated entry---line 16926 of file reazul_lib.bib
  : @book{Puterman2005
  :                   ,
 I'm skipping whatever remains of this entry
+Repeated entry---line 17160 of file reazul_lib.bib
+ : @article{Petrik2016
+ :                    ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 17220 of file reazul_lib.bib
+ : @article{Petrik2016
+ :                    ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 17563 of file reazul_lib.bib
+ : @article{Petrik2016
+ :                    ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 18425 of file reazul_lib.bib
+ : @book{Puterman2005
+ :                   ,
+I'm skipping whatever remains of this entry
+Warning--empty publisher in Auer2009
 Warning--empty publisher in Bertsekas1996
 Warning--empty publisher in Gelman2004
+Warning--empty publisher in Shapiro2014
 Warning--empty journal in Strehl2004
 Warning--there's a number but no volume in Strehl2004
+Warning--empty title in Strehl2008
 Warning--empty publisher in Sutton1998
-Warning--empty note in Weissman2003xx
-You've used 28 entries,
+Warning--empty title in Wiering1998
+You've used 22 entries,
             2439 wiz_defined-function locations,
-            723 strings with 8950 characters,
-and the built_in function-call counts, 10291 in all, are:
-= -- 1049
-> -- 408
-< -- 4
-+ -- 133
-- -- 132
-* -- 795
-:= -- 1663
-add.period$ -- 85
-call.type$ -- 28
-change.case$ -- 175
-chr.to.int$ -- 27
-cite$ -- 34
-duplicate$ -- 440
-empty$ -- 793
-format.name$ -- 172
-if$ -- 2113
+            688 strings with 7766 characters,
+and the built_in function-call counts, 8156 in all, are:
+= -- 833
+> -- 305
+< -- 5
++ -- 97
+- -- 96
+* -- 630
+:= -- 1314
+add.period$ -- 66
+call.type$ -- 22
+change.case$ -- 128
+chr.to.int$ -- 21
+cite$ -- 31
+duplicate$ -- 355
+empty$ -- 630
+format.name$ -- 129
+if$ -- 1685
 int.to.chr$ -- 2
 int.to.str$ -- 0
-missing$ -- 31
-newline$ -- 143
-num.names$ -- 84
-pop$ -- 181
+missing$ -- 27
+newline$ -- 111
+num.names$ -- 68
+pop$ -- 143
 preamble$ -- 1
-purify$ -- 206
+purify$ -- 156
 quote$ -- 0
-skip$ -- 355
+skip$ -- 285
 stack$ -- 0
-substring$ -- 467
-swap$ -- 94
-text.length$ -- 4
+substring$ -- 400
+swap$ -- 81
+text.length$ -- 5
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 208
-warning$ -- 6
-while$ -- 81
-width$ -- 30
-write$ -- 347
-(There were 39 error messages)
+type$ -- 156
+warning$ -- 9
+while$ -- 68
+width$ -- 27
+write$ -- 270
+(There were 28 error messages)

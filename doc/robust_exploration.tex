@@ -17,6 +17,13 @@
 \usepackage{comment}
 \usepackage[11pt]{moresize}
 
+\usepackage{graphicx}
+
+\makeatletter
+\newcommand*\bigcdot{\mathpalette\bigcdot@{.5}}
+\newcommand*\bigcdot@[2]{\mathbin{\vcenter{\hbox{\scalebox{#2}{$\m@th#1\bullet$}}}}}
+\makeatother
+
 \frenchspacing  %Required
 \setlength{\pdfpagewidth}{8.5in}  %Required
 \setlength{\pdfpageheight}{11in}  %Required
@@ -88,6 +95,9 @@
 
 \newcommand{\states}{\mathcal{S}}
 \newcommand{\actions}{\mathcal{A}}
+\newcommand{\mdp}{\mathcal{M}}
+\newcommand{\data}{\mathcal{D}}
+\newcommand{\pset}{\mathcal{P}}
 \newcommand{\tran}{p\opt}
 \newcommand{\aset}{\mathcal{P}}
 \newcommand{\aseth}{\aset^{H}}
@@ -140,100 +150,110 @@ UNH
 %}
 
 \begin{abstract}
-Optimism about the poorly understood states and actions is the main driving force of exploration in provably-efficient reinforcement learning algorithms. We propose optimism in the face of sensible value functions (OFVF)- a novel reinforcement learning algorithm designed to explore robustly minimizing the worst case exploration cost, where the optimism is driven by tighter Bayesian bounds. OFVF proceeds in an episodic manner, where the duration of the episode is fixed and known. OFVF relaxes the requirement for the set of plausible MDPs to be represented by a confidence interval. It also optimizes the size and location of the plausibility set. Our algorithm is inherently Bayesian and can leverage prior information. Our theoretical analysis shows the robustness of OFVF, and the empirical results demonstrate its practical promise.
+Optimism about the poorly understood states and actions is the main driving force of exploration for many provably-efficient reinforcement learning algorithms. We propose optimism in the face of sensible value functions (OFVF)- a novel reinforcement learning algorithm designed to explore robustly minimizing the worst case exploration cost. OFVF proceeds in an episodic manner, where the duration of the episode is fixed and known. OFVF relaxes the requirement for the set of plausible MDPs to be represented by a confidence interval. It also optimizes the size and location of the plausibility set. Our algorithm is inherently Bayesian and can leverage prior information. Our theoretical analysis shows the robustness of OFVF, and the empirical results demonstrate its practical promise.
 \end{abstract}
 
 \section{Introduction}
 
 Markov decision processes (MDPs) provide a versatile methodology for modeling dynamic decision problems under uncertainty~\citep{Bertsekas1996,Sutton1998,Puterman2005}. A perfect MDP model for many reinforcement learning problems is not known precisely in general. Instead, a reinforcement learning agent tries to maximize its cumulative payoff by interacting in an unknown environment with an effort to learn the underlying MDP model. It is important for the agent to exploresub-optimal actions to accelerate the MDP learning task which can help to optimize long-term performance. But it is also important to pick actions with highest known rewards to maximize short-run performance. So the agent always needs to balance between them to boost the performance of a learning algorithm during learning. 
 
-\emph{Optimism in the face of uncertainty (OFU)} is a common principle for most reinforcement learning algorithms encouraging exploration~\citep{Jaksch2010,Brafman2001,Kearns1998a}. The idea is to assign a very high exploration bonus to poorly understood states and actions. The agent chooses a policy under this very "optimistic" model of the environment. As the less understood states-actions are incentivized, they seem lucrative to the agent encouraging exploration. As the agent visits and gathers statistically significant evidence for these states-actions, the uncertainty and optimism decreases converging to reality. Many RL algorithms including \emph{Explicit Explore or Exploit $(E^3)$}~\citep{Kearns1998a}, \emph{R-{\ssmall MAX}}~\cite{Brafman2001}, \emph{UCRL2}~\cite{Auer2006} build on the idea of optimism guiding the exploration. These algorithms provide strong theoretical guarantees with polynomial bound on sample complexity. 
+\emph{Optimism in the face of uncertainty (OFU)} is a common principle for most reinforcement learning algorithms encouraging exploration~\citep{Jaksch2010,Brafman2001,Kearns1998a}. The idea is to assign a very high exploration bonus to poorly understood states and actions. The agent chooses a policy under this very "optimistic" model of the environment. As the less understood states-actions are incentivized, they seem lucrative to the agent encouraging exploration. As the agent visits and gathers statistically significant evidence for these states-actions, the uncertainty and optimism decreases converging to reality. Many RL algorithms including \emph{Explicit Explore or Exploit $(E^3)$}~\citep{Kearns1998a}, \emph{R-{\ssmall MAX}}~\cite{Brafman2001}, \emph{UCRL2}~\cite{Auer2006}, \emph{MBIE}~\citep{Strehl2008,Strehl2004,Wiering1998} build on the idea of optimism guiding the exploration. These algorithms provide strong theoretical guarantees with polynomial bound on sample complexity. 
 
-The performance of these OFU algorithms greatly depends on the methods to implement optimism, which can often be complex in nature. Dealing with a family of plausible environments can sometime become expensive as well. With OFU exploration, it is possible for an agent to end up in a catastrophic situation paying an extremely high price (e.g. a self driving car hits a wall, a robot falls off the cliff etc.). Exploring and learning such a situation may not payoff the price. It can be wise for the agent to be robust and avoid those situations minimizing the worst-case exploration cost$-$ which we call robust exploration. OFU algorithms are optimistic by definition and cannot guarantee robustness while exploring.
+The performance of these OFU algorithms greatly depends on the methods to implement optimism (e.g. Chernoff-Hoeffding's inequality for UCRL2, Confidence Interval for MBIE), which can often be complex in nature. Dealing with a family of plausible environments can sometimes become expensive as well. With OFU exploration, it is possible for an agent to be overly optimistic about a potentially catastrophic situation and end up there paying an extremely high price (e.g. a self driving car hits a wall, a robot falls off the cliff etc.). Exploring and learning such a situation may not payoff the price. It can be wise for the agent to be robust and avoid those situations minimizing the worst-case exploration cost$-$ which we call robust exploration. OFU algorithms are optimistic by definition and cannot guarantee robustness while exploring.
 
 \emph{Probability matching} class of algorithms like \emph{Thompson sampling}~\citep{Thompson1933} performs exploration with a proportional likelihood to the underlying true parameters and has been successfully applied to multi-armed bandit problems~\citep{Agrawal2012,Agrawal2011}. \emph{Posterior Sampling for reinforcement learning (PSRL)}~\citep{Osband2016, Osband2013, Strens2002} applies the same idea in the context of reinforcement learning. PSRL algorithm samples a single instance of the environment from the posterior distribution, then solves and executes the policy optimal for that sampled environment over the episode. Selection of a policy in PSRL is proportional to the probability of that being optimal and exploration is guided by the variance of sampled policies as opposed to optimism. PSRL algorithm is simple, computationally efficient and can utilize any prior structural information to improve exploration. Strong theoretical analysis and practical applications for PSRL are also established in the literature. But similar to OFU algorithms, PSRL cannot handle worst case exploration penalty and performs poorly in such situations.
 
 The main contribution of this paper is OFVF, a new \emph{data-driven} Bayesian approach to constructing \emph{Plausibility} sets for MDPs. The method computes policies with tighter robust estimates for exploration by introducing two new ideas. First, it is based on Bayesian posterior distributions rather than distribution-free bounds. Second, OFVF does not construct plausibility sets as simple confidence intervals. Confidence intervals as plausibility sets are a sufficient but not a necessary condition. OFVF uses the structure of the value function to optimize the \emph{location} and \emph{shape} of the plausibility set to guarantee upper bounds directly without necessarily enforcing the requirement for the set to be a confidence interval.
 
+The paper is organized as follows ...
 \section{Problem Statement}
 
-We consider the problem of episodically learning and solving a 
-finite-horizon MDP: $M = (S, A, P^M, R^M, H, \rho)$ where $S =
-\{1,...,S\}$ is the state space, $A = \{1,...,A\}$ is the action
-space,  $P^M(s'|s,a)$ is the believe distribution over the true
-transition probability $P(s'|s,a)$ of transitioning to state $s'$ when
-take action $a$ at state $s$, $R^M(s,a,s')$ is the believe
-distribution over the true reward $R(s,a,s')$ when take action $a$ at
-state $s$ and transition to state $s'$, $H$ is the time horizon, and
-$\rho$ is the initial state distribution. In each episode, the initial
-state $s_0$ is sampled from $\rho$, and in time period
-$h=1,2,...,H$, if an action $a_h$ is taken in state $s_h$, then a
-next state $s_{h+1}$ is sampled from $P(s_{h+1}|s_h,a_h)$ and a reward
-$r_h$ is sampled from $R(s_h,s_a,s_{h+1})$. The episode terminates
-when $s_H$ is reached. 
+We consider the problem of learning a finite horizon Markov Decision Process $\mdp$ with states $\states = \{1, \ldots, S \}$ and actions $\actions = \{1, \ldots, A \}$. $p: \states \times \actions \to \Delta^\states$ is a transition function, where $p^a_{ss'}$ is interpreted as the probability of ending in state $s'\in\states$ by taking an action $a\in\actions$ from state $s\in\states$. We omit $s'$ when the next state is not deterministic and denote the transition probability as $p_{sa}\in\Real^S$. $R: \states \times \actions \to \Real$ is a reward function and $R^a_{ss'}$ is the reward for taking action $a\in\actions$ from state $s\in\states$ and reaching state $s'\in\states$. Each MDP $\mdp$ is associated with a discount factor $0\le\gamma\le1$ and a distribution of initial state probabilities $p_0$. $L$ is the number of episodes and $H$ is the number of periods in each episode, we consider an episodic learning environment throughout the paper. In each episode $l\in L$, an initial state $s_0\in\states$ is sampled from $p_0$. In period $h=0\ldots H$ of each episode, for a state $s_h$ and action $a_h$, a next state $s_{h+1}$ is sampled following $p^{a_h}_{s_hs_{h+1}}$ and a reward is obtained from $R^{a_h}_{s_hs_{h+1}}$.
 
-A policy $\mu$ is a function mapping $S$ to $A$. For each MDP $M$ and
-policy $\mu$, we define a value function for each time period
-$h=1,2,...,H$:
+A policy $\pi = (\pi_0,\ldots,\pi_{H-1})$ is a set of functions mapping a state $s\in\states$ to an action $a\in\actions$. We define a value function for each policy $\pi$ as:
+\begin{equation} \label{eq:state_value}
+V^\pi_h(s) := \sum_{s'} P^{\pi(s)}_{ss'} [ r_h + V(s') ]
+\end{equation}
+\begin{comment}
+\begin{equation*}
+\begin{split}
+V^\pi_h(s) := \E_{\mdp}\bigg[ \sum_{\tau=h}^{H}r_\tau |& s_h=s,a_\tau=\pi_tau(s_\tau) \bigg],\\
+&\text{ for } \tau=h,\ldots,H-1
+\end{split}
+\end{equation*}
+\end{comment}
+The optimal value function is defined by $V\opt_h(s) = \max_\pi V^\pi_h(s)$ and the optimal policy is defined by $\pi\opt(s) = \arg\max_{a\in\actions} p^a_{ss'}V(s') \text{, } \forall s'\in\states: p^a_{ss'}>0$. We also define the state-action optimal value function for $h=0,\ldots,H-1$ as:
+\begin{equation} \label{eq:state_action_value}
+Q\opt_h(s,a) := \sum_{s'}P^{a}_{ss'}[r_h + V\opt (s') ]
+\end{equation}
+%\[
+%Q\opt_h(s,a) := \E_{\mdp}\bigg[ r_h+V\opt_{h+1}(s_{h+1}) | s_h=s, a_h=a \bigg]
+%\]
+The optimal policy $\pi\opt$ is defined as $\pi\opt(s) = \arg\max_{a\in\actions}Q\opt_h(s,a) \text{, } \forall s,h$. Optimistic algorithms encouraging exploration find the probability distribution $\tilde{P}_{sa}$ for each state and action within an interval of the empirically derived distribution $\bar{p}_{sa} = \E[\cdot|s,a]$, which defines the plausible set $\pset_{sa}$ of MDPs. They then solve an optimistic version
+of \cref{eq:state_action_value} within $\pset_{sa}$ that leads to the policy with highest reward.
+\begin{equation}
+Q\opt_h(s,a) := \max_{p^{sa} \in \pset^{sa}} \sum_{s'}p^{a}_{ss'}[r_h + V\opt (s') ]
+\end{equation}
+An RL agent interacts with the environment in an episodic setting. At each episode $l\in 0,\ldots,L-1$, the agent takes actions based on the policy $\pi\opt_l$ optimal in episode $l$ and realizes reward $\sum_{h=0}^H r_{lh}$. $\pi\opt_l$ is computed from the experiences gathered by the agent in previous episodes $0,\ldots,l-1$. We evaluate the performance of the agent in terms of \emph{expected cumulative regret}:
+\[
+Regret(T) = \sum_{l=0}^{T/H-1} \E\bigg[ V\opt(s_0) - V^{\pi\opt_l}(s_0) \bigg]
+\]
+Where $s_0 \sim p_0$, and $V\opt(s_0)$ are the true values of initial states.. 
 
-$V_h^\mu(s):=\mathbb{E}[\sum_{\tau=h}^H
-r_\tau|s_h=s,a_\tau=\mu(s_\tau)]$
+\section{Interval Estimation for Plausibility Sets}
+When solving an MDP in reinforcement learning, the main type of uncertainties are encountered on the model parameters, namely in transition probabilities and rewards. Given data set $\data$, an interval estimation of the model parameters is able to acknowledge and quantify this uncertainty, which a maximum likelihood based point estimate cannot do. In this section, we first describe the standard approach to constructing plausibility sets as distribution free confidence intervals. We then propose its extension to Bayesian setting and present a simple algorithm to serve that purpose. It is important tonote that distribution-free bounds are subtly different from the Bayesian bounds, the Bayesian safety guarantee holds conditional on a given dataset $\data$ while the distribution-free holdacross the sets $\data$. This makes the guarantees qualitatively different and difficult to compare.
 
-The optimal value function is
-defined by $V^*_h(s)=\max_\mu V_h^\mu(s)$. A policy $\mu^*$ is said to
-be optimal if $V^{\mu^*}=V^*$ for all $s\in S$ and $h=1,...,H$.
+\subsection{Plausibility Sets as Confidence Intervals} \label{ssec:freq_pset}
+It is common in the literature to use $L_1$ norm as the distribution-free bound. This bound is constructed around the empirical mean of the transition probability $\bar{P}_{s,a}$ by applying the Hoeffding inequality~\citep{Auer2009,Auer2010a,Petrik2016,Wiesemann2013a,Strehl2004}.
+\[
+\pset^{sa} = \bigg\{ \lVert \tilde{p}_{sa} - \bar{p}_{sa} \rVert_1 \le \sqrt{\frac{2}{n_{s,a}}\log\frac{SA2^S}{\delta}} \bigg\}
+\]
+where $\bar{P}_{sa}$ is the mean transition computed from D, $n_{s,a}$ is the number of times the agent arrived state $s'$ after taking action $a$ in state $s$, $\delta$ is the required probability of the interval and $\lVert \bigcdot \rVert_1$ is the $L_1$ norm. An important limitation of this approach is that, the size of $\pset_{sa}$ grows linearly with the number of states, which makes it practically useless in general.
 
-\fix{talk about state-action optimal value function? see RLSVI}
+\subsection{Bayesian Plausibility Sets} \label{ssec:bayes_pset}
+The Bayesian plausibility sets take the same interval estimation idea and extend it into Bayesian setting, which is analogous to \emph{credible intervals} in Bayesian statistics. Credible intervals are constructed with the posterior probability distributions and they are fixed $-$ not a random variable, given the data $\data$. Instead the estimated transition probabilities maximizing the rewards are random variables. They can take advantage of situation-specific prior knowledge unlike general confidence intervals as discussed above. However, a concise comparison between Bayesian and frequentist bounds is beyond the scope of this paper.
 
-A reinforcement learning algorithm interacts with the MDP over
-episodes from time period $\tau=1$ to $\tau=H$. At each time $\tau$,
-the algorithm selects an action $a_\tau$, realizes a reward $r_\tau$,
-and then transitions to state $s_{\tau+1}$. Over each episode $k$, the
-algorithm realizes reward $\sum_{\tau=1}^H$. One way to quantify the
-performance of a reinforcement algorithm is in terms of the expected
-cumulative regret up to time $T$ over $K$ episodes, defined by
+The credible region for the plausibility set can be constructed around the mean, median or mode of the sample posterior distribution. Among which, bound around the empirical mean of the transition probabilities is simple and more common. To construct such a region, we optimize for the smallest plausibility set around the mean transition
+probability with the assumption that a smaller plausibility set will lead to a tighter upper bound estimate.Formally, the optimization problem to compute $\psi_{s,a}$ for each state s and action a is:
+\begin{equation} \label{eq:optimization_bci}
+\min_{\psi\in\Real_+} \left\{\psi \ss \P\left[ \norm{\tilde{p}_{s,a} - \bar{p}_{s,a}}_1 > \psi ~|~ \mathcal{D} \right] < \delta \right\}~,
+\end{equation}
+where nominal point is $\bar{p}_{s,a} = \E_{\tilde{P}}[\tilde{p}_{s,a} ~|~ \mathcal{D}]$. The nominal point is not included in the optimization to reduce computational complexity. 
 
-\begin{tabular}{l l l}
-	$Regret(T,M)$ & $=$ &$
-	\sum_{k=1}^{T/H}\mathbb{E}_M[V_1^*(s_{k1})-\sum_{\tau=1}^Hr_{k\tau}]$\\
-	&$=$&$ \sum_{k=1}^{T/H}\mathbb{E}_M[V_1^*(s_{k1})-V_1^{\mu_k}(s_{k1})]$
-\end{tabular}
+The optimization problem in \cref{eq:optimization_bci} can be solved by the Sample Average Approximation~(SAA) algorithm~\citep{Shapiro2014}. The main idea is to sample from the posterior distribution and then choose the minimal size $\psi_{s,a}$ that satisfies the constrain.  \Cref{alg:bayes}, in the appendix, summarizes the simple sort-based method.
 
-\section{Bayesian Optimism in the Face of Uncertainty}
-
-\begin{itemize}
-	\item \todo{Talk a little about UCRL}
-	\item \todo{explain the idea of Bayes UCRL}
-	\item \todo{Explain why it outperforms UCRL (using variance of the distribution instead of distribution free Hoeffding bound )}
-	\item \todo{Explain why it doesn't outperform PSRL (Rectangularity)}
-\end{itemize}
-
-
+\subsection{Bayesian Upper Confidence Reinforcement Learning}
 \begin{algorithm}
-	\KwIn{Desired confidence level $\delta$ and prior distribution }
+	\KwIn{Prior distribution $\theta^0$ over $p\opt_{s,a}$, desired confidence level $\delta$, number of episodes K}
 	\KwOut{Policy with an optimistic return estimate }
-	\Repeat{num episodes}{
+	$k=1$,
+	$X=\phi$\;
+	\Repeat{$k \le K$}{
 		
-		Initialize MDP: $M$\;
-		Compute posterior: $\tilde{p} \gets$ compute\_posterior(prior, samples) \;
+		Initialize MDP: $\mdp^k$\;
+		Compute posterior from $\theta^{k-1}$ and samples $X$: $\theta^k$\;
 		
-		\ForEach{$s \in \mathcal{S}, a \in \mathcal{A}$}{%
-			$\bar{p}_{s,a}, \psi_{s,a} \gets$ Invoke Algorithm \ref{alg:bayes} with $\tilde{p}$, $\delta$\;
-			$M \gets \text{add transition with } \bar{p}_{s,a}, \psi_{s,a}$\;
+		\For{All states and actions: $s \in \mathcal{S}, a \in \mathcal{A}$}{%
+			Compute mean transition $\bar{p}_{s,a}$, and interval $\psi_{s,a}$ (Invoke \cref{alg:bayes})\;
+			Add transition for $s$ and $a$ in $\mdp^k$\;
 		}
-		Compute policy by solving MDP: $\hat{\pi} \gets$ Solve $M$\;
-		Collect samples by executing the policy: samples $\gets$ execute $\hat{\pi}$\;
-		prior $\gets$ posterior\;
+		Compute value function and policy: $v_k$, $\hat{\pi}_k$ $\gets$ solve $\mdp^k$\;
+		$X\gets$ execute $\hat{\pi}_k$ and collect samples\;
+		$k \gets k+1$
 	}
-	\Return $(\pi_k, p_0\tr v_k)$ \;
-	\caption{Bayes UCRL}    \label{alg:IAVF}
+	\Return $(\hat{\pi}_k, p_0\tr v_k)$ \;
+	\caption{Bayes UCRL}    \label{alg:bayes_ucrl}
 \end{algorithm}
+We are now ready to describe a simple Bayesian optimistic algorithm, named as Bayes-UCRL. This builds directly on top of UCRL~\citep{Auer2009,Auer2010a}, which constructs the plausibility set as distribution free bounds, similar to what is described in \cref{ssec:freq_pset}. Unlike UCRL, Bayes-UCRL constructs the plausibility set in a Bayesian setting, as described in \cref{ssec:bayes_pset}. \cref{alg:bayes_ucrl} describes the idea in more detail. The algorithm uses a hierarchical Bayesian model that can be used to infer the posterior transition probability over $p\opt$. The details of the Bayesian model are largely irrelevant
+for our purpose. The model may have a simple analytical posterior, or may need to be sampled usingMCMC methods like Stan~\citep{Gelman2004}. The algorithm assumes that it is possible to draw enough samples from the posterior that the sampling error becomes negligible. 
+
+\cref{alg:bayes_ucrl} proceeds in an episodic manner. At the beginning of each episode, it computes the posterior transition probabilities for each state and action. It then invokes \cref{alg:bayes} to compute the nominal transition points and the interval estimations for each state and action. It solves the MDP to compute the optimal policy for current episode. The execution of this policy for a fixed horizon generates more samples for posterior estimation in the next episode. This algorithm requires some extra steps compared to UCRL. It is also computationally expensive. But it performs better than UCRL in terms of computed returns over episodes which we will see in \cref{sec:experiments}.
 
 \section{OFVF: Optimism in the Face of sensible Value Functions} \label{sec:multiple}
 
 OFVF uses samples from a posterior distribution, similar to a Bayesian confidence interval, but it relaxes the safety requirement as it is sufficient to guarantee for each state $s$ and action $a$ that:
 \begin{equation} \label{eq:condition_safe}
-\max_{v\in\mathcal{V}} \P_{P\opt} \left[ \min_{p \in \aset_{s,a}} (p - p_{s,a}\opt)\tr v \le 0  ~\middle|~ \mathcal{D} \right] \ge 1-\frac{\delta}{SA}~,
+\max_{v\in\mathcal{V}} \P_{P\opt} \left[ \min_{p \in \aset_{s,a}} (p - p_{s,a}\opt)\tr v \le 0  ~\middle|~ \mathcal{D} \right] \ge 1-\delta~,
 \end{equation}
 with $\mathcal{V} = \{ \hat{v}\opt_{\aset} \}$. To construct the set $\aset$ here, the set $\mathcal{V}$ is not fixed but depends on the robust solution, which in turn depends on $\aset$. RSVF starts with a guess of a small set for $\mathcal{V}$ and then grows it, each time with the current value function, until it contains $\hat{v}\opt_{\aset}$ which is always recomputed after constructing the ambiguity set $\aset$.
 
@@ -304,9 +324,9 @@ We initially consider simple problems where transition from a single non-termina
 \onecolumn
 
 \section{Technical Results} \label{app:proofs}
-
 \subsection{Computing Bayesian Confidence Interval}
-\begin{algorithm}
+
+\begin{algorithm}[H]
 	\KwIn{Distribution $\theta$ over $p\opt_{s,a}$, confidence level $\delta$, sample count $m$}
 	\KwOut{Nominal point $\bar{p}_{s,a}$ and $L_1$ norm size $\psi_{s,a}$}
 	Sample $X_1, \ldots, X_m \in \Delta^S$ from $\theta$: $X_i \sim \theta $\;
