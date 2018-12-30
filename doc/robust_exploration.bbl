@@ -50,6 +50,12 @@ Andrew Gelman, John~B Carlin, Hal~S Stern, and Donald~B Rubin.
 \newblock {\em {Bayesian Data Analysis}}.
 \newblock 3rd edition, 2014.
 
+\bibitem[\protect\citeauthoryear{Gupta}{2015}]{Gupta2015}
+Vishal Gupta.
+\newblock {Near-Optimal Bayesian Ambiguity Sets for Distributionally Robust
+  Optimization}.
+\newblock 2015.
+
 \bibitem[\protect\citeauthoryear{Jaksch \bgroup \em et al.\egroup
   }{2010}]{Jaksch2010}
 Thomas Jaksch, Ronald Ortner, and Peter Auer.

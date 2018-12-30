@@ -155,7 +155,8 @@ Optimism about the poorly understood states and actions is the main driving forc
 
 \section{Introduction}
 
-Markov decision processes (MDPs) provide a versatile methodology for modeling dynamic decision problems under uncertainty~\citep{Bertsekas1996,Sutton1998,Puterman2005}. A perfect MDP model for many reinforcement learning problems is not known precisely in general. Instead, a reinforcement learning agent tries to maximize its cumulative payoff by interacting in an unknown environment with an effort to learn the underlying MDP model. It is important for the agent to exploresub-optimal actions to accelerate the MDP learning task which can help to optimize long-term performance. But it is also important to pick actions with highest known rewards to maximize short-run performance. So the agent always needs to balance between them to boost the performance of a learning algorithm during learning. 
+Markov decision processes (MDPs) provide a versatile methodology for modeling dynamic decision problems under uncertainty~\citep{Bertsekas1996,Sutton1998,Puterman2005}. A perfect MDP model for many reinforcement learning problems is not known precisely in general. Instead, a reinforcement learning agent tries to maximize its cumulative payoff by interacting in an unknown environment with an effort to learn the underlying MDP model. It is important for the agent to explore
+sub-optimal actions to accelerate the MDP learning task which can help to optimize long-term performance. But it is also important to pick actions with highest known rewards to maximize short-run performance. So the agent always needs to balance between them to boost the performance of a learning algorithm during learning. 
 
 \emph{Optimism in the face of uncertainty (OFU)} is a common principle for most reinforcement learning algorithms encouraging exploration~\citep{Jaksch2010,Brafman2001,Kearns1998a}. The idea is to assign a very high exploration bonus to poorly understood states and actions. The agent chooses a policy under this very "optimistic" model of the environment. As the less understood states-actions are incentivized, they seem lucrative to the agent encouraging exploration. As the agent visits and gathers statistically significant evidence for these states-actions, the uncertainty and optimism decreases converging to reality. Many RL algorithms including \emph{Explicit Explore or Exploit $(E^3)$}~\citep{Kearns1998a}, \emph{R-{\ssmall MAX}}~\cite{Brafman2001}, \emph{UCRL2}~\cite{Auer2006}, \emph{MBIE}~\citep{Strehl2008,Strehl2004,Wiering1998} build on the idea of optimism guiding the exploration. These algorithms provide strong theoretical guarantees with polynomial bound on sample complexity. 
 
@@ -192,7 +193,7 @@ Q\opt_h(s,a) := \sum_{s'}P^{a}_{ss'}[r_h + V\opt (s') ]
 The optimal policy $\pi\opt$ is defined as $\pi\opt(s) = \arg\max_{a\in\actions}Q\opt_h(s,a) \text{, } \forall s,h$. Optimistic algorithms encouraging exploration find the probability distribution $\tilde{P}_{sa}$ for each state and action within an interval of the empirically derived distribution $\bar{p}_{sa} = \E[\cdot|s,a]$, which defines the plausible set $\pset_{sa}$ of MDPs. They then solve an optimistic version
 of \cref{eq:state_action_value} within $\pset_{sa}$ that leads to the policy with highest reward.
 \begin{equation}
-Q\opt_h(s,a) := \max_{p^{sa} \in \pset^{sa}} \sum_{s'}p^{a}_{ss'}[r_h + V\opt (s') ]
+Q\opt_h(s,a) := \max_{p_{sa} \in \pset_{sa}} \sum_{s'}p^{a}_{ss'}[r_h + V\opt (s') ]
 \end{equation}
 An RL agent interacts with the environment in an episodic setting. At each episode $l\in 0,\ldots,L-1$, the agent takes actions based on the policy $\pi\opt_l$ optimal in episode $l$ and realizes reward $\sum_{h=0}^H r_{lh}$. $\pi\opt_l$ is computed from the experiences gathered by the agent in previous episodes $0,\ldots,l-1$. We evaluate the performance of the agent in terms of \emph{expected cumulative regret}:
 \[
@@ -201,12 +202,14 @@ Regret(T) = \sum_{l=0}^{T/H-1} \E\bigg[ V\opt(s_0) - V^{\pi\opt_l}(s_0) \bigg]
 Where $s_0 \sim p_0$, and $V\opt(s_0)$ are the true values of initial states.. 
 
 \section{Interval Estimation for Plausibility Sets}
-When solving an MDP in reinforcement learning, the main type of uncertainties are encountered on the model parameters, namely in transition probabilities and rewards. Given data set $\data$, an interval estimation of the model parameters is able to acknowledge and quantify this uncertainty, which a maximum likelihood based point estimate cannot do. In this section, we first describe the standard approach to constructing plausibility sets as distribution free confidence intervals. We then propose its extension to Bayesian setting and present a simple algorithm to serve that purpose. It is important tonote that distribution-free bounds are subtly different from the Bayesian bounds, the Bayesian safety guarantee holds conditional on a given dataset $\data$ while the distribution-free holdacross the sets $\data$. This makes the guarantees qualitatively different and difficult to compare.
+When solving an MDP in reinforcement learning, the main type of uncertainties are encountered on the model parameters, namely in transition probabilities and rewards. Given data set $\data$, an interval estimation of the model parameters is able to acknowledge and quantify this uncertainty, which a maximum likelihood based point estimate cannot do. In this section, we first describe the standard approach to constructing plausibility sets as distribution free confidence intervals. We then propose its extension to Bayesian setting and present a simple algorithm to serve that purpose. It is important to
+note that distribution-free bounds are subtly different from the Bayesian bounds, the Bayesian safety guarantee holds conditional on a given dataset $\data$ while the distribution-free hold
+across the sets $\data$. This makes the guarantees qualitatively different and difficult to compare.
 
 \subsection{Plausibility Sets as Confidence Intervals} \label{ssec:freq_pset}
 It is common in the literature to use $L_1$ norm as the distribution-free bound. This bound is constructed around the empirical mean of the transition probability $\bar{P}_{s,a}$ by applying the Hoeffding inequality~\citep{Auer2009,Auer2010a,Petrik2016,Wiesemann2013a,Strehl2004}.
 \[
-\pset^{sa} = \bigg\{ \lVert \tilde{p}_{sa} - \bar{p}_{sa} \rVert_1 \le \sqrt{\frac{2}{n_{s,a}}\log\frac{SA2^S}{\delta}} \bigg\}
+\pset_{sa} = \bigg\{ \lVert \tilde{p}_{sa} - \bar{p}_{sa} \rVert_1 \le \sqrt{\frac{2}{n_{s,a}}\log\frac{SA2^S}{\delta}} \bigg\}
 \]
 where $\bar{P}_{sa}$ is the mean transition computed from D, $n_{s,a}$ is the number of times the agent arrived state $s'$ after taking action $a$ in state $s$, $\delta$ is the required probability of the interval and $\lVert \bigcdot \rVert_1$ is the $L_1$ norm. An important limitation of this approach is that, the size of $\pset_{sa}$ grows linearly with the number of states, which makes it practically useless in general.
 
@@ -214,7 +217,8 @@ where $\bar{P}_{sa}$ is the mean transition computed from D, $n_{s,a}$ is the nu
 The Bayesian plausibility sets take the same interval estimation idea and extend it into Bayesian setting, which is analogous to \emph{credible intervals} in Bayesian statistics. Credible intervals are constructed with the posterior probability distributions and they are fixed $-$ not a random variable, given the data $\data$. Instead the estimated transition probabilities maximizing the rewards are random variables. They can take advantage of situation-specific prior knowledge unlike general confidence intervals as discussed above. However, a concise comparison between Bayesian and frequentist bounds is beyond the scope of this paper.
 
 The credible region for the plausibility set can be constructed around the mean, median or mode of the sample posterior distribution. Among which, bound around the empirical mean of the transition probabilities is simple and more common. To construct such a region, we optimize for the smallest plausibility set around the mean transition
-probability with the assumption that a smaller plausibility set will lead to a tighter upper bound estimate.Formally, the optimization problem to compute $\psi_{s,a}$ for each state s and action a is:
+probability with the assumption that a smaller plausibility set will lead to a tighter upper bound estimate.
+Formally, the optimization problem to compute $\psi_{s,a}$ for each state s and action a is:
 \begin{equation} \label{eq:optimization_bci}
 \min_{\psi\in\Real_+} \left\{\psi \ss \P\left[ \norm{\tilde{p}_{s,a} - \bar{p}_{s,a}}_1 > \psi ~|~ \mathcal{D} \right] < \delta \right\}~,
 \end{equation}
@@ -222,19 +226,20 @@ where nominal point is $\bar{p}_{s,a} = \E_{\tilde{P}}[\tilde{p}_{s,a} ~|~ \math
 
 The optimization problem in \cref{eq:optimization_bci} can be solved by the Sample Average Approximation~(SAA) algorithm~\citep{Shapiro2014}. The main idea is to sample from the posterior distribution and then choose the minimal size $\psi_{s,a}$ that satisfies the constrain.  \Cref{alg:bayes}, in the appendix, summarizes the simple sort-based method.
 
-\subsection{Bayesian Upper Confidence Reinforcement Learning}
+\subsection{Bayesian Upper Confidence Reinforcement Learning (BayesUCRL)}
 \begin{algorithm}
-	\KwIn{Prior distribution $\theta^0$ over $p\opt_{s,a}$, desired confidence level $\delta$, number of episodes K}
+	\KwIn{Prior distribution $\theta^0$ over $p\opt_{s,a}$, number of episodes K}
 	\KwOut{Policy with an optimistic return estimate }
 	$k=1$,
 	$X=\phi$\;
 	\Repeat{$k \le K$}{
-		
+		Confidence level: $\delta^k = 1-\frac{1}{k+1}$\;
+		Apply union bound: $\delta^k = 1-\frac{\delta^k}{SA}$\;
 		Initialize MDP: $\mdp^k$\;
-		Compute posterior from $\theta^{k-1}$ and samples $X$: $\theta^k$\;
+		Compute posterior $\theta^k$ from $\theta^{k-1}$ and samples $X$\;
 		
 		\For{All states and actions: $s \in \mathcal{S}, a \in \mathcal{A}$}{%
-			Compute mean transition $\bar{p}_{s,a}$, and interval $\psi_{s,a}$ (Invoke \cref{alg:bayes})\;
+			Compute mean transition $\bar{p}_{s,a}$, and interval $\psi_{s,a}$ (Invoke \cref{alg:bayes} with $\theta^k$ and $\delta^k$)\;
 			Add transition for $s$ and $a$ in $\mdp^k$\;
 		}
 		Compute value function and policy: $v_k$, $\hat{\pi}_k$ $\gets$ solve $\mdp^k$\;
@@ -242,54 +247,72 @@ The optimization problem in \cref{eq:optimization_bci} can be solved by the Samp
 		$k \gets k+1$
 	}
 	\Return $(\hat{\pi}_k, p_0\tr v_k)$ \;
-	\caption{Bayes UCRL}    \label{alg:bayes_ucrl}
+	\caption{BayesUCRL}    \label{alg:bayes_ucrl}
 \end{algorithm}
 We are now ready to describe a simple Bayesian optimistic algorithm, named as Bayes-UCRL. This builds directly on top of UCRL~\citep{Auer2009,Auer2010a}, which constructs the plausibility set as distribution free bounds, similar to what is described in \cref{ssec:freq_pset}. Unlike UCRL, Bayes-UCRL constructs the plausibility set in a Bayesian setting, as described in \cref{ssec:bayes_pset}. \cref{alg:bayes_ucrl} describes the idea in more detail. The algorithm uses a hierarchical Bayesian model that can be used to infer the posterior transition probability over $p\opt$. The details of the Bayesian model are largely irrelevant
-for our purpose. The model may have a simple analytical posterior, or may need to be sampled usingMCMC methods like Stan~\citep{Gelman2004}. The algorithm assumes that it is possible to draw enough samples from the posterior that the sampling error becomes negligible. 
+for our purpose. The model may have a simple analytical posterior, or may need to be sampled using
+MCMC methods like Stan~\citep{Gelman2004}. The algorithm assumes that it is possible to draw enough samples from the posterior that the sampling error becomes negligible. 
 
 \cref{alg:bayes_ucrl} proceeds in an episodic manner. At the beginning of each episode, it computes the posterior transition probabilities for each state and action. It then invokes \cref{alg:bayes} to compute the nominal transition points and the interval estimations for each state and action. It solves the MDP to compute the optimal policy for current episode. The execution of this policy for a fixed horizon generates more samples for posterior estimation in the next episode. This algorithm requires some extra steps compared to UCRL. It is also computationally expensive. But it performs better than UCRL in terms of computed returns over episodes which we will see in \cref{sec:experiments}.
 
 \section{OFVF: Optimism in the Face of sensible Value Functions} \label{sec:multiple}
+In this section, we describe OFVF, a new approach to constructing plausibility sets to drive exploration in reinforcement learning. OFVF uses samples from posterior distribution, similar to BayesUCRL. But OFVF can optimize the size and shape of the plausibility sets that can provide much better upper bounds for optimism. We first outline the algorithm and illustrate how each step is achieved.
 
-OFVF uses samples from a posterior distribution, similar to a Bayesian confidence interval, but it relaxes the safety requirement as it is sufficient to guarantee for each state $s$ and action $a$ that:
+OFVF relaxes the requirement for plausibility sets to be a confidence interval. It is sufficient to guarantee for each state $s$ and action $a$ that:
 \begin{equation} \label{eq:condition_safe}
-\max_{v\in\mathcal{V}} \P_{P\opt} \left[ \min_{p \in \aset_{s,a}} (p - p_{s,a}\opt)\tr v \le 0  ~\middle|~ \mathcal{D} \right] \ge 1-\delta~,
+\min_{v\in\mathcal{V}} \P_{P\opt} \left[ \max_{p \in \aset_{s,a}} (p - p_{s,a}\opt)\tr v \le 0  ~\middle|~ \mathcal{D} \right] \ge 1-\delta~,
 \end{equation}
-with $\mathcal{V} = \{ \hat{v}\opt_{\aset} \}$. To construct the set $\aset$ here, the set $\mathcal{V}$ is not fixed but depends on the robust solution, which in turn depends on $\aset$. RSVF starts with a guess of a small set for $\mathcal{V}$ and then grows it, each time with the current value function, until it contains $\hat{v}\opt_{\aset}$ which is always recomputed after constructing the ambiguity set $\aset$.
+with value functions $\mathcal{V} = \{ \hat{v}\opt_{\aset} \}$. To construct the set $\aset$ here, the set $\mathcal{V}$ is not fixed but depends on the robust solution, which in turn depends on $\aset$. OFVF starts with a guess of a small set for $\mathcal{V}$ and then grows it, each time with the current value function, until it contains $\hat{v}\opt_{\aset}$ which is always recomputed after constructing the ambiguity set $\aset$.
 
 \begin{algorithm}
 	\KwIn{Desired confidence level $\delta$ and posterior distribution $\P_{P\opt}[\cdot ~|~\mathcal{D}]$ }
 	\KwOut{Policy with a maximized safe return estimate }
 	Initialize current policy $\pi_0 \gets \arg\max_{\pi} \rho(\pi,\E_{P\opt}[P\opt~|~\mathcal{D}])$\;
 	Initialize current value $v_0 \gets v^{\pi_0}_{\E_{P\opt}[P\opt~|~\mathcal{D}]}$\;
-	Initialize value robustness set $\mathcal{V}_0 \gets \{v_0 \}$ \;	
-	\label{line:make_p_1} Construct $\aset_0$ optimal for $\mathcal{V}_0$\;
+	Initialize value robustness set $\vset_0 \gets \{v_0 \}$ \;	
+	\label{line:make_p_1} Construct $\aset_0$ optimal for $\vset_0$ (\cref{alg:knownV_robust})\;
 	Initialize counter $k\gets 0$\;
-	\While{\cref{eq:condition_safe} is violated with $\mathcal{V}=\{v_k\}$}{
+	\While{\cref{eq:condition_safe} is violated with $\vset=\{v_k\}$}{
 		Include $v_k$ that violates \cref{eq:condition_safe}: $\vset_{k+1} \gets \vset_k \cup \{ v_k \}$ \;
-		\label{line:make_p_2} Construct $\aset_{k+1}$ optimized for $\vset_{k+1}$\;
-		Compute robust value function $v_{k+1}$ and policy $\pi_{k+1}$ for $\aset_{k+1}$\;
+		\label{line:make_p_2} Construct $\aset_{k+1}$ optimized for $\vset_{k+1}$ (\cref{alg:knownV_robust})\;
+		Compute optimistic value function $v_{k+1}$ and policy $\pi_{k+1}$ for $\aset_{k+1}$\;
 		$k \gets k + 1$ \;
 	}
 	\Return $(\pi_k, p_0\tr v_k)$ \;
-	\caption{OFVF: Optimism in the Face of sensible Value Functions}    \label{alg:IAVF}
-\end{algorithm} 
+	\caption{RSVF: Robustification with Sensible Value Functions}    \label{alg:OFVF}
+\end{algorithm}
+To illustrate how OFVF computes a tighter upper bound than the standard Bayesian approach, consider the following simple example. Given a random variable $X$ that is normally distributed with a 0 mean, two possible $95\%$ confidence intervals are 1) the mean-centered interval $[-1.96,1.96]$, and 2) left-biased interval $[-\infty,1.64]$. The robust estimates on $X$ with respect to the left-biased interval is a tighter $1.64$ instead of $1.96$. We apply this intuition in the context of the multi-dimensional transition probabilities, in which the effect can be more dramatic.
 
-In lines 4 and 8 of \cref{alg:IAVF}, $\aset_i$ is computed for each state-action $s,a \in \states\times\actions$. Center $\bar{p}$ and set size $\psi_{s,a}$ are computed from \cref{eq:center_point} using set $\mathcal{V}$ \& optimal $g_v$ computed by solving \cref{eq:optimal_hyperplane}.
-When the set $\mathcal{V}$ is a singleton, it is easy to compute a form of an optimal ambiguity set. 
+OFVF, as described in \cref{alg:OFVF}, is not guaranteed to converge in finite time. It can be readily shown the value functions in the individual iterations are non-increasing. It is easy to just stop once the value function becomes smaller (and that is more conservative) than BCI. We discuss how to construct an ambiguity set in \eqref{eq:condition_safe} below in \cref{alg:knownV_robust}.
+
+Now we describe how the plausibility set is constructed for each fixed set $\vset$ in order to satisfy \eqref{eq:condition_safe}. This is needed in \cref{line:make_p_1,line:make_p_2} in \cref{alg:OFVF}. \cref{alg:knownV_robust} describes this procedure. The algorithm is based on the two main insights. First, if the set $\vset$ is a singleton, it is easy to construct an optimal ambiguity set. 
 \begin{equation} \label{eq:optimal_hyperplane}
-g = \max \left\{ k ~:~ \P_{P\opt} [k \le v\tr p\opt_{s,a}] \ge 1 - \delta/(SA) \right\}
+g\opt_v = \max \left\{ g ~:~ \P_{P\opt} [g \le v\tr p\opt_{s,a}] \ge 1 - \frac{\delta}{SA} \right\}
 \end{equation}
+This optimization problem can be solved easily by SAA. That is, we sample points $q_i$ from the probability distribution over $p\opt_{s,a}$ and then sort them by $v\tr q_i$ and let $k$ be the $1 - \delta/(SA)$ quantile of this sample.
 
-When $\mathcal{V}$ is a singleton, it is sufficient for the ambiguity set to be a subset of the hyperplane $\{ p \in \Delta^S ~:~ v\tr p = g\opt \}$ for the estimate to be safe. When $\mathcal{V}$ is not a singleton, we only consider the setting when it is discrete, finite, and relatively small. We propose to construct a set defined in terms of an $L_1$ ball with the minimum radius such that it is safe for every $v\in\mathcal{V}$. Assuming that $\mathcal{V} = \{v_1, v_2, \ldots, v_k \}$, we solve the following linear program:
+\begin{algorithm}
+	\KwIn{Discrete set of value functions $\vset$, confidence level $\delta$, and distribution $\P_{P\opt}[\cdot ~|~\mathcal{D}]$}
+	\KwOut{$L_1$ ambiguity set optimized for \eqref{eq:condition_safe} with $\vset$}
+	\For{All states and actions: $s,a \in \states\times\actions$}{
+		Compute $g_v\opt$ for each $v\in\vset$ by solving \eqref{eq:optimal_hyperplane} \;		
+		Compute $L_1$ set size $\psi_{s,a}\opt(\vset)$ as the value of \eqref{eq:center_point}  and
+		let $\bar{p}_{s,a}\opt$ be the minimizer\;
+	}
+	
+	\Return $\aset_{s,a} = \{ p \in \Delta^S ~:~ \norm{p - \bar{p}_{s,a}}_1 \le \psi_{s,a} \}$ \;
+	\caption{Compute ambiguity set for a posterior distribution with a set of possible value functions} \label{alg:knownV_robust}
+\end{algorithm}
+When $\vset$ is a singleton, it is sufficient for the plausibility set to be a be a subset of the hyperplane $\{ p \in \Delta^S ~:~ v\tr p = g_v\opt \}$. This is a very important difference compared with the confidence interval approach. In fact, for a continuous posterior distribution of $P\opt$, any ambiguity set that is a subset of the hyperplane described above will have a probability of 0. This is significant departure from the traditional methods for constructing ambiguity set which was first proposed and analyzed in detail in \cite{Gupta2015}. It is important to note, however, that our setting is very different and the results of \cite{Gupta2015} are not directly applicable. 
+
+Now for the case when $\mathcal{V}$ is not a singleton, we only consider the setting when it is discrete, finite, and relatively small. We propose to construct a set defined in terms of an $L_1$ ball with the minimum radius such that it satisfies for every $v\in\mathcal{V}$.
 \begin{equation} \label{eq:center_point}
-\begin{gathered}
-\psi_{s,a} = \min_{p\in\Delta^S} \Bigl\{ \max_{i=1,\ldots,k} \norm{q_i - p}_1 ~:~ 
-\hspace{0.1cm}  v_i\tr  q_i = g_i\opt, q_i \in \Delta^S, i \in 1,\ldots,k  \Bigr\}
-\end{gathered}
+\begin{split}
+\psi_{s,a}\opt(\mathcal{V}) = & \min_{p\in\Delta^S} \max_{v\in\vset} \norm{q_v - p}_1 \\
+& \text{s.t. } v\tr  q_v = g_{v}\opt, q_v \in \Delta^S, \; \forall v \in\vset
+\end{split}
 \end{equation}
-
-In other words, we construct the set to minimize its radius while still intersecting the hyperplane for each $v$ in $\mathcal{V}$. \cref{alg:IAVF}, as described, is not guaranteed to converge in finite time as written. It can be readily shown the value functions in the individual iterations are non-increasing. It is easy to just stop once the value function becomes smaller (and that is more conservative) than BCI.
+The optimization in \eqref{eq:center_point} can be represented as a linear program. In other words, we construct the set to minimize its radius while still intersecting the hyperplane for each $v$ in $\vset$.
 
 \begin{figure}
 	\centering
@@ -307,10 +330,16 @@ In other words, we construct the set to minimize its radius while still intersec
 
 \section{Empirical Evaluation} \label{sec:experiments}
 
-In this section, we evaluate the worst-case estimates computed by Bayes UCRL and OFVF empirically. We assume a true model of each problem and generate a number of simulated data sets for the known distribution. We compute the tightest optimistic estimate for the optimal return and compare it with the optimal return for the true model. We compare our results with ``UCRL2`` and ``PSRL`` algorithms. The value $\xi$ represents the predicted regret, which is the absolute difference between the \emph{true} optimal value and the robust estimate: $\xi = \abs{\rho(\pi\opt_{P\opt}, P\opt) - \hat\rho(\hat\pi\opt)}$, a smaller regret is better. All of our experiments use a 95\% confidence for safety unless otherwise specified.
+In this section, we evaluate the estimated returns over episodes computed by Bayes UCRL and OFVF empirically. We assume a true model of each problem and generate a number of simulated data sets for the known distribution. We compute the tightest optimistic estimate for the optimal return and compare it with the optimal return for the true model. To judge the performance of the methods, we evaluate both the absolute error of the worst case estimates from optimal, as well the average case estimate from optimal.
 
-\subsection{Single-state Bellman Update}
-We initially consider simple problems where transition from a single non-terminal state following a single action leads to multiple terminal states. The value function for the terminal states are fixed and assumed to be provided. We evaluate different priors over the transition probabilities: i) uninformative Dirichlet prior and ii) informative Gaussian prior. Note that RSVF is optimal in this simplistic setting, as \cref{fig:dirichlet_result} (left) and \cref{fig:return_single_multiple} (left) shows. As expected, the mean estimate provides the tightest bound, but \cref{fig:dirichlet_result} (right) illustrates that it does not provide any meaningful safety guarantees.
+We compare our results with ``UCRL`` and ``PSRL`` algorithms. UCRL simply constructs the distribution free plausibility set by applying Chernoff-hoeffding inequality. PSRL does not construct any explicit plausibility set. Rather, it is a stochastically optimistic algorithm and it proceeds in a manner similar to Thompson sampling. PSRL samples a single statistically plausible MDP in proportion to the likelihood from the posterior. Optimism at each state-action independently makes OFU algorithms far too optimistic. PSRL can overcome this problem~\cite{Osband2016} and outperforms all OFU algorithms including OFVF in average case performance. But as we will see in the experiments, OFVF performs robustly in the worst case scenario and outperforms all other methods.
+
+Next in section \cref{ssection:single_state}, we compare the methods in a simplified setting in which we consider the problem of estimating the value of a single state from a Bellman update. Then in the following sections, we evaluate the methods on different problems with full MDP.
+
+\subsection{Single-state Bellman Update} \label{ssection:single_state}
+We initially consider a simple problem with one single non-terminal state. The agent can take three different actions on that state. Each action leads to one of three terminal states with different transition probabilities. The value function for the terminal states are fixed and assumed to be provided. We consider an uninformative Dirichlet prior for the transition probabilities. 
+
+Note that RSVF is optimal in this simplistic setting, as \cref{fig:dirichlet_result} (left) and \cref{fig:return_single_multiple} (left) shows. As expected, the mean estimate provides the tightest bound, but \cref{fig:dirichlet_result} (right) illustrates that it does not provide any meaningful safety guarantees.
 
 \subsection{River Swim Problem}
 

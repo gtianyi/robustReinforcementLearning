@@ -83,6 +83,10 @@ Repeated entry---line 9423 of file reazul_lib.bib
  : @article{Agrawal2011
  :                     ,
 I'm skipping whatever remains of this entry
+Repeated entry---line 11255 of file reazul_lib.bib
+ : @unpublished{Gupta2015
+ :                       ,
+I'm skipping whatever remains of this entry
 Repeated entry---line 11930 of file reazul_lib.bib
  : @inproceedings{Petrik2016
  :                          ,
@@ -122,51 +126,52 @@ I'm skipping whatever remains of this entry
 Warning--empty publisher in Auer2009
 Warning--empty publisher in Bertsekas1996
 Warning--empty publisher in Gelman2004
+Warning--empty note in Gupta2015
 Warning--empty publisher in Shapiro2014
 Warning--empty journal in Strehl2004
 Warning--there's a number but no volume in Strehl2004
 Warning--empty title in Strehl2008
 Warning--empty publisher in Sutton1998
 Warning--empty title in Wiering1998
-You've used 22 entries,
+You've used 23 entries,
             2439 wiz_defined-function locations,
-            688 strings with 7766 characters,
-and the built_in function-call counts, 8156 in all, are:
-= -- 833
-> -- 305
+            694 strings with 7899 characters,
+and the built_in function-call counts, 8385 in all, are:
+= -- 858
+> -- 312
 < -- 5
-+ -- 97
-- -- 96
-* -- 630
-:= -- 1314
-add.period$ -- 66
-call.type$ -- 22
-change.case$ -- 128
-chr.to.int$ -- 21
-cite$ -- 31
-duplicate$ -- 355
-empty$ -- 630
-format.name$ -- 129
-if$ -- 1685
++ -- 99
+- -- 98
+* -- 646
+:= -- 1357
+add.period$ -- 69
+call.type$ -- 23
+change.case$ -- 133
+chr.to.int$ -- 22
+cite$ -- 33
+duplicate$ -- 364
+empty$ -- 644
+format.name$ -- 132
+if$ -- 1727
 int.to.chr$ -- 2
 int.to.str$ -- 0
 missing$ -- 27
-newline$ -- 111
-num.names$ -- 68
-pop$ -- 143
+newline$ -- 116
+num.names$ -- 71
+pop$ -- 145
 preamble$ -- 1
-purify$ -- 156
+purify$ -- 162
 quote$ -- 0
-skip$ -- 285
+skip$ -- 294
 stack$ -- 0
-substring$ -- 400
-swap$ -- 81
+substring$ -- 405
+swap$ -- 82
 text.length$ -- 5
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 156
-warning$ -- 9
-while$ -- 68
-width$ -- 27
-write$ -- 270
-(There were 28 error messages)
+type$ -- 164
+warning$ -- 10
+while$ -- 70
+width$ -- 28
+write$ -- 281
+(There were 29 error messages)
