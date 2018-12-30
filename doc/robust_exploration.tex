@@ -57,6 +57,17 @@
 %\usetikzlibrary{shapes,arrows,positioning,calc}
 \usepackage[capitalize]{cleveref}
 
+\usepackage{tkz-graph}
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata,positioning}
+%\GraphInit[vstyle = Shade]
+\tikzset{
+	LabelStyle/.style = {minimum width = 1em, fill = white!50, opacity=0.8,
+		text = black, font = \tiny },
+	VertexStyle/.append style = { inner sep=2pt,
+		font = \bfseries},
+	EdgeStyle/.append style = {->, bend left} }
+
 \crefname{algocf}{Algorithm}{Algorithm}
 \Crefname{algocf}{Algorithm}{Algorithm}
 
@@ -279,7 +290,7 @@ with value functions $\mathcal{V} = \{ \hat{v}\opt_{\aset} \}$. To construct the
 		$k \gets k + 1$ \;
 	}
 	\Return $(\pi_k, p_0\tr v_k)$ \;
-	\caption{RSVF: Robustification with Sensible Value Functions}    \label{alg:OFVF}
+	\caption{OFVF: Optimism in the Face of sensible Value Functions}    \label{alg:OFVF}
 \end{algorithm}
 To illustrate how OFVF computes a tighter upper bound than the standard Bayesian approach, consider the following simple example. Given a random variable $X$ that is normally distributed with a 0 mean, two possible $95\%$ confidence intervals are 1) the mean-centered interval $[-1.96,1.96]$, and 2) left-biased interval $[-\infty,1.64]$. The robust estimates on $X$ with respect to the left-biased interval is a tighter $1.64$ instead of $1.96$. We apply this intuition in the context of the multi-dimensional transition probabilities, in which the effect can be more dramatic.
 
@@ -314,20 +325,6 @@ Now for the case when $\mathcal{V}$ is not a singleton, we only consider the set
 \end{equation}
 The optimization in \eqref{eq:center_point} can be represented as a linear program. In other words, we construct the set to minimize its radius while still intersecting the hyperplane for each $v$ in $\vset$.
 
-\begin{figure}
-	\centering
-	\begin{minipage}[c]{.45\columnwidth}
-		\centering
-		\includegraphics[width=\linewidth]{fig/gaussian_return_single_state.pdf}\\
-	\end{minipage}%
-	\begin{minipage}[c]{.45\columnwidth}
-		\centering
-		\includegraphics[width=\linewidth]{fig/Glossy_Buckthorn_Under_Estimation.pdf}
-	\end{minipage}%
-	\caption{Return error with a Gaussian prior with 95\% confidence, Left: Single state, Right: Full MDP, X-axis is the number of samples per state-action.}
-	\label{fig:return_single_multiple}
-\end{figure}
-
 \section{Empirical Evaluation} \label{sec:experiments}
 
 In this section, we evaluate the estimated returns over episodes computed by Bayes UCRL and OFVF empirically. We assume a true model of each problem and generate a number of simulated data sets for the known distribution. We compute the tightest optimistic estimate for the optimal return and compare it with the optimal return for the true model. To judge the performance of the methods, we evaluate both the absolute error of the worst case estimates from optimal, as well the average case estimate from optimal.
@@ -337,11 +334,138 @@ We compare our results with ``UCRL`` and ``PSRL`` algorithms. UCRL simply constr
 Next in section \cref{ssection:single_state}, we compare the methods in a simplified setting in which we consider the problem of estimating the value of a single state from a Bellman update. Then in the following sections, we evaluate the methods on different problems with full MDP.
 
 \subsection{Single-state Bellman Update} \label{ssection:single_state}
-We initially consider a simple problem with one single non-terminal state. The agent can take three different actions on that state. Each action leads to one of three terminal states with different transition probabilities. The value function for the terminal states are fixed and assumed to be provided. We consider an uninformative Dirichlet prior for the transition probabilities. 
+\begin{figure}
+	\centering
+		\begin{tikzpicture}[>=stealth',
+		shorten > = 1pt,
+		node distance = 1.2cm,
+		el/.style = {inner sep=1pt, align=left, sloped},
+		every label/.append style = {font=\tiny}
+		]
+		\node (q0) [state,thick,inner sep=1pt,minimum size=0.5pt ]     {$s_0$};
+		
+		\node (a0) [state,rectangle,above right=of q0,inner sep=1pt,minimum size=0.5pt ]   {$a_0$};
+		\node (a1) [state,rectangle,right=of q0,inner sep=1pt,minimum size=0.5pt]   {$a_1$};
+		\node (a2) [state,rectangle,below right=of q0,inner sep=1pt,minimum size=0.5pt]   {$a_2$};
+		
+		\node[label=right:{\small r=1}] (q1) [state,thick,right=of a0,inner sep=1pt,minimum size=0.5pt]   {$s_1$};
+		\node[label=right:{\small r=2}] (q2) [state,thick,right=of a1,inner sep=1pt,minimum size=0.5pt]   {$s_2$};
+		\node[label=right:{\small r=3}] (q3) [state,thick,right=of a2,inner sep=1pt,minimum size=0.5pt]   {$s_3$};
+		
+		\path[->] 
+		(q0)  edge  (a0)
+		(q0)  edge  (a1)
+		(q0)  edge  (a2)
+		
+		(a0)  edge [bend right=-20]  node[el,above, font=\tiny, pos=0.25]  {$0.6$}   (q1)
+		(a0)  edge [bend right=-20]  node[el,above, font=\tiny, pos=0.25]  {$0.2$}   (q2)
+		(a0)  edge [bend right=-20]  node[el,above, font=\tiny, pos=0.15]  {$0.2$}   (q3)
+		
+		(a1)  edge   node[el,above, font=\tiny, pos=0.15]  {$0.2$}   (q1)
+		(a1)  edge   node[el,above, font=\tiny, pos=0.25]  {$0.6$}   (q2)
+		(a1)  edge   node[el,above, font=\tiny, pos=0.15]  {$0.2$}   (q3)
+		
+		(a2)  edge [bend left=-20]  node[el,above, font=\tiny, pos=0.15]  {$0.2$}   (q1)
+		(a2)  edge [bend left=-20]  node[el,above, font=\tiny, pos=0.25]  {$0.2$}   (q2)
+		(a2)  edge [bend left=-20]  node[el,above, font=\tiny, pos=0.25]  {$0.6$}   (q3);
+		\end{tikzpicture}
+	\caption{Simple MDP with one non-terminal state, three actions leading to three terminal states with different transition probabilities} \label{fig:SingleState}
+\end{figure}
+We initially consider a simple problem with one single non-terminal state. The agent can take three different actions on that state. Each action leads to one of three terminal states with different transition probabilities. The value function for the terminal states are fixed and assumed to be known. The dynamics of the MDP is shown in~\cref{fig:SingleState}. We consider an uninformative Dirichlet prior for the transition probabilities. We run the experiments for 100 episodes, each episode 
 
-Note that RSVF is optimal in this simplistic setting, as \cref{fig:dirichlet_result} (left) and \cref{fig:return_single_multiple} (left) shows. As expected, the mean estimate provides the tightest bound, but \cref{fig:dirichlet_result} (right) illustrates that it does not provide any meaningful safety guarantees.
+Plot [reference] compares the worst case returns computed by different methods. Note that OFVF outperforms all other methods in this simplistic setting. OFVF is able to explore in a robust way maximizing the worst-case return. As expected, PSRL outperforms all other methods in average case, but performs poorly in the worst-case scenario.
 
-\subsection{River Swim Problem}
+\subsection{RiverSwim Problem}
+
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[>=stealth',
+shorten > = 1pt,
+node distance = 0.7cm,
+el/.style = {inner sep=1pt, align=left, sloped},
+every label/.append style = {font=\tiny}
+]
+\node (q0) [state,thick,inner sep=1pt,minimum size=0.5pt ]     {$s_0$};
+\node (q1) [state,thick,right=of q0,inner sep=1pt,minimum size=0.5pt]   {$s_1$};
+\node (q2) [state,line width=0pt, draw=white,right=of q1,inner sep=1pt,minimum size=0.5pt]   {$\cdots\cdot$};
+\node (q4) [state,thick,right=of q2,inner sep=1pt,minimum size=0.5pt]   {$s_4$};
+\node (q5) [state,thick,right=of q4,inner sep=1pt,minimum size=0.5pt]   {$s_5$};
+
+\path[->] 
+(q0)  edge [in=260,out=280,loop, dashed] node[el,below, font=\tiny] {$\Big(1,r=\frac{5}{1000}\Big)$}   (q0)
+(q0)  edge [in=80,out=100,loop] node[el,above, font=\tiny] {$0.4$}                    (q0)
+
+(q1)  edge [in=80,out=100,loop] node[el,above, font=\tiny] {$0.6$}                    (q1)
+(q0)  edge [out=60, bend right=-50, in=150]  node[el,above, font=\tiny]  {$0.6$}      (q1)
+(q1)  edge [out=90,bend left=10, in=215]  node[el,below, font=\tiny]  {$0.05$}        (q0)
+(q1)  edge [bend left=50, dashed]  node[el,below, font=\tiny]  {$1$}                  (q0)
+
+(q2)  edge [in=80,out=100,loop] node[el,above, font=\tiny] {$0.6$}                    (q2)
+(q1)  edge [out=60, bend right=-50, in=150]  node[el,above, font=\tiny]  {$0.35$}     (q2)
+(q2)  edge [out=90,bend left=10, in=215]  node[el,below, font=\tiny]  {$0.05$}        (q1)
+(q2)  edge [bend left=50, dashed]  node[el,below, font=\tiny]  {$1$}                  (q1)
+
+(q4)  edge [in=80,out=100,loop] node[el,above, font=\tiny] {$0.6$}                    (q4)
+(q2)  edge [out=60, bend right=-50, in=150]  node[el,above, font=\tiny]  {$0.35$}     (q4)
+(q4)  edge [out=90,bend left=10, in=215]  node[el,below, font=\tiny]  {$0.05$}        (q2)
+(q4)  edge [bend left=50, dashed]  node[el,below, font=\tiny]  {$1$}                  (q2)
+
+(q5)  edge [in=80,out=100,loop] node[el,above, font=\tiny] {$(0.6, r=1)$}                    (q5)
+(q4)  edge [out=60, bend right=-50, in=150]  node[el,above, font=\tiny]  {$0.35$}     (q5)
+(q5)  edge [out=90,bend left=10, in=215]  node[el,below, font=\tiny]  {$0.4$}        (q4)
+(q5)  edge [bend left=50, dashed]  node[el,below, font=\tiny]  {$1$}                  (q4);
+
+\end{tikzpicture}
+\end{center}
+\caption{RiverSwim problem with six states $(s_0,\ldots,s_5)$ and 2 actions (left- dashed arrow, right- solid arrow)} \label{fig:RiverSwim}
+\end{figure}
+We compare the performance different methods in standard example of RiverSwim~\citep{Osband2013, Strehl2004}. RiverSwim consists of a chain of six states as shown in \cref{fig:RiverSwim}. The agent starts at the left-most state $s_0$. The agent can take one of two action: left or right. Strong current flows in the river from right to left. Swimming left thus always successful and takes the agent to the state on the left with probability 1. Swimming right goes against the current and often fails. The agent receives a very small reward for reaching leftmost state. But the rightmost state gives a much higher reward and the optimal policy is to swim right. Efficient exploration is required in this problem to find the optimal policy.
+
+We start with a uniform Dirichlet prior over the transition probabilities. We run the experiments for 500 episodes with each containing 100 Monte Carlo simulations. We compute the worst and average case cumulative regrets over the episodes. [Plot reference] shows that, OFVF outperforms all other methods in terms of worst-case cumulative regret.
+
+\subsection{CasinoLand Problem}
+\begin{figure}
+	\begin{center}
+		\begin{tikzpicture}[>=stealth',
+		shorten > = 1pt,
+		node distance = 0.7cm,
+		el/.style = {inner sep=1pt, align=left, sloped},
+		every label/.append style = {font=\tiny}
+		]
+		\node (q0) [state,thick,inner sep=1pt,minimum size=0.5pt ]     {$s_0$};
+		\node (q1) [state,thick,right=of q0,inner sep=1pt,minimum size=0.5pt]   {$s_1$};
+		\node (q2) [state,line width=0pt, draw=white,right=of q1,inner sep=1pt,minimum size=0.5pt]   {$\cdots\cdot$};
+		\node (q4) [state,thick,right=of q2,inner sep=1pt,minimum size=0.5pt]   {$s_4$};
+		\node (q5) [state,thick,right=of q4,inner sep=1pt,minimum size=0.5pt]   {$s_5$};
+		
+		\path[->] 
+		(q0)  edge [in=260,out=280,loop, dashed] node[el,below, font=\tiny] {$\Big(1,r=\frac{5}{1000}\Big)$}   (q0)
+		(q0)  edge [in=80,out=100,loop] node[el,above, font=\tiny] {$0.4$}                    (q0)
+		
+		(q1)  edge [in=80,out=100,loop] node[el,above, font=\tiny] {$0.6$}                    (q1)
+		(q0)  edge [out=60, bend right=-50, in=150]  node[el,above, font=\tiny]  {$0.6$}      (q1)
+		(q1)  edge [out=90,bend left=10, in=215]  node[el,below, font=\tiny]  {$0.05$}        (q0)
+		(q1)  edge [bend left=50, dashed]  node[el,below, font=\tiny]  {$1$}                  (q0)
+		
+		(q2)  edge [in=80,out=100,loop] node[el,above, font=\tiny] {$0.6$}                    (q2)
+		(q1)  edge [out=60, bend right=-50, in=150]  node[el,above, font=\tiny]  {$0.35$}     (q2)
+		(q2)  edge [out=90,bend left=10, in=215]  node[el,below, font=\tiny]  {$0.05$}        (q1)
+		(q2)  edge [bend left=50, dashed]  node[el,below, font=\tiny]  {$1$}                  (q1)
+		
+		(q4)  edge [in=80,out=100,loop] node[el,above, font=\tiny] {$0.6$}                    (q4)
+		(q2)  edge [out=60, bend right=-50, in=150]  node[el,above, font=\tiny]  {$0.35$}     (q4)
+		(q4)  edge [out=90,bend left=10, in=215]  node[el,below, font=\tiny]  {$0.05$}        (q2)
+		(q4)  edge [bend left=50, dashed]  node[el,below, font=\tiny]  {$1$}                  (q2)
+		
+		(q5)  edge [in=80,out=100,loop] node[el,above, font=\tiny] {$(0.6, r=1)$}                    (q5)
+		(q4)  edge [out=60, bend right=-50, in=150]  node[el,above, font=\tiny]  {$0.35$}     (q5)
+		(q5)  edge [out=90,bend left=10, in=215]  node[el,below, font=\tiny]  {$0.4$}        (q4)
+		(q5)  edge [bend left=50, dashed]  node[el,below, font=\tiny]  {$1$}                  (q4);
+		
+		\end{tikzpicture}
+	\end{center}
+	\caption{CasinoLand problem with six states $(s_0,\ldots,s_5)$ and 2 actions (left- dashed arrow, right- solid arrow)} \label{fig:RiverSwim}
+\end{figure}
 
 \subsection{Mountain Car Problem}
 

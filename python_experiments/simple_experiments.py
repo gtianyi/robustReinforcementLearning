@@ -9,17 +9,18 @@ import matplotlib.pyplot as plt
 import pickle
 import datetime
 import itertools
-    
+
 ### The problem setup is simple: we've 1 non terminal state, indexed as 0. From state 0, we've 3 possible actions, each of which can lead to 3 next terminal states.
 if __name__ == "__main__":
     num_states = 1
-    confidence = 0.9
+    confidence = 0.95
     num_next_states = 3
     num_actions = 3
-    discount_factor = 0.9
-    num_episodes = 200
-    num_runs = 30
+    discount_factor = 0.95
+    num_episodes = 100
+    num_runs = 100
     horizon = 10
+    num_bayes_samples = 100
     
     # rewards for 3 possible next terminal states
     rewards = np.arange(1, num_next_states+1, dtype=float)*10
@@ -102,8 +103,8 @@ if __name__ == "__main__":
                 Pk[action,next_state] += 1
                 Nk_[action] += 1
 
-    regret_ucrl = np.mean(regret_ucrl, axis=0)
-    
+    regret_ucrl = np.amin(regret_ucrl, axis=0)
+    avg_regret_ucrl = np.mean(regret_ucrl, axis=0)
     print("computed_solution", computed_solution)
     # Plot regret
     plt.plot(np.cumsum(regret_ucrl))
@@ -144,8 +145,9 @@ if __name__ == "__main__":
             for h in range(horizon):
                 next_state = np.random.choice(num_next_states, 1, p=transitions[action])
                 samples[action, next_state] += 1
-                
-    regret_psrl = np.mean(regret_psrl, axis=0)
+    
+    regret_psrl = np.amin(regret_psrl, axis=0)
+    avg_regret_psrl = np.mean(regret_psrl, axis=0)
 
     plt.plot(np.cumsum(regret_psrl))
     plt.show()
@@ -159,8 +161,6 @@ def compute_bayesian_threshold(points, nominal_point, confidence_level):
     return threshold
     
 if __name__ == "__main__":
-
-    num_bayes_samples = 30
     regret_bayes_ucrl = np.zeros( (num_runs, num_episodes) )
     
     for m in range(num_runs):
@@ -212,7 +212,8 @@ if __name__ == "__main__":
                 next_state = np.random.choice(num_next_states, 1, p=transitions[action])
                 samples[action, next_state] += 1
 
-    regret_bayes_ucrl = np.mean(regret_bayes_ucrl, axis=0)
+    regret_bayes_ucrl = np.amin(regret_bayes_ucrl, axis=0)
+    avg_regret_bayes_ucrl = np.mean(regret_bayes_ucrl, axis=0)
 
     plt.plot(np.cumsum(regret_bayes_ucrl))
     plt.show()
@@ -228,7 +229,7 @@ if __name__ == "__main__":
     
     regret_OFVF = np.zeros( (num_runs, num_episodes) )
     
-    sa_confidence = confidence # !!! Apply union bound to compute confidence for each state-action
+    #sa_confidence = confidence # !!! Apply union bound to compute confidence for each state-action
     
     for m in range(num_runs):
         # Initialize uniform Dirichlet prior
@@ -244,7 +245,7 @@ if __name__ == "__main__":
             posterior = posterior+samples
             thresholds = [[] for _ in range(3)]
             
-            #sa_confidence = confidence = 1 - 1/(k+1)
+            sa_confidence = confidence = 1 - 1/(k+1)
             
             posterior_transition_points = []
             for a in range(num_actions):
@@ -278,7 +279,8 @@ if __name__ == "__main__":
                 next_state = np.random.choice(num_next_states, 1, p=transitions[action])
                 samples[action, next_state] += 1
 
-    regret_OFVF = np.mean(regret_OFVF, axis=0)
+    regret_OFVF = np.amin(regret_OFVF, axis=0)
+    avg_regret_OFVF = np.mean(regret_OFVF, axis=0)
 
     plt.plot(np.cumsum(regret_OFVF))
     plt.show()
@@ -290,7 +292,7 @@ if __name__ == "__main__":
     plt.plot(np.cumsum(regret_bayes_ucrl), label="Bayes UCRL", color='g', linestyle=':')
     plt.plot(np.cumsum(regret_OFVF), label="OFVF", color='r', linestyle='-.')
     plt.legend(loc='best', fancybox=True, framealpha=0.3)
-    plt.xlabel("num_episodes")
+    plt.xlabel("number of episodes")
     plt.ylabel("cumulative regret")
     plt.title("Worst Case Regret for Single State problem")
     plt.grid()
