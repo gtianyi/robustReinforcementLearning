@@ -133,45 +133,45 @@ Warning--there's a number but no volume in Strehl2004
 Warning--empty title in Strehl2008
 Warning--empty publisher in Sutton1998
 Warning--empty title in Wiering1998
-You've used 23 entries,
+You've used 24 entries,
             2439 wiz_defined-function locations,
-            694 strings with 7899 characters,
-and the built_in function-call counts, 8385 in all, are:
-= -- 858
-> -- 312
+            697 strings with 8039 characters,
+and the built_in function-call counts, 8831 in all, are:
+= -- 896
+> -- 350
 < -- 5
-+ -- 99
-- -- 98
-* -- 646
-:= -- 1357
-add.period$ -- 69
-call.type$ -- 23
-change.case$ -- 133
-chr.to.int$ -- 22
-cite$ -- 33
-duplicate$ -- 364
-empty$ -- 644
-format.name$ -- 132
-if$ -- 1727
++ -- 113
+- -- 112
+* -- 685
+:= -- 1434
+add.period$ -- 71
+call.type$ -- 24
+change.case$ -- 144
+chr.to.int$ -- 23
+cite$ -- 34
+duplicate$ -- 374
+empty$ -- 669
+format.name$ -- 147
+if$ -- 1813
 int.to.chr$ -- 2
 int.to.str$ -- 0
 missing$ -- 27
-newline$ -- 116
-num.names$ -- 71
-pop$ -- 145
+newline$ -- 120
+num.names$ -- 74
+pop$ -- 160
 preamble$ -- 1
-purify$ -- 162
+purify$ -- 174
 quote$ -- 0
-skip$ -- 294
+skip$ -- 305
 stack$ -- 0
-substring$ -- 405
-swap$ -- 82
+substring$ -- 410
+swap$ -- 84
 text.length$ -- 5
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 164
+type$ -- 172
 warning$ -- 10
-while$ -- 70
-width$ -- 28
-write$ -- 281
+while$ -- 72
+width$ -- 30
+write$ -- 291
 (There were 29 error messages)

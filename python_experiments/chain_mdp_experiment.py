@@ -144,10 +144,11 @@ if __name__ == "__main__":
     plt.plot(np.cumsum(worst_regret_bayes_ucrl), label="Bayes UCRL", color='g', linestyle='--')
     plt.plot(np.cumsum(worst_regret_ofvf), label="OFVF", color='r', linestyle='-.')
     plt.legend(loc='best', fancybox=True, framealpha=0.3)
-    plt.xlabel("num_episodes")
-    plt.ylabel("cumulative regret")
+    plt.xlabel("Number of Episodes")
+    plt.ylabel("Cumulative Regret")
     plt.title("Worst Case Regret for RiverSwim Problem")
     plt.grid()
+    plt.savefig("figures/RiverSwim_worstcase_Bayes_PSRL_OFVF.pdf")
     plt.show()
     
 ### Plot average case results
@@ -157,10 +158,11 @@ if __name__ == "__main__":
     plt.plot(np.cumsum(avg_regret_bayes_ucrl), label="Bayes UCRL", color='g', linestyle='--')
     plt.plot(np.cumsum(avg_regret_ofvf), label="OFVF", color='r', linestyle='-.')
     plt.legend(loc='best', fancybox=True, framealpha=0.3)
-    plt.xlabel("num_episodes")
-    plt.ylabel("cumulative regret")
+    plt.xlabel("Number of Episodes")
+    plt.ylabel("Cumulative Regret")
     plt.title("Average Case Regret for RiverSwim Problem")
     plt.grid()
+    plt.savefig("figures/RiverSwim_averagecase_Bayes_PSRL_OFVF.pdf")
     plt.show()
 
 ### Plot violations

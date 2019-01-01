@@ -44,6 +44,12 @@ Ronen~I. Brafman and Moshe Tennenholtz.
 \newblock {\em International Joint Conference on Artificial Intelligence
   (IJCAI)}, 2001.
 
+\bibitem[\protect\citeauthoryear{Brockman \bgroup \em et al.\egroup
+  }{2016}]{openai}
+Greg Brockman, Vicki Cheung, Ludwig Pettersson, Jonas Schneider, John Schulman,
+  Jie Tang, and Wojciech Zaremba.
+\newblock Openai gym, 2016.
+
 \bibitem[\protect\citeauthoryear{Gelman \bgroup \em et al.\egroup
   }{2014}]{Gelman2004}
 Andrew Gelman, John~B Carlin, Hal~S Stern, and Donald~B Rubin.

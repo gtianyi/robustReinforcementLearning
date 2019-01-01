@@ -18,7 +18,7 @@ if __name__ == "__main__":
     num_actions = 3
     discount_factor = 0.95
     num_episodes = 100
-    num_runs = 100
+    num_runs = 10
     horizon = 10
     num_bayes_samples = 100
     
@@ -103,11 +103,11 @@ if __name__ == "__main__":
                 Pk[action,next_state] += 1
                 Nk_[action] += 1
 
-    regret_ucrl = np.amin(regret_ucrl, axis=0)
+    worst_regret_ucrl = np.amin(regret_ucrl, axis=0)
     avg_regret_ucrl = np.mean(regret_ucrl, axis=0)
     print("computed_solution", computed_solution)
     # Plot regret
-    plt.plot(np.cumsum(regret_ucrl))
+    plt.plot(np.cumsum(worst_regret_ucrl))
     plt.show()
     
     
@@ -146,10 +146,10 @@ if __name__ == "__main__":
                 next_state = np.random.choice(num_next_states, 1, p=transitions[action])
                 samples[action, next_state] += 1
     
-    regret_psrl = np.amin(regret_psrl, axis=0)
+    worst_regret_psrl = np.amin(regret_psrl, axis=0)
     avg_regret_psrl = np.mean(regret_psrl, axis=0)
 
-    plt.plot(np.cumsum(regret_psrl))
+    plt.plot(np.cumsum(worst_regret_psrl))
     plt.show()
 
     
@@ -168,7 +168,8 @@ if __name__ == "__main__":
         prior = [np.ones(num_next_states) for _ in range(num_actions)]
         samples = np.zeros((num_actions, num_next_states))
         posterior = prior + samples
-    
+        
+        print("run: ",m)
         # Run episodes for the PSRL
         for k in range(num_episodes):
             # Compute posterior
@@ -212,7 +213,7 @@ if __name__ == "__main__":
                 next_state = np.random.choice(num_next_states, 1, p=transitions[action])
                 samples[action, next_state] += 1
 
-    regret_bayes_ucrl = np.amin(regret_bayes_ucrl, axis=0)
+    worst_regret_bayes_ucrl = np.amin(regret_bayes_ucrl, axis=0)
     avg_regret_bayes_ucrl = np.mean(regret_bayes_ucrl, axis=0)
 
     plt.plot(np.cumsum(regret_bayes_ucrl))
@@ -236,7 +237,9 @@ if __name__ == "__main__":
         prior = [np.ones(num_next_states) for _ in range(num_actions)]
         samples = np.zeros((num_actions, num_next_states))
         posterior = prior + samples
-    
+        
+        print("run: ",m)
+        
         # Run episodes for the PSRL
         for k in range(num_episodes):
             sampled_mdp = crobust.MDP(0, discount_factor)
@@ -279,36 +282,38 @@ if __name__ == "__main__":
                 next_state = np.random.choice(num_next_states, 1, p=transitions[action])
                 samples[action, next_state] += 1
 
-    regret_OFVF = np.amin(regret_OFVF, axis=0)
+    worst_regret_OFVF = np.amin(regret_OFVF, axis=0)
     avg_regret_OFVF = np.mean(regret_OFVF, axis=0)
 
-    plt.plot(np.cumsum(regret_OFVF))
+    plt.plot(np.cumsum(worst_regret_OFVF))
     plt.show()
     
 ###
     # Plot regret
-    plt.plot(np.cumsum(regret_psrl), label="PSRL", color='b', linestyle='--')
+    plt.plot(np.cumsum(worst_regret_psrl), label="PSRL", color='b', linestyle='--')
     #plt.plot(np.cumsum(regret_ucrl), label="UCRL", color='g', linestyle=':')
-    plt.plot(np.cumsum(regret_bayes_ucrl), label="Bayes UCRL", color='g', linestyle=':')
-    plt.plot(np.cumsum(regret_OFVF), label="OFVF", color='r', linestyle='-.')
+    plt.plot(np.cumsum(worst_regret_bayes_ucrl), label="BayesUCRL", color='g', linestyle=':')
+    plt.plot(np.cumsum(worst_regret_OFVF), label="OFVF", color='r', linestyle='-.')
     plt.legend(loc='best', fancybox=True, framealpha=0.3)
-    plt.xlabel("number of episodes")
-    plt.ylabel("cumulative regret")
+    plt.xlabel("Number of Episodes")
+    plt.ylabel("Cumulative Regret")
     plt.title("Worst Case Regret for Single State problem")
     plt.grid()
+    plt.savefig("figures/SingleState_worstcase_Bayes_PSRL_OFVF.pdf")
     plt.show()
 
 
 ###
-    plt.plot(np.cumsum(worst_regret_psrl), label="PSRL", color='b', linestyle=':')
+    plt.plot(np.cumsum(avg_regret_psrl), label="PSRL", color='b', linestyle=':')
     #plt.plot(np.cumsum(worst_regret_ucrl), label="UCRL", color='c', linestyle=':')
-    plt.plot(np.cumsum(worst_regret_bayes_ucrl), label="Bayes UCRL", color='g', linestyle='--')
-    plt.plot(np.cumsum(worst_regret_ofvf), label="OFVF", color='r', linestyle='-.')
+    plt.plot(np.cumsum(avg_regret_bayes_ucrl), label="Bayes UCRL", color='g', linestyle='--')
+    plt.plot(np.cumsum(avg_regret_OFVF), label="OFVF", color='r', linestyle='-.')
     plt.legend(loc='best', fancybox=True, framealpha=0.3)
-    plt.xlabel("num_episodes")
-    plt.ylabel("cumulative regret")
-    plt.title("Worst Case Regret for RiverSwim Problem")
+    plt.xlabel("Number of Episodes")
+    plt.ylabel("Cumulative Regret")
+    plt.title("Average Case Regret for Single State problem")
     plt.grid()
+    plt.savefig("figures/SingleState_averagecase_Bayes_PSRL_OFVF.pdf")
     plt.show()
 
 

@@ -331,99 +331,46 @@ In this section, we evaluate the estimated returns over episodes computed by Bay
 
 We compare our results with ``UCRL`` and ``PSRL`` algorithms. UCRL simply constructs the distribution free plausibility set by applying Chernoff-hoeffding inequality. PSRL does not construct any explicit plausibility set. Rather, it is a stochastically optimistic algorithm and it proceeds in a manner similar to Thompson sampling. PSRL samples a single statistically plausible MDP in proportion to the likelihood from the posterior. Optimism at each state-action independently makes OFU algorithms far too optimistic. PSRL can overcome this problem~\cite{Osband2016} and outperforms all OFU algorithms including OFVF in average case performance. But as we will see in the experiments, OFVF performs robustly in the worst case scenario and outperforms all other methods.
 
-Next in section \cref{ssection:single_state}, we compare the methods in a simplified setting in which we consider the problem of estimating the value of a single state from a Bellman update. Then in the following sections, we evaluate the methods on different problems with full MDP.
+Next in section \cref{ssection:single_state}, we compare the methods in a simplified setting in which we consider the problem of estimating the value of a single state from a Bellman update. Then in the following sections, we evaluate the methods on different problems involving challenging exploration in full MDP setup.
 
-\subsection{Single-state Bellman Update} \label{ssection:single_state}
 \begin{figure}
 	\centering
-		\begin{tikzpicture}[>=stealth',
-		shorten > = 1pt,
-		node distance = 1.2cm,
-		el/.style = {inner sep=1pt, align=left, sloped},
-		every label/.append style = {font=\tiny}
-		]
-		\node (q0) [state,thick,inner sep=1pt,minimum size=0.5pt ]     {$s_0$};
-		
-		\node (a0) [state,rectangle,above right=of q0,inner sep=1pt,minimum size=0.5pt ]   {$a_0$};
-		\node (a1) [state,rectangle,right=of q0,inner sep=1pt,minimum size=0.5pt]   {$a_1$};
-		\node (a2) [state,rectangle,below right=of q0,inner sep=1pt,minimum size=0.5pt]   {$a_2$};
-		
-		\node[label=right:{\small r=1}] (q1) [state,thick,right=of a0,inner sep=1pt,minimum size=0.5pt]   {$s_1$};
-		\node[label=right:{\small r=2}] (q2) [state,thick,right=of a1,inner sep=1pt,minimum size=0.5pt]   {$s_2$};
-		\node[label=right:{\small r=3}] (q3) [state,thick,right=of a2,inner sep=1pt,minimum size=0.5pt]   {$s_3$};
-		
-		\path[->] 
-		(q0)  edge  (a0)
-		(q0)  edge  (a1)
-		(q0)  edge  (a2)
-		
-		(a0)  edge [bend right=-20]  node[el,above, font=\tiny, pos=0.25]  {$0.6$}   (q1)
-		(a0)  edge [bend right=-20]  node[el,above, font=\tiny, pos=0.25]  {$0.2$}   (q2)
-		(a0)  edge [bend right=-20]  node[el,above, font=\tiny, pos=0.15]  {$0.2$}   (q3)
-		
-		(a1)  edge   node[el,above, font=\tiny, pos=0.15]  {$0.2$}   (q1)
-		(a1)  edge   node[el,above, font=\tiny, pos=0.25]  {$0.6$}   (q2)
-		(a1)  edge   node[el,above, font=\tiny, pos=0.15]  {$0.2$}   (q3)
-		
-		(a2)  edge [bend left=-20]  node[el,above, font=\tiny, pos=0.15]  {$0.2$}   (q1)
-		(a2)  edge [bend left=-20]  node[el,above, font=\tiny, pos=0.25]  {$0.2$}   (q2)
-		(a2)  edge [bend left=-20]  node[el,above, font=\tiny, pos=0.25]  {$0.6$}   (q3);
-		\end{tikzpicture}
+	\begin{tikzpicture}[>=stealth',
+	shorten > = 1pt,
+	node distance = 1.2cm,
+	el/.style = {inner sep=1pt, align=left, sloped},
+	every label/.append style = {font=\tiny}
+	]
+	\node (q0) [state,thick,inner sep=1pt,minimum size=0.5pt ]     {$s_0$};
+	
+	\node (a0) [state,rectangle,above right=of q0,inner sep=1pt,minimum size=0.5pt ]   {$a_0$};
+	\node (a1) [state,rectangle,right=of q0,inner sep=1pt,minimum size=0.5pt]   {$a_1$};
+	\node (a2) [state,rectangle,below right=of q0,inner sep=1pt,minimum size=0.5pt]   {$a_2$};
+	
+	\node[label=right:{\small r=1}] (q1) [state,thick,right=of a0,inner sep=1pt,minimum size=0.5pt]   {$s_1$};
+	\node[label=right:{\small r=2}] (q2) [state,thick,right=of a1,inner sep=1pt,minimum size=0.5pt]   {$s_2$};
+	\node[label=right:{\small r=3}] (q3) [state,thick,right=of a2,inner sep=1pt,minimum size=0.5pt]   {$s_3$};
+	
+	\path[->] 
+	(q0)  edge  (a0)
+	(q0)  edge  (a1)
+	(q0)  edge  (a2)
+	
+	(a0)  edge [bend right=-20]  node[el,above, font=\tiny, pos=0.25]  {$0.6$}   (q1)
+	(a0)  edge [bend right=-20]  node[el,above, font=\tiny, pos=0.25]  {$0.2$}   (q2)
+	(a0)  edge [bend right=-20]  node[el,above, font=\tiny, pos=0.15]  {$0.2$}   (q3)
+	
+	(a1)  edge   node[el,above, font=\tiny, pos=0.15]  {$0.2$}   (q1)
+	(a1)  edge   node[el,above, font=\tiny, pos=0.25]  {$0.6$}   (q2)
+	(a1)  edge   node[el,above, font=\tiny, pos=0.15]  {$0.2$}   (q3)
+	
+	(a2)  edge [bend left=-20]  node[el,above, font=\tiny, pos=0.15]  {$0.2$}   (q1)
+	(a2)  edge [bend left=-20]  node[el,above, font=\tiny, pos=0.25]  {$0.2$}   (q2)
+	(a2)  edge [bend left=-20]  node[el,above, font=\tiny, pos=0.25]  {$0.6$}   (q3);
+	\end{tikzpicture}
 	\caption{Simple MDP with one non-terminal state, three actions leading to three terminal states with different transition probabilities} \label{fig:SingleState}
 \end{figure}
-We initially consider a simple problem with one single non-terminal state. The agent can take three different actions on that state. Each action leads to one of three terminal states with different transition probabilities. The value function for the terminal states are fixed and assumed to be known. The dynamics of the MDP is shown in~\cref{fig:SingleState}. We consider an uninformative Dirichlet prior for the transition probabilities. We run the experiments for 100 episodes, each episode 
 
-Plot [reference] compares the worst case returns computed by different methods. Note that OFVF outperforms all other methods in this simplistic setting. OFVF is able to explore in a robust way maximizing the worst-case return. As expected, PSRL outperforms all other methods in average case, but performs poorly in the worst-case scenario.
-
-\subsection{RiverSwim Problem}
-
-\begin{figure}
-\begin{center}
-\begin{tikzpicture}[>=stealth',
-shorten > = 1pt,
-node distance = 0.7cm,
-el/.style = {inner sep=1pt, align=left, sloped},
-every label/.append style = {font=\tiny}
-]
-\node (q0) [state,thick,inner sep=1pt,minimum size=0.5pt ]     {$s_0$};
-\node (q1) [state,thick,right=of q0,inner sep=1pt,minimum size=0.5pt]   {$s_1$};
-\node (q2) [state,line width=0pt, draw=white,right=of q1,inner sep=1pt,minimum size=0.5pt]   {$\cdots\cdot$};
-\node (q4) [state,thick,right=of q2,inner sep=1pt,minimum size=0.5pt]   {$s_4$};
-\node (q5) [state,thick,right=of q4,inner sep=1pt,minimum size=0.5pt]   {$s_5$};
-
-\path[->] 
-(q0)  edge [in=260,out=280,loop, dashed] node[el,below, font=\tiny] {$\Big(1,r=\frac{5}{1000}\Big)$}   (q0)
-(q0)  edge [in=80,out=100,loop] node[el,above, font=\tiny] {$0.4$}                    (q0)
-
-(q1)  edge [in=80,out=100,loop] node[el,above, font=\tiny] {$0.6$}                    (q1)
-(q0)  edge [out=60, bend right=-50, in=150]  node[el,above, font=\tiny]  {$0.6$}      (q1)
-(q1)  edge [out=90,bend left=10, in=215]  node[el,below, font=\tiny]  {$0.05$}        (q0)
-(q1)  edge [bend left=50, dashed]  node[el,below, font=\tiny]  {$1$}                  (q0)
-
-(q2)  edge [in=80,out=100,loop] node[el,above, font=\tiny] {$0.6$}                    (q2)
-(q1)  edge [out=60, bend right=-50, in=150]  node[el,above, font=\tiny]  {$0.35$}     (q2)
-(q2)  edge [out=90,bend left=10, in=215]  node[el,below, font=\tiny]  {$0.05$}        (q1)
-(q2)  edge [bend left=50, dashed]  node[el,below, font=\tiny]  {$1$}                  (q1)
-
-(q4)  edge [in=80,out=100,loop] node[el,above, font=\tiny] {$0.6$}                    (q4)
-(q2)  edge [out=60, bend right=-50, in=150]  node[el,above, font=\tiny]  {$0.35$}     (q4)
-(q4)  edge [out=90,bend left=10, in=215]  node[el,below, font=\tiny]  {$0.05$}        (q2)
-(q4)  edge [bend left=50, dashed]  node[el,below, font=\tiny]  {$1$}                  (q2)
-
-(q5)  edge [in=80,out=100,loop] node[el,above, font=\tiny] {$(0.6, r=1)$}                    (q5)
-(q4)  edge [out=60, bend right=-50, in=150]  node[el,above, font=\tiny]  {$0.35$}     (q5)
-(q5)  edge [out=90,bend left=10, in=215]  node[el,below, font=\tiny]  {$0.4$}        (q4)
-(q5)  edge [bend left=50, dashed]  node[el,below, font=\tiny]  {$1$}                  (q4);
-
-\end{tikzpicture}
-\end{center}
-\caption{RiverSwim problem with six states $(s_0,\ldots,s_5)$ and 2 actions (left- dashed arrow, right- solid arrow)} \label{fig:RiverSwim}
-\end{figure}
-We compare the performance different methods in standard example of RiverSwim~\citep{Osband2013, Strehl2004}. RiverSwim consists of a chain of six states as shown in \cref{fig:RiverSwim}. The agent starts at the left-most state $s_0$. The agent can take one of two action: left or right. Strong current flows in the river from right to left. Swimming left thus always successful and takes the agent to the state on the left with probability 1. Swimming right goes against the current and often fails. The agent receives a very small reward for reaching leftmost state. But the rightmost state gives a much higher reward and the optimal policy is to swim right. Efficient exploration is required in this problem to find the optimal policy.
-
-We start with a uniform Dirichlet prior over the transition probabilities. We run the experiments for 500 episodes with each containing 100 Monte Carlo simulations. We compute the worst and average case cumulative regrets over the episodes. [Plot reference] shows that, OFVF outperforms all other methods in terms of worst-case cumulative regret.
-
-\subsection{CasinoLand Problem}
 \begin{figure}
 	\begin{center}
 		\begin{tikzpicture}[>=stealth',
@@ -464,11 +411,136 @@ We start with a uniform Dirichlet prior over the transition probabilities. We ru
 		
 		\end{tikzpicture}
 	\end{center}
-	\caption{CasinoLand problem with six states $(s_0,\ldots,s_5)$ and 2 actions (left- dashed arrow, right- solid arrow)} \label{fig:RiverSwim}
+	\caption{RiverSwim problem with six states $(s_0,\ldots,s_5)$ and 2 actions (left- dashed arrow, right- solid arrow)} \label{fig:RiverSwim}
 \end{figure}
 
-\subsection{Mountain Car Problem}
+\begin{figure}
+	\begin{center}
+		\begin{tikzpicture}[>=stealth',
+		shorten > = 1pt,
+		node distance = 1.4cm,
+		el/.style = {inner sep=1pt, align=left, sloped},
+		every label/.append style = {font=\tiny}
+		]
+		\node (q0) [state,thick,inner sep=1pt,minimum size=0.5pt ]     {$s_0$};
+		\node (q4) [state,thick,below=of q0,inner sep=1pt,minimum size=0.5pt ]     {$s_4$};
+		
+		\node (q1) [state,thick,right=of q0,inner sep=1pt,minimum size=0.5pt]   {$s_1$};
+		\node (q5) [state,thick,below=of q1,inner sep=1pt,minimum size=0.5pt]   {$s_5$};
+		
+		\node (q2) [state,thick,right=of q1,inner sep=1pt,minimum size=0.5pt]   {$s_2$};
+		\node (q6) [state,thick,below=of q2,inner sep=1pt,minimum size=0.5pt]   {$s_6$};
+		
+		\node (q3) [state,thick,right=of q2,inner sep=1pt,minimum size=0.5pt]   {$s_3$};
+		\node (q7) [state,thick,below=of q3,inner sep=1pt,minimum size=0.5pt]   {$s_7$};
+		
+		\path[->]
+		%self loop to q0
+		(q0)  edge [in=170,out=190,loop] node[el,left, rotate=-90, font=\fontsize{2}{2.5}\selectfont] {$(3,1,0)$}   (q0)
+		(q0)  edge [in=80,out=100,loop] node[el,above, font=\fontsize{2}{2.5}\selectfont] {$(0,1,0)$}                    (q0)
+		
+		%transition below q0
+		(q0)  edge [bend right=-20]  node[el,right, rotate=90, font=\fontsize{2}{2.5}\selectfont, pos=0.35]  {$(1,1,0)$}      (q4)
+		(q4)  edge [bend left=20]  node[el,left, rotate=-90, font=\fontsize{2}{2.5}\selectfont]  {$(3,1,0)$\\$(1,0.4,198)$}        (q0)
+		
+		%transition right q0
+		(q1)  edge [in=80,out=100,loop] node[el,above, font=\fontsize{2}{2.5}\selectfont] {$(0,1,0)$}                    (q1)
+		(q0)  edge [bend right=-20]  node[el,above, font=\fontsize{2}{2.5}\selectfont]  {$(2,1,0)$}      (q1)
+		(q1)  edge [bend left=20]  node[el,below, font=\fontsize{2}{2.5}\selectfont]  {$(3,1,0)$}        (q0)
+		%(q1)  edge [bend left=50, dashed]  node[el,below, font=\tiny]  {$1$}                  (q0)
+		
+		(q1)  edge [bend right=-20]  node[el,right, rotate=90, font=\fontsize{2}{2.5}\selectfont, pos=0.35]  {$(1,1,0)$}      (q5)
+		(q5)  edge [bend left=20]  node[el,left, rotate=90, font=\fontsize{2}{2.5}\selectfont, pos=0.35]  {$(0,1,0)$\\$(1,0.5,160)$}        (q1)
+		
+		(q2)  edge [in=80,out=100,loop] node[el,above, font=\fontsize{2}{2.5}\selectfont] {$(0,1,0)$}                    (q2)
+		(q1)  edge [bend right=-20]  node[el,above, font=\fontsize{2}{2.5}\selectfont]  {$(2,1,0)$}     (q2)
+		(q2)  edge [bend left=20]  node[el,below, font=\fontsize{2}{2.5}\selectfont]  {$(3,1,0)$}        (q1)
+		%(q2)  edge [bend left=50, dashed]  node[el,below, font=\tiny]  {$1$}                  (q1)
+		
+		(q2)  edge [bend right=-20]  node[el,right, rotate=90, font=\fontsize{2}{2.5}\selectfont, pos=0.35]  {$(1,1,0)$}      (q6)
+		(q6)  edge [bend left=20]  node[el,left, rotate=90, font=\fontsize{2}{2.5}\selectfont, pos=0.35]  {$(0,1,0)$\\$(1,0.2,500)$}        (q2)
+		
+		(q3)  edge [in=80,out=100,loop] node[el,above, font=\fontsize{2}{2.5}\selectfont] {$(0,1,0)$}                    (q3)
+		(q3)  edge [in=10,out=350,loop] node[el,above, rotate=-90, font=\fontsize{2}{2.5}\selectfont] {$(3,1,0)$}   (q3)
+		(q2)  edge [bend right=-20]  node[el,above, font=\fontsize{2}{2.5}\selectfont]  {$(2,1,0)$}     (q3)
+		(q3)  edge [bend left=20]  node[el,below, font=\fontsize{2}{2.5}\selectfont]  {$(3,1,0)$}        (q2)
+		%(q4)  edge [bend left=50, dashed]  node[el,below, font=\tiny]  {$1$}                  (q2)
+		
+		(q3)  edge [bend right=-20]  node[el,right, rotate=90, font=\fontsize{2}{2.5}\selectfont, pos=0.35]  {$(1,1,0)$}      (q7)
+		(q7)  edge [bend left=20]  node[el,left, rotate=90, font=\fontsize{2}{2.5}\selectfont, pos=0.35]  {$(0,1,0)$\\$(1,0.9,72)$}        (q3)
+		
+		(q4)  edge [in=170,out=190,loop] node[el,below, rotate=-90, font=\fontsize{2}{2.5}\selectfont] {$(3,1,0)$}   (q4)
+		(q4)  edge [in=260,out=280,loop] node[el,below, font=\fontsize{2}{2.5}\selectfont] {$(1,0.6,0)$}                    (q4)
+		(q4)  edge [in=350,out=10,loop] node[el,above,rotate=90, font=\fontsize{2}{2.5}\selectfont] {$(2,1,0)$}                    (q4)
+		
+		(q5)  edge [in=170,out=190,loop] node[el,below, rotate=-90, font=\fontsize{2}{2.5}\selectfont] {$(3,1,0)$}   (q5)
+		(q5)  edge [in=260,out=280,loop] node[el,below, font=\fontsize{2}{2.5}\selectfont] {$(1,0.5,0)$}                    (q5)
+		(q5)  edge [in=350,out=10,loop] node[el,above,rotate=90, font=\fontsize{2}{2.5}\selectfont] {$(2,1,0)$}                    (q5)
+		
+		(q6)  edge [in=170,out=190,loop] node[el,below, rotate=-90, font=\fontsize{2}{2.5}\selectfont] {$(3,1,0)$}   (q6)
+		(q6)  edge [in=260,out=280,loop] node[el,below, font=\fontsize{2}{2.5}\selectfont] {$(1,0.8,0)$}                    (q6)
+		(q6)  edge [in=350,out=10,loop] node[el,above,rotate=90, font=\fontsize{2}{2.5}\selectfont] {$(2,1,0)$}                    (q6)
+		
+		(q7)  edge [in=170,out=190,loop] node[el,below, rotate=-90, font=\fontsize{2}{2.5}\selectfont] {$(3,1,0)$}   (q7)
+		(q7)  edge [in=260,out=280,loop] node[el,below, font=\fontsize{2}{2.5}\selectfont] {$(1,0.1,0)$}                    (q7)
+		(q7)  edge [in=350,out=10,loop] node[el,above,rotate=90, font=\fontsize{2}{2.5}\selectfont] {$(2,1,0)$}                    (q7)
+		;
+		
+		\end{tikzpicture}
+	\end{center}
+	\caption{CasinoLand problem with eight states $(s_0,\ldots,s_7)$ and 3 actions (0,1,2). Transitions are shown with arrows, each labeled with (action, transition probability, reward).} \label{fig:CasinoLand}
+\end{figure}
 
+\subsection{Single-state Bellman Update} \label{ssection:single_state}
+
+We initially consider a simple problem with one single non-terminal state. The agent can take three different actions on that state. Each action leads to one of three terminal states with different transition probabilities. The value function for the terminal states are fixed and assumed to be known. The dynamics of the MDP is shown in~\cref{fig:SingleState}. We consider an uninformative Dirichlet prior for the transition probabilities. We run the experiments for 100 episodes, each episode 
+
+\cref{fig:single_state} compares the average-case and worst-case returns computed by different methods. Note that OFVF outperforms all other methods in this simplistic setting. OFVF is able to explore in a robust way maximizing the worst-case return. As expected, PSRL outperforms all other methods in average case, but performs poorly in the worst-case scenario.
+
+\begin{figure*}
+	\centering
+	\begin{minipage}[c]{.85\columnwidth}
+		\centering
+		\includegraphics[width=\linewidth]{fig/SingleState_averagecase_Bayes_PSRL_OFVF.pdf}\\
+	\end{minipage}%
+	\begin{minipage}[c]{.85\columnwidth}
+		\centering
+		\includegraphics[width=\linewidth]{fig/SingleState_worstcase_Bayes_PSRL_OFVF.pdf}
+	\end{minipage}%
+	\caption{Cumulative regret for the single state simple problem. Left) average cumulative regret, Right) Worst-case cumulative regret.}
+	\label{fig:single_state}
+\end{figure*}
+
+\subsection{RiverSwim Problem}
+
+
+We compare the performance different methods in standard example of RiverSwim~\citep{Osband2013, Strehl2004}. RiverSwim consists of a chain of six states as shown in \cref{fig:RiverSwim}. The agent starts at the left-most state $s_0$. The agent can take one of two action: left or right. Strong current flows in the river from right to left. Swimming left thus always successful and takes the agent to the state on the left with probability 1. Swimming right goes against the current and often fails. The agent receives a very small reward for reaching leftmost state. But the rightmost state gives a much higher reward and the optimal policy is to swim right. Efficient exploration is required in this problem to find the optimal policy.
+
+We start with a uniform Dirichlet prior over the transition probabilities. We run the experiments for 500 episodes with each containing 100 Monte Carlo simulations. We compute the worst and average case cumulative regrets over the episodes. \cref{fig:riverswim} shows that, OFVF outperforms all other methods in terms of worst-case cumulative regret.
+
+\begin{figure*}
+	\centering
+	\begin{minipage}[c]{.85\columnwidth}
+		\centering
+		\includegraphics[width=\linewidth]{fig/RiverSwim_averagecase_Bayes_PSRL_OFVF.pdf}\\
+	\end{minipage}%
+	\begin{minipage}[c]{.85\columnwidth}
+		\centering
+		\includegraphics[width=\linewidth]{fig/RiverSwim_worstcase_Bayes_PSRL_OFVF.pdf}
+	\end{minipage}%
+	\caption{Cumulative regret for the RiverSwim problem. Left) average cumulative regret, Right) Worst-case cumulative regret.}
+	\label{fig:riverswim}
+\end{figure*}
+
+\subsection{CasinoLand Problem}
+We compare the performance of the algorithms on another challenging exploration environment, CasinoLand~\citep{Strehl2004}. CasinoLand consists of eight rooms in a two-by-four grid as shown in~\cref{fig:CasinoLand}. The transition model of the agent is shown in the picture. On the top row, the agent can move freely to any direction. Actions are less rewarding on the top row, with rewards basically zero for all the movements. On the bottom row, no horizontal movement is allowed. Taking an specific action (conceptually pulling a lever) yields a large reward with small probability. The MDP requires hard exploration because the lever with smallest probability of generating reward is the best lever to pull.
+
+We start with a uniform Dirichlet prior over the transition probabilities. We run the experiments for 500 episodes with each containing 100 Monte Carlo simulations. We compute the worst and average case cumulative regrets over the episodes. [Plot reference] shows that, OFVF outperforms all other methods in terms of worst-case cumulative regret.
+
+\subsection{Mountain Car Problem}
+Next, we run experiments on the MountainCar problem from OpenAI Gym~\citep{openai}. The problem is about driving an under-powered car to the top (position=0.5) of a one-dimensional hill on the right side of the car. There is another hill on the left side of the car. There are two actions, going left or right. Climbing the hill on the left of the car can give some potential energy and accelerate the car towards the target on the top of the right hill.
+
+We start with a uniform Dirichlet prior for transition over the nearby states of each individual state. We compute the reference optimal solution by running Q-Learning for a very large number $(10^5)$ of episodes. We run our algorithms for hundreds of episodes each containing hundreds of consequent runs. We compare both the average-case and worst-case cumulative regret. [reference] plot shows that, OFVF outperforms all other methods in the worst case scenario.
 
 \bibliography{marek,reazul_lib}
 
