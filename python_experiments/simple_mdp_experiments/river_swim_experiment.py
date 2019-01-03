@@ -10,8 +10,8 @@ import pickle
 import datetime
 import itertools
 import datetime
+from algorithms import *
 
-print(datetime.datetime.now())
 # cd /home/reazul/PhD_Research/Bayesian_Exploration/Codes/Bayes_explore/bayesian_exploration/python_experiments
 
 """
@@ -24,19 +24,22 @@ url = {http://arxiv.org/abs/1306.0940},
 year = {2013}
 }
 """
-### Experiments with chained MDP
+### Experiments with RiverSwim Problem
 if __name__ == "__main__":
     confidence = 0.9
     num_actions = 2
     discount_factor = 0.99
     num_bayes_samples = 100
-    num_episodes = 500
-    num_runs = 50
+    num_episodes = 10
+    num_runs = 5
     horizon = 10
     num_states = 6
     states = np.arange(num_states)
-    rewards = np.zeros(num_states)
-    rewards[0], rewards[num_states-1] = 5/1000, 1
+    #rewards = np.zeros(num_states)
+    #rewards[0], rewards[num_states-1] = 5/1000, 1
+    rewards = np.zeros( (num_states, num_actions, num_states) )
+    rewards[:,:,0] += 5/1000
+    rewards[:,:,5] += 1
     date_time = str(datetime.datetime.now())
     
     transitions = np.zeros( (num_states, num_actions, num_states) )
@@ -55,13 +58,13 @@ if __name__ == "__main__":
     
     true_mdp = crobust.MDP(0, discount_factor)
     for s in range(num_states):
-        true_mdp.add_transition(s, 0, max(s-1,0), transitions[s, 0, max(s-1,0)], rewards[max(s-1,0)])
+        true_mdp.add_transition(s, 0, max(s-1,0), transitions[s, 0, max(s-1,0)], rewards[s,0,max(s-1,0)])
         
-        true_mdp.add_transition(s, 1, s, transitions[s, 1, s], rewards[s])
+        true_mdp.add_transition(s, 1, s, transitions[s, 1, s], rewards[s,1,s])
         if s<num_states-1:
-            true_mdp.add_transition(s, 1, min(s+1,num_states-1), transitions[s, 1, min(s+1,num_states-1)], rewards[min(s+1,num_states-1)])
+            true_mdp.add_transition(s, 1, min(s+1,num_states-1), transitions[s, 1, min(s+1,num_states-1)], rewards[s,1,min(s+1,num_states-1)])
         if s>0:
-            true_mdp.add_transition(s, 1, max(s-1,0), transitions[s, 1, max(s-1,0)], rewards[max(s-1,0)])
+            true_mdp.add_transition(s, 1, max(s-1,0), transitions[s, 1, max(s-1,0)], rewards[s,1,max(s-1,0)])
         
     #print(true_mdp.to_json())
     true_solution = true_mdp.solve_mpi()
@@ -76,7 +79,7 @@ if __name__ == "__main__":
     #print("executing UCRL2...")
     #worst_regret_ucrl, avg_regret_ucrl = UCRL2(num_states, num_actions, num_states, transitions, rewards, discount_factor, num_episodes, num_runs, true_solution)
     print("executing PSRL...")
-    worst_regret_psrl, avg_regret_psrl = PSRL(num_states, num_actions, num_states, transitions, rewards, discount_factor, num_episodes, num_runs, true_solution)
+    worst_regret_psrl, avg_regret_psrl = PSRL(num_states, num_actions, num_states, transitions, rewards, discount_factor, num_episodes, num_runs, horizon, true_solution)
     with open('dumped_results/worst_regret_psrl'+date_time,'wb') as fp:
         pickle.dump(worst_regret_psrl, fp)
     with open('dumped_results/avg_regret_psrl'+date_time,'wb') as fp:
@@ -84,7 +87,7 @@ if __name__ == "__main__":
     
     
     print("executing Bayes UCRL...")
-    worst_regret_bayes_ucrl, avg_regret_bayes_ucrl =  BayesUCRL(num_states, num_actions, num_states, transitions, rewards, discount_factor, confidence, num_bayes_samples, num_episodes, num_runs, true_solution)
+    worst_regret_bayes_ucrl, avg_regret_bayes_ucrl =  BayesUCRL(num_states, num_actions, num_states, transitions, rewards, discount_factor, confidence, num_bayes_samples, num_episodes, num_runs, horizon, true_solution)
     with open('dumped_results/worst_regret_bayes_ucrl'+date_time,'wb') as fp:
         pickle.dump(worst_regret_bayes_ucrl, fp)
     with open('dumped_results/avg_regret_bayes_ucrl'+date_time,'wb') as fp:
@@ -92,7 +95,7 @@ if __name__ == "__main__":
     
     
     print("executing OFVF...")
-    worst_regret_ofvf, avg_regret_ofvf,  violations, confidences = Optimism_VF(num_states, num_actions, num_states, transitions, rewards, discount_factor, confidence, num_bayes_samples, num_episodes, num_runs, true_solution)
+    worst_regret_ofvf, avg_regret_ofvf,  violations, confidences = Optimism_VF(num_states, num_actions, num_states, transitions, rewards, discount_factor, confidence, num_bayes_samples, num_episodes, num_runs, horizon, true_solution)
     with open('dumped_results/worst_regret_ofvf'+date_time,'wb') as fp:
         pickle.dump(worst_regret_ofvf, fp)
     with open('dumped_results/avg_regret_ofvf'+date_time,'wb') as fp:
@@ -177,6 +180,11 @@ if __name__ == "__main__":
     plt.show()
 
 
+###
+rewards = np.zeros( (num_states, num_actions, num_states) )
+rewards[:,:,0] += 5/1000
+rewards[:,:,5] += 1
+print(rewards)
 
 
 

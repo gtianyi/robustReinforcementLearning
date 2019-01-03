@@ -38,8 +38,8 @@ class OFVF:
         self.num_actions = self.env.action_space.n
         
         # discritize the whole state space, both for position and velocity
-        self.grid_x = np.clip(np.linspace(self.env_low[0], self.env_high[0], self.resolution), -1.2, 0.6)
-        self.grid_y = np.clip(np.linspace(self.env_low[1], self.env_high[1], self.resolution), -0.07, 0.07)
+        self.grid_x = np.clip(np.linspace(self.env_low[0], self.env_high[0], self.resolution), -1.2, 0.5999)
+        self.grid_y = np.clip(np.linspace(self.env_low[1], self.env_high[1], self.resolution), -0.07, 0.06999)
         
         # enumerate all possible discritized states
         self.all_states = np.array(list(itertools.product(self.grid_x, self.grid_y)))

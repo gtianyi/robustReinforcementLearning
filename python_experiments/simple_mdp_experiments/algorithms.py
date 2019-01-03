@@ -9,7 +9,7 @@ from scipy.stats import norm
 from craam import crobust
 
 
-def PSRL(num_states, num_actions, num_next_states, true_transitions, rewards, discount_factor, num_episodes, num_runs, true_solution):
+def PSRL(num_states, num_actions, num_next_states, true_transitions, rewards, discount_factor, num_episodes, num_runs, horizon, true_solution):
     """
     Implements the Posterior Sampling RL algorithm described in Osband2013 ((More) Efficient Reinforcement Learning via Posterior Sampling) paper.
     
@@ -24,7 +24,7 @@ def PSRL(num_states, num_actions, num_next_states, true_transitions, rewards, di
     true_transitions : numpy array
         num_states x num_actions x num_next_states dimensional array containing tru transition parameters.
     rewards : numpy array
-        num_states dimensional array containing rewards for each state
+        num_states x action x num_states dimensional array containing rewards for each state
     discount_factor : float
         Discount factor for the MDP
     num_episodes : int
@@ -33,7 +33,7 @@ def PSRL(num_states, num_actions, num_next_states, true_transitions, rewards, di
         Number of runs in each episode, to take average of
     true_solution : Solution object of CRAAM
         The solution of the true MDP
-        
+    
     Returns
     --------
     numpy array
@@ -58,7 +58,7 @@ def PSRL(num_states, num_actions, num_next_states, true_transitions, rewards, di
                 for a in range(num_actions):
                     trp =  np.random.dirichlet(posterior[s,a], 1)[0]
                     for s_next in range(num_next_states):
-                        sampled_mdp.add_transition(s, a, s_next, trp[s_next], rewards[s_next])
+                        sampled_mdp.add_transition(s, a, s_next, trp[s_next], rewards[s,a,s_next])
     
             # Compute current solution
             cur_solution = sampled_mdp.solve_mpi()
@@ -73,9 +73,7 @@ def PSRL(num_states, num_actions, num_next_states, true_transitions, rewards, di
             cur_state = 0
             for h in range(horizon):
                 action = cur_policy[cur_state]
-                #print("cur_state", cur_state, "cur_action", action)
                 next_state = np.random.choice(num_next_states, 1, p=true_transitions[cur_state, action])[0]
-                #print("next_state", next_state)
                 samples[cur_state, action, next_state] += 1
                 cur_state = next_state
                 
@@ -106,7 +104,7 @@ def compute_bayesian_threshold(points, nominal_point, confidence_level):
     threshold = np.partition(distances, confidence_rank)[confidence_rank]
     return threshold
     
-def BayesUCRL(num_states, num_actions, num_next_states, true_transitions, rewards, discount_factor, confidence, num_bayes_samples, num_episodes, num_runs, true_solution):
+def BayesUCRL(num_states, num_actions, num_next_states, true_transitions, rewards, discount_factor, confidence, num_bayes_samples, num_episodes, num_runs, horizon, true_solution):
     """
     Implements the Bayes UCRL idea. Computes ambiguity set from posterior samples for required confidence levels.
     
@@ -169,7 +167,7 @@ def BayesUCRL(num_states, num_actions, num_next_states, true_transitions, reward
                     bayes_threshold = compute_bayesian_threshold(bayes_samples, nominal_point_bayes, sa_confidence)
                     
                     for s_next in range(num_next_states):
-                        sampled_mdp.add_transition(s, a, s_next, nominal_point_bayes[s_next], rewards[s_next])
+                        sampled_mdp.add_transition(s, a, s_next, nominal_point_bayes[s_next], rewards[s,a,s_next])
                         
                     # construct the threshold for each state-action
                     thresholds[0].append(s) # from state
@@ -198,7 +196,7 @@ def BayesUCRL(num_states, num_actions, num_next_states, true_transitions, reward
     return np.amin(regret_bayes_ucrl, axis=0), np.mean(regret_bayes_ucrl, axis=0)
     
     
-def UCRL2(num_states, num_actions, num_next_states, true_transitions, rewards, discount_factor, num_episodes, num_runs, true_solution):
+def UCRL2(num_states, num_actions, num_next_states, true_transitions, rewards, discount_factor, num_episodes, num_runs, horizon, true_solution):
     """
     Implements the UCRL2 algorithm described in Jaksch2010 (Near-optimal Regret Bounds for Reinforcement Learning) paper.
     
@@ -270,7 +268,7 @@ def UCRL2(num_states, num_actions, num_next_states, true_transitions, rewards, d
                 for a in range(num_actions):
                     
                     for s_next in range(num_next_states):
-                        estimated_mdp.add_transition(s, a, s_next, p_hat[s,a,s_next], rewards[s_next]) # as the reward is upper bounded by psi_r from mean reward r_hat
+                        estimated_mdp.add_transition(s, a, s_next, p_hat[s,a,s_next], rewards[s,a,s_next]) # as the reward is upper bounded by psi_r from mean reward r_hat
                     # construct the threshold for each state-action
                     thresholds[0].append(s) # from state
                     thresholds[1].append(a) # action
@@ -289,7 +287,7 @@ def UCRL2(num_states, num_actions, num_next_states, true_transitions, rewards, d
             for h in range(horizon): #Vk[action] < max(1,Nk[action]):
                 action = computed_policy[cur_state]
                 next_state = np.random.choice(num_next_states, 1, p=true_transitions[cur_state, action])[0]
-                reward = rewards[next_state]
+                reward = rewards[cur_state,action,next_state]
                 Vk[cur_state, action] += 1
                 t += 1
                 
@@ -372,7 +370,7 @@ def find_nominal_point(p):
     return nominal_p, threshold#tuple(nominal_p)
 
 
-def Optimism_VF(num_states, num_actions, num_next_states, true_transitions, rewards, discount_factor, confidence, num_bayes_samples, num_episodes, num_runs, true_solution):  
+def Optimism_VF(num_states, num_actions, num_next_states, true_transitions, rewards, discount_factor, confidence, num_bayes_samples, num_episodes, num_runs, horizon, true_solution):  
     #num_bayes_samples = 20
     num_update = 10
     
@@ -409,7 +407,7 @@ def Optimism_VF(num_states, num_actions, num_next_states, true_transitions, rewa
                     bayes_threshold = compute_bayesian_threshold(bayes_samples, nominal_point_bayes, sa_confidence)
     
                     for s_next in range(num_next_states):
-                        sampled_mdp.add_transition(s, a, s_next, nominal_point_bayes[s_next], rewards[s_next])
+                        sampled_mdp.add_transition(s, a, s_next, nominal_point_bayes[s_next], rewards[s,a,s_next])
                         
                     # construct the threshold for each state-action
                     thresholds[0].append(s) # from state
@@ -419,7 +417,7 @@ def Optimism_VF(num_states, num_actions, num_next_states, true_transitions, rewa
             # Compute current solution
             cur_solution = sampled_mdp.rsolve_mpi(b"optimistic_l1",np.array(thresholds)) # solve_mpi()
             
-            rsol = OFVF(num_states, num_actions, num_next_states, cur_solution[0], posterior_transition_points, num_update, sa_confidence)
+            rsol = OFVF(num_states, num_actions, num_next_states, cur_solution[0], posterior_transition_points, num_update, sa_confidence, discount_factor)
             
             regret_OFVF[m,k] = abs(rsol[0][0] - true_solution[0][0])
             
@@ -448,7 +446,7 @@ def Optimism_VF(num_states, num_actions, num_next_states, true_transitions, rewa
     return np.amin(regret_OFVF, axis=0), np.mean(regret_OFVF, axis=0), violations, confidences
 
 
-def OFVF(num_states, num_actions, num_next_states, valuefunctions, posterior_transition_points, num_update, sa_confidence):
+def OFVF(num_states, num_actions, num_next_states, valuefunctions, posterior_transition_points, num_update, sa_confidence, discount_factor):
     """
     Method to incrementally improve value function by adding the new value function with 
     previous valuefunctions, finding the nominal point & threshold for this cluster of value functions
@@ -531,7 +529,7 @@ def OFVF(num_states, num_actions, num_next_states, valuefunctions, posterior_tra
                 trp /= np.sum(trp)
                 #Add the current transition to the RMDP
                 for next_st in range(num_next_states):
-                    rmdp.add_transition(s, a, next_st, trp[int(next_st)], rewards[next_st])
+                    rmdp.add_transition(s, a, next_st, trp[int(next_st)], rewards[s,a,next_st])
         
         #Solve the current RMDP
         rsol = rmdp.rsolve_mpi(b"optimistic_l1",threshold)

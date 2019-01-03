@@ -35,10 +35,12 @@ class BayesUCRL:
         self.env_dx = (self.env_high - self.env_low) / self.resolution
         self.num_actions = self.env.action_space.n
         
+        print("self.env_dx",self.env_dx,"self.env_low",self.env_low)
         # discritize the whole state space, both for position and velocity
-        self.grid_x = np.clip(np.linspace(self.env_low[0], self.env_high[0], self.resolution), -1.2, 0.6)
-        self.grid_y = np.clip(np.linspace(self.env_low[1], self.env_high[1], self.resolution), -0.07, 0.07)
+        self.grid_x = np.clip(np.linspace(self.env_low[0], self.env_high[0], self.resolution), -1.2, 0.5999)
+        self.grid_y = np.clip(np.linspace(self.env_low[1], self.env_high[1], self.resolution), -0.07, 0.06999)
         
+        #print("self.grid_x", self.grid_x, "self.grid_y", self.grid_y)
         # enumerate all possible discritized states
         self.all_states = np.array(list(itertools.product(self.grid_x, self.grid_y)))
         
@@ -82,6 +84,8 @@ class BayesUCRL:
                 # iterate over all state-actions, sample from the posterior distribution and construct the sampled MDP
                 for s in self.all_states:
                     p,v = obs_to_index(s, self.env_low, self.env_dx)
+                    
+                    print("s",s,p,v)
                     cur_state = index_to_single_index(p,v, self.resolution)
                     
                     for action in range(self.num_actions):

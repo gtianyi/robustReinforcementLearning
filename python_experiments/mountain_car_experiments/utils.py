@@ -32,8 +32,8 @@ def obs_to_index(obs, env_low, env_dx):
     a: discritized position index, 
     b: discritized velocity index
     """
-    a = int((obs[0] - env_low[0])/env_dx[0])
-    b = int((obs[1] - env_low[1])/env_dx[1])
+    a = math.floor((obs[0] - env_low[0])/env_dx[0])
+    b = math.floor((obs[1] - env_low[1])/env_dx[1])
     return a, b
 
 def index_to_obs(a,b, grid_x, grid_y):

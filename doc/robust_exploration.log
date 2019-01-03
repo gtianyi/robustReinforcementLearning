@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.12)  1 JAN 2019 18:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.12)  3 JAN 2019 17:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1066,25 +1066,31 @@ zlibrarypositioning.code.tex
 File: tikzlibrarypositioning.code.tex 2008/10/06 v3.0.1a (rcs-revision 1.7)
 )
 \c@theorem=\count163
- (./robust_exploration.aux)
+ (./robust_exploration.aux
+
+LaTeX Warning: Label `fig:riverswim' multiply defined.
+
+
+LaTeX Warning: Label `fig:riverswim@cref' multiply defined.
+
+)
 \openout1 = `robust_exploration.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 151.
-LaTeX Font Info:    ... okay on input line 151.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 151.
-LaTeX Font Info:    ... okay on input line 151.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 151.
-LaTeX Font Info:    ... okay on input line 151.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 151.
-LaTeX Font Info:    ... okay on input line 151.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 151.
-LaTeX Font Info:    ... okay on input line 151.
-LaTeX Font Info:    Checking defaults for U/mathx/m/n on input line 151.
-LaTeX Font Info:    ... okay on input line 151.
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 151.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 157.
+LaTeX Font Info:    ... okay on input line 157.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 157.
+LaTeX Font Info:    ... okay on input line 157.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 157.
+LaTeX Font Info:    ... okay on input line 157.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 157.
+LaTeX Font Info:    ... okay on input line 157.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 157.
+LaTeX Font Info:    ... okay on input line 157.
+LaTeX Font Info:    Checking defaults for U/mathx/m/n on input line 157.
+LaTeX Font Info:    ... okay on input line 157.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 157.
 
-
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -1153,22 +1159,22 @@ Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: End \AtBeginDocument code.
 
 ABD: EveryShipout initializing macros
-LaTeX Font Info:    Try loading font information for U+msa on input line 152.
+LaTeX Font Info:    Try loading font information for U+msa on input line 158.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 152.
+LaTeX Font Info:    Try loading font information for U+msb on input line 158.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for OMS+rsfs on input line 152
+LaTeX Font Info:    Try loading font information for OMS+rsfs on input line 158
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/calrsfs/OMSrsfs.fd)
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 163.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 169.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -1176,391 +1182,428 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-] Excluding 'comment' comment.
-Underfull \hbox (badness 1803) in paragraph at lines 188--198
+]
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 188.
+ Excluding 'comment' comment.
+Underfull \hbox (badness 1803) in paragraph at lines 197--207
 \OT1/ptm/m/n/10 The op-ti-mal value func-tion is de-fined by $\OML/cmm/m/it/10 
 V[]\U/matha/m/n/10 p\OML/cmm/m/it/10 s\U/matha/m/n/10 q ^^P
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 200--206
+Underfull \hbox (badness 10000) in paragraph at lines 209--215
 \OT1/ptm/m/n/10 The op-ti-mal pol-icy $\OML/cmm/m/it/10 ^^Y[]$ \OT1/ptm/m/n/10 
 is de-fined as $\OML/cmm/m/it/10 ^^Y[]\U/matha/m/n/10 p\OML/cmm/m/it/10 s\U/mat
 ha/m/n/10 q ^^P
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 200--206
+Underfull \hbox (badness 10000) in paragraph at lines 209--215
 [] [][] \OML/cmm/m/it/10 Q[]\U/matha/m/n/10 p\OML/cmm/m/it/10 s; a\U/matha/m/n/
 10 q[]@\OML/cmm/m/it/10 s; h$\OT1/ptm/m/n/10 . Op-ti-mistic al-go-rithms
  []
 
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 220.
-
-Underfull \hbox (badness 1077) in paragraph at lines 221--222
+[2]
+Underfull \hbox (badness 1077) in paragraph at lines 238--239
 \OT1/ptm/m/n/10 ap-ply-ing the Ho-effd-ing in-equal-ity [Auer \OT1/ptm/m/it/10 
 et al.\OT1/ptm/m/n/10 , 2009;
  []
 
-[2]
 
 Package relsize Warning: Font size 6.94446pt is too small.
-(relsize)                Using 7.0pt instead on input line 244.
+(relsize)                Using 7.0pt instead on input line 261.
 
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 244.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 261.
 
 Package relsize Warning: Font size 6.94446pt is too small.
-(relsize)                Using 7.0pt instead on input line 259.
-
-
-Package relsize Warning: Font size 6.94446pt is too small.
-(relsize)                Using 7.0pt instead on input line 259.
+(relsize)                Using 7.0pt instead on input line 276.
 
 
 Package relsize Warning: Font size 6.94446pt is too small.
-(relsize)                Using 7.0pt instead on input line 259.
+(relsize)                Using 7.0pt instead on input line 276.
 
 
 Package relsize Warning: Font size 6.94446pt is too small.
-(relsize)                Using 7.0pt instead on input line 259.
+(relsize)                Using 7.0pt instead on input line 276.
 
 
 Package relsize Warning: Font size 6.94446pt is too small.
-(relsize)                Using 7.0pt instead on input line 259.
+(relsize)                Using 7.0pt instead on input line 276.
 
 
 Package relsize Warning: Font size 6.94446pt is too small.
-(relsize)                Using 7.0pt instead on input line 259.
+(relsize)                Using 7.0pt instead on input line 276.
 
 
 Package relsize Warning: Font size 6.94446pt is too small.
-(relsize)                Using 7.0pt instead on input line 259.
+(relsize)                Using 7.0pt instead on input line 276.
 
 
 Package relsize Warning: Font size 6.94446pt is too small.
-(relsize)                Using 7.0pt instead on input line 259.
+(relsize)                Using 7.0pt instead on input line 276.
 
 
 Package relsize Warning: Font size 6.94446pt is too small.
-(relsize)                Using 7.0pt instead on input line 259.
+(relsize)                Using 7.0pt instead on input line 276.
 
 
 Package relsize Warning: Font size 6.94446pt is too small.
-(relsize)                Using 7.0pt instead on input line 259.
+(relsize)                Using 7.0pt instead on input line 276.
 
 
 Package relsize Warning: Font size 6.94446pt is too small.
-(relsize)                Using 7.0pt instead on input line 259.
+(relsize)                Using 7.0pt instead on input line 276.
 
 
 Package relsize Warning: Font size 6.94446pt is too small.
-(relsize)                Using 7.0pt instead on input line 259.
+(relsize)                Using 7.0pt instead on input line 276.
 
 
 Package relsize Warning: Font size 6.94446pt is too small.
-(relsize)                Using 7.0pt instead on input line 260.
+(relsize)                Using 7.0pt instead on input line 276.
+
+
+Package relsize Warning: Font size 6.94446pt is too small.
+(relsize)                Using 7.0pt instead on input line 277.
 
 [3]
 
 Package relsize Warning: Font size 6.94446pt is too small.
-(relsize)                Using 7.0pt instead on input line 281.
+(relsize)                Using 7.0pt instead on input line 298.
 
 
 Package relsize Warning: Font size 6.94446pt is too small.
-(relsize)                Using 7.0pt instead on input line 282.
+(relsize)                Using 7.0pt instead on input line 299.
 
 
 Package relsize Warning: Font size 6.94446pt is too small.
-(relsize)                Using 7.0pt instead on input line 283.
+(relsize)                Using 7.0pt instead on input line 300.
 
 
 Package relsize Warning: Font size 6.94446pt is too small.
-(relsize)                Using 7.0pt instead on input line 284.
+(relsize)                Using 7.0pt instead on input line 301.
 
 
 Package relsize Warning: Font size 6.94446pt is too small.
-(relsize)                Using 7.0pt instead on input line 285.
+(relsize)                Using 7.0pt instead on input line 302.
 
 
 Package relsize Warning: Font size 6.94446pt is too small.
-(relsize)                Using 7.0pt instead on input line 292.
+(relsize)                Using 7.0pt instead on input line 309.
 
 
 Package relsize Warning: Font size 6.94446pt is too small.
-(relsize)                Using 7.0pt instead on input line 292.
+(relsize)                Using 7.0pt instead on input line 309.
 
 
 Package relsize Warning: Font size 6.94446pt is too small.
-(relsize)                Using 7.0pt instead on input line 292.
+(relsize)                Using 7.0pt instead on input line 309.
 
 
 Package relsize Warning: Font size 6.94446pt is too small.
-(relsize)                Using 7.0pt instead on input line 292.
+(relsize)                Using 7.0pt instead on input line 309.
 
 
 Package relsize Warning: Font size 6.94446pt is too small.
-(relsize)                Using 7.0pt instead on input line 292.
+(relsize)                Using 7.0pt instead on input line 309.
 
 
 Package relsize Warning: Font size 6.94446pt is too small.
-(relsize)                Using 7.0pt instead on input line 292.
+(relsize)                Using 7.0pt instead on input line 309.
 
 
-Underfull \hbox (badness 1168) in paragraph at lines 295--296
+Underfull \hbox (badness 1168) in paragraph at lines 312--313
 \OT1/ptm/m/n/10 con-fi-dence in-ter-vals are 1) the mean-centered in-ter-val
  []
 
 
 Package relsize Warning: Font size 6.94446pt is too small.
-(relsize)                Using 7.0pt instead on input line 313.
+(relsize)                Using 7.0pt instead on input line 330.
 
 
 Package relsize Warning: Font size 6.94446pt is too small.
-(relsize)                Using 7.0pt instead on input line 313.
+(relsize)                Using 7.0pt instead on input line 330.
 
 
 Package relsize Warning: Font size 6.94446pt is too small.
-(relsize)                Using 7.0pt instead on input line 313.
+(relsize)                Using 7.0pt instead on input line 330.
 
 
 Package relsize Warning: Font size 6.94446pt is too small.
-(relsize)                Using 7.0pt instead on input line 314.
+(relsize)                Using 7.0pt instead on input line 331.
 
 [4]
-LaTeX Font Info:    Calculating math sizes for size <2> on input line 439.
+LaTeX Font Info:    Calculating math sizes for size <2> on input line 455.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <2> not available
-(Font)              size <5> substituted on input line 439.
+(Font)              size <5> substituted on input line 455.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <1.4> not available
-(Font)              size <5> substituted on input line 439.
+(Font)              size <5> substituted on input line 455.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <1> not available
-(Font)              size <5> substituted on input line 439.
+(Font)              size <5> substituted on input line 455.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <2> not available
-(Font)              size <5> substituted on input line 439.
+(Font)              size <5> substituted on input line 455.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <1.4> not available
-(Font)              size <5> substituted on input line 439.
+(Font)              size <5> substituted on input line 455.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <1> not available
-(Font)              size <5> substituted on input line 439.
+(Font)              size <5> substituted on input line 455.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <2> not available
-(Font)              size <5> substituted on input line 439.
+(Font)              size <5> substituted on input line 455.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <1.4> not available
-(Font)              size <5> substituted on input line 439.
+(Font)              size <5> substituted on input line 455.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <1> not available
-(Font)              size <5> substituted on input line 439.
+(Font)              size <5> substituted on input line 455.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <2> not available
+(Font)              size <5> substituted on input line 455.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <1.4> not available
+(Font)              size <5> substituted on input line 455.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <1> not available
+(Font)              size <5> substituted on input line 455.
 
 
 LaTeX Font Warning: Font shape `OT1/cmss/m/n' in size <2> not available
-(Font)              size <5> substituted on input line 439.
+(Font)              size <5> substituted on input line 455.
 
 
 LaTeX Font Warning: Font shape `OT1/cmss/m/n' in size <1.4> not available
-(Font)              size <5> substituted on input line 439.
+(Font)              size <5> substituted on input line 455.
 
 
 LaTeX Font Warning: Font shape `OT1/cmss/m/n' in size <1> not available
-(Font)              size <5> substituted on input line 439.
+(Font)              size <5> substituted on input line 455.
 
 
 LaTeX Font Warning: Font shape `U/matha/m/n' in size <2> not available
-(Font)              size <5> substituted on input line 439.
+(Font)              size <5> substituted on input line 455.
 
 
 LaTeX Font Warning: Font shape `U/matha/m/n' in size <1.4> not available
-(Font)              size <5> substituted on input line 439.
+(Font)              size <5> substituted on input line 455.
 
 
 LaTeX Font Warning: Font shape `U/matha/m/n' in size <1> not available
-(Font)              size <5> substituted on input line 439.
+(Font)              size <5> substituted on input line 455.
 
 
 LaTeX Font Warning: Font shape `U/mathb/m/n' in size <2> not available
-(Font)              size <5> substituted on input line 439.
+(Font)              size <5> substituted on input line 455.
 
 
 LaTeX Font Warning: Font shape `U/mathb/m/n' in size <1.4> not available
-(Font)              size <5> substituted on input line 439.
+(Font)              size <5> substituted on input line 455.
 
 
 LaTeX Font Warning: Font shape `U/mathb/m/n' in size <1> not available
-(Font)              size <5> substituted on input line 439.
+(Font)              size <5> substituted on input line 455.
 
 
 LaTeX Font Warning: Font shape `U/mathx/m/n' in size <2> not available
-(Font)              size <5> substituted on input line 439.
+(Font)              size <5> substituted on input line 455.
 
 
 LaTeX Font Warning: Font shape `U/mathx/m/n' in size <1.4> not available
-(Font)              size <5> substituted on input line 439.
+(Font)              size <5> substituted on input line 455.
 
 
 LaTeX Font Warning: Font shape `U/mathx/m/n' in size <1> not available
-(Font)              size <5> substituted on input line 439.
+(Font)              size <5> substituted on input line 455.
 
 
 LaTeX Font Warning: Font shape `OMS/rsfs/m/n' in size <2> not available
-(Font)              size <5> substituted on input line 439.
+(Font)              size <5> substituted on input line 455.
 
 
 LaTeX Font Warning: Font shape `OMS/rsfs/m/n' in size <1.4> not available
-(Font)              size <5> substituted on input line 439.
+(Font)              size <5> substituted on input line 455.
 
 
 LaTeX Font Warning: Font shape `OMS/rsfs/m/n' in size <1> not available
-(Font)              size <5> substituted on input line 439.
+(Font)              size <5> substituted on input line 455.
 
 
-Overfull \hbox (2.8559pt too wide) in paragraph at lines 489--490
+Overfull \hbox (2.8559pt too wide) in paragraph at lines 505--506
  [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 491--491
+Underfull \hbox (badness 10000) in paragraph at lines 507--507
 []\OT1/ptm/m/n/10 Figure 3: |Casi-noLand prob-lem with eight states
  []
 
 
-Underfull \hbox (badness 7344) in paragraph at lines 491--491
+Underfull \hbox (badness 7344) in paragraph at lines 507--507
 \U/matha/m/n/10 p\OML/cmm/m/it/10 s[]; [] ; s[]\U/matha/m/n/10 q$ \OT1/ptm/m/n/
 10 and 3 ac-tions (0,1,2). Tran-si-tions are
  []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-<fig/SingleState_averagecase_Bayes_PSRL_OFVF.pdf, id=37, 462.52798pt x 346.8960
+<fig/SingleState_averagecase_Bayes_PSRL_OFVF.pdf, id=38, 462.52798pt x 346.8960
 1pt>
 File: fig/SingleState_averagecase_Bayes_PSRL_OFVF.pdf Graphic file (type pdf)
 <use fig/SingleState_averagecase_Bayes_PSRL_OFVF.pdf>
 Package pdftex.def Info: fig/SingleState_averagecase_Bayes_PSRL_OFVF.pdf  used 
-on input line 504.
+on input line 520.
 (pdftex.def)             Requested size: 199.64731pt x 149.73404pt.
-<fig/SingleState_worstcase_Bayes_PSRL_OFVF.pdf, id=38, 462.52798pt x 346.89601p
+<fig/SingleState_worstcase_Bayes_PSRL_OFVF.pdf, id=39, 462.52798pt x 346.89601p
 t>
 File: fig/SingleState_worstcase_Bayes_PSRL_OFVF.pdf Graphic file (type pdf)
 <use fig/SingleState_worstcase_Bayes_PSRL_OFVF.pdf>
 Package pdftex.def Info: fig/SingleState_worstcase_Bayes_PSRL_OFVF.pdf  used on
- input line 508.
+ input line 524.
 (pdftex.def)             Requested size: 199.64731pt x 149.73404pt.
-
-Underfull \vbox (badness 2818) has occurred while \output is active []
-
- [5]
-<fig/RiverSwim_averagecase_Bayes_PSRL_OFVF.pdf, id=45, 462.52798pt x 346.89601p
+<fig/RiverSwim_averagecase_Bayes_PSRL_OFVF.pdf, id=40, 462.52798pt x 346.89601p
 t>
 File: fig/RiverSwim_averagecase_Bayes_PSRL_OFVF.pdf Graphic file (type pdf)
 <use fig/RiverSwim_averagecase_Bayes_PSRL_OFVF.pdf>
 Package pdftex.def Info: fig/RiverSwim_averagecase_Bayes_PSRL_OFVF.pdf  used on
- input line 525.
+ input line 534.
 (pdftex.def)             Requested size: 199.64731pt x 149.73404pt.
-<fig/RiverSwim_worstcase_Bayes_PSRL_OFVF.pdf, id=46, 462.52798pt x 346.89601pt>
+<fig/RiverSwim_worstcase_Bayes_PSRL_OFVF.pdf, id=41, 462.52798pt x 346.89601pt>
 
 File: fig/RiverSwim_worstcase_Bayes_PSRL_OFVF.pdf Graphic file (type pdf)
 <use fig/RiverSwim_worstcase_Bayes_PSRL_OFVF.pdf>
 Package pdftex.def Info: fig/RiverSwim_worstcase_Bayes_PSRL_OFVF.pdf  used on i
-nput line 529.
+nput line 538.
 (pdftex.def)             Requested size: 199.64731pt x 149.73404pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-(./robust_exploration.bbl [6 <./fig/SingleState_averagecase_Bayes_PSRL_OFVF.pdf
-> <./fig/SingleState_worstcase_Bayes_PSRL_OFVF.pdf
+<fig/casino_land_averagecase_Bayes_PSRL_OFVF.pdf, id=42, 462.52798pt x 346.8960
+1pt>
+File: fig/casino_land_averagecase_Bayes_PSRL_OFVF.pdf Graphic file (type pdf)
+<use fig/casino_land_averagecase_Bayes_PSRL_OFVF.pdf>
+Package pdftex.def Info: fig/casino_land_averagecase_Bayes_PSRL_OFVF.pdf  used 
+on input line 548.
+(pdftex.def)             Requested size: 199.64731pt x 149.73404pt.
+<fig/casino_land__worstcase_Bayes_PSRL_OFVF.pdf, id=43, 462.52798pt x 346.89601
+pt>
+File: fig/casino_land__worstcase_Bayes_PSRL_OFVF.pdf Graphic file (type pdf)
+<use fig/casino_land__worstcase_Bayes_PSRL_OFVF.pdf>
+Package pdftex.def Info: fig/casino_land__worstcase_Bayes_PSRL_OFVF.pdf  used o
+n input line 552.
+(pdftex.def)             Requested size: 199.64731pt x 149.73404pt.
+[5] [6 <./fig/SingleState_averagecase_Bayes_PSRL_OFVF.pdf> <./fig/SingleState_w
+orstcase_Bayes_PSRL_OFVF.pdf
 
 pdfTeX warning: /usr/bin/pdflatex (file ./fig/SingleState_worstcase_Bayes_PSRL_
 OFVF.pdf): PDF inclusion: multiple pdfs with page group included in a single pa
 ge
->]
-Underfull \hbox (badness 1281) in paragraph at lines 49--52
-\OT1/ptm/m/n/10 Schnei-der, John Schul-man, Jie Tang, and Wo-j-ciech
- []
+> <./fig/RiverSwim_averagecase_Bayes_PSRL_OFVF.pdf
 
-) [7 <./fig/RiverSwim_averagecase_Bayes_PSRL_OFVF.pdf> <./fig/RiverSwim_worstca
-se_Bayes_PSRL_OFVF.pdf
+pdfTeX warning: /usr/bin/pdflatex (file ./fig/RiverSwim_averagecase_Bayes_PSRL_
+OFVF.pdf): PDF inclusion: multiple pdfs with page group included in a single pa
+ge
+> <./fig/RiverSwim_worstcase_Bayes_PSRL_OFVF.pdf
 
 pdfTeX warning: /usr/bin/pdflatex (file ./fig/RiverSwim_worstcase_Bayes_PSRL_OF
 VF.pdf): PDF inclusion: multiple pdfs with page group included in a single page
 
+> <./fig/casino_land_averagecase_Bayes_PSRL_OFVF.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ./fig/casino_land_averagecase_Bayes_PSR
+L_OFVF.pdf): PDF inclusion: multiple pdfs with page group included in a single 
+page
+> <./fig/casino_land__worstcase_Bayes_PSRL_OFVF.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ./fig/casino_land__worstcase_Bayes_PSRL
+_OFVF.pdf): PDF inclusion: multiple pdfs with page group included in a single p
+age
 >]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+(./robust_exploration.bbl
+Underfull \hbox (badness 1281) in paragraph at lines 49--52
+\OT1/ptm/m/n/10 Schnei-der, John Schul-man, Jie Tang, and Wo-j-ciech
+ []
+
+[7]) [8]
 
 Package relsize Warning: Font size 6.94446pt is too small.
-(relsize)                Using 7.0pt instead on input line 557.
-
-
-Package relsize Warning: Font size 6.94446pt is too small.
-(relsize)                Using 7.0pt instead on input line 558.
-
-
-Package relsize Warning: Font size 6.94446pt is too small.
-(relsize)                Using 7.0pt instead on input line 559.
-
-
-Package relsize Warning: Font size 6.94446pt is too small.
-(relsize)                Using 7.0pt instead on input line 560.
+(relsize)                Using 7.0pt instead on input line 590.
 
 
 Package relsize Warning: Font size 6.94446pt is too small.
-(relsize)                Using 7.0pt instead on input line 561.
+(relsize)                Using 7.0pt instead on input line 591.
 
-[8
+
+Package relsize Warning: Font size 6.94446pt is too small.
+(relsize)                Using 7.0pt instead on input line 592.
+
+
+Package relsize Warning: Font size 6.94446pt is too small.
+(relsize)                Using 7.0pt instead on input line 593.
+
+
+Package relsize Warning: Font size 6.94446pt is too small.
+(relsize)                Using 7.0pt instead on input line 594.
+
+[9
 
 ] (./robust_exploration.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 4.0pt have occurred.
 
+
+LaTeX Warning: There were multiply-defined labels.
+
  ) 
 Here is how much of TeX's memory you used:
- 20953 strings out of 492982
- 408224 string characters out of 6134895
- 501416 words of memory out of 5000000
- 24078 multiletter control sequences out of 15000+600000
- 37321 words of font info for 100 fonts, out of 8000000 for 9000
+ 20985 strings out of 492982
+ 409048 string characters out of 6134895
+ 503134 words of memory out of 5000000
+ 24104 multiletter control sequences out of 15000+600000
+ 38560 words of font info for 104 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,17n,77p,1273b,1096s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,17n,77p,1273b,1099s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.p
-fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/mathabx-type1/matha10.pfb></usr/share/t
-exlive/texmf-dist/fonts/type1/public/mathabx-type1/matha5.pfb></usr/share/texli
-ve/texmf-dist/fonts/type1/public/mathabx-type1/matha6.pfb></usr/share/texlive/t
-exmf-dist/fonts/type1/public/mathabx-type1/matha7.pfb></usr/share/texlive/texmf
--dist/fonts/type1/public/mathabx-type1/mathx10.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/public/amsfonts/symbols/msbm7.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/rsfs/rsfs10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/rsfs/rsfs7.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8
-a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on robust_exploration.pdf (8 pages, 284783 bytes).
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/mathabx-type1/matha10.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/public/mathabx-type1/matha5.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/mathabx-type1/matha6.pfb></usr/share/texlive/texmf-d
+ist/fonts/type1/public/mathabx-type1/matha7.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/mathabx-type1/mathx10.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/symbols/msbm7.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/rsfs/rsfs10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+rsfs/rsfs7.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/tex
+live/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on robust_exploration.pdf (9 pages, 325174 bytes).
 PDF statistics:
- 308 PDF objects out of 1000 (max. 8388607)
- 112 compressed objects within 2 object streams
+ 403 PDF objects out of 1000 (max. 8388607)
+ 126 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 33 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 43 words of extra memory for PDF output out of 10000 (max. 10000000)
 

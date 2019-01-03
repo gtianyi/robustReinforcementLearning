@@ -13,16 +13,16 @@ if __name__ == "__main__":
     discount_factor = 1.0
     
     # discretization resolution
-    resolution = 40
+    resolution = 30
     
     # number of times to run the experiment
-    num_runs = 200
+    num_runs = 10
     
     # number of episodes for each run
     num_episodes = 100
     
     # horizon for policy execution to collect samples for the next episode
-    horizon = 200
+    horizon = 100
 
     print("train with Q-learning")
     max_episodes, max_iterations = 200000, 20000 #00

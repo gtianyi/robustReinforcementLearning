@@ -57,6 +57,12 @@
 %\usetikzlibrary{shapes,arrows,positioning,calc}
 \usepackage[capitalize]{cleveref}
 
+% control space before and after plot/image
+\usepackage[belowskip=-5pt,aboveskip=5pt]{caption}
+\setlength{\intextsep}{10pt plus 2pt minus 2pt} %distance between floats inserted inside the page text (using h) and the text proper.
+\setlength{\textfloatsep}{10pt plus 2pt minus 2pt} %distance between floats on the top or the bottom and the text;
+\setlength{\floatsep}{10pt plus 2pt minus 2pt} %distance between two floats;
+
 \usepackage{tkz-graph}
 \usepackage{tikz}
 \usetikzlibrary{arrows,automata,positioning}
@@ -177,8 +183,11 @@ The performance of these OFU algorithms greatly depends on the methods to implem
 
 The main contribution of this paper is OFVF, a new \emph{data-driven} Bayesian approach to constructing \emph{Plausibility} sets for MDPs. The method computes policies with tighter robust estimates for exploration by introducing two new ideas. First, it is based on Bayesian posterior distributions rather than distribution-free bounds. Second, OFVF does not construct plausibility sets as simple confidence intervals. Confidence intervals as plausibility sets are a sufficient but not a necessary condition. OFVF uses the structure of the value function to optimize the \emph{location} and \emph{shape} of the plausibility set to guarantee upper bounds directly without necessarily enforcing the requirement for the set to be a confidence interval.
 
-The paper is organized as follows ...
-\section{Problem Statement}
+The paper is organized as follows: \cref{sec:prbolem} formally defines the problem setup and goals of the paper. \cref{sec:IE} reviews some existing methods to construct the plausibility sets and their extension to Bayesian setting. OFVF is proposed and analyzed in \cref{sec:ofvf}. Finally, \cref{sec:experiments} presents empirical performance on several problem domains.
+
+\paragraph{Notation:} The symbol $\Delta^\statecount$ denotes the probability simplex in $\Real_+^\statecount$. Symbols $\one$ and $\zero$ denote vectors of all ones and zeros, respectively, of the size appropriate to their context.
+
+\section{Problem Statement} \label{sec:prbolem}
 
 We consider the problem of learning a finite horizon Markov Decision Process $\mdp$ with states $\states = \{1, \ldots, S \}$ and actions $\actions = \{1, \ldots, A \}$. $p: \states \times \actions \to \Delta^\states$ is a transition function, where $p^a_{ss'}$ is interpreted as the probability of ending in state $s'\in\states$ by taking an action $a\in\actions$ from state $s\in\states$. We omit $s'$ when the next state is not deterministic and denote the transition probability as $p_{sa}\in\Real^S$. $R: \states \times \actions \to \Real$ is a reward function and $R^a_{ss'}$ is the reward for taking action $a\in\actions$ from state $s\in\states$ and reaching state $s'\in\states$. Each MDP $\mdp$ is associated with a discount factor $0\le\gamma\le1$ and a distribution of initial state probabilities $p_0$. $L$ is the number of episodes and $H$ is the number of periods in each episode, we consider an episodic learning environment throughout the paper. In each episode $l\in L$, an initial state $s_0\in\states$ is sampled from $p_0$. In period $h=0\ldots H$ of each episode, for a state $s_h$ and action $a_h$, a next state $s_{h+1}$ is sampled following $p^{a_h}_{s_hs_{h+1}}$ and a reward is obtained from $R^{a_h}_{s_hs_{h+1}}$.
 
@@ -206,13 +215,21 @@ of \cref{eq:state_action_value} within $\pset_{sa}$ that leads to the policy wit
 \begin{equation}
 Q\opt_h(s,a) := \max_{p_{sa} \in \pset_{sa}} \sum_{s'}p^{a}_{ss'}[r_h + V\opt (s') ]
 \end{equation}
-An RL agent interacts with the environment in an episodic setting. At each episode $l\in 0,\ldots,L-1$, the agent takes actions based on the policy $\pi\opt_l$ optimal in episode $l$ and realizes reward $\sum_{h=0}^H r_{lh}$. $\pi\opt_l$ is computed from the experiences gathered by the agent in previous episodes $0,\ldots,l-1$. We evaluate the performance of the agent in terms of \emph{expected cumulative regret}:
+An RL agent interacts with the environment in an episodic setting. At each episode $l\in 0,\ldots,L-1$, the agent takes actions based on the policy $\pi\opt_l$ optimal in episode $l$ and realizes reward $\sum_{h=0}^H r_{lh}$. $\pi\opt_l$ is computed from the experiences gathered by the agent in previous episodes $0,\ldots,l-1$. We evaluate the performance of the agent in terms of \emph{cumulative regret}, which is the total regret incurred by the agent upto time $T$ for a policy $\pi\opt_l$:
 \[
-Regret(T) = \sum_{l=0}^{T/H-1} \E\bigg[ V\opt(s_0) - V^{\pi\opt_l}(s_0) \bigg]
+Regret(T, \pi\opt_l) = \sum_{l=0}^{T/H-1} \rho_k
 \]
-Where $s_0 \sim p_0$, and $V\opt(s_0)$ are the true values of initial states.. 
+Where $\rho_k$ denotes the regret over the kth episode with respect to the true MDP $\mdp^*$. We consider both expected regret defined as:
+\[
+\rho^e_k = \E\bigg[ \sum_{s\in\states} p_0(s)\big( V\opt(s) - V^{\pi\opt_l}(s) \big) \bigg]
+\]
+and the worst-case regret defined as:
+\[
+\rho^w_k = \inf\bigg[ \sum_{s\in\states} p_0(s)\big( V\opt(s) - V^{\pi\opt_l}(s) \big) \bigg]
+\]
+Where $V\opt(s)$ is the true value w.r.t $\mdp^*$.
 
-\section{Interval Estimation for Plausibility Sets}
+\section{Interval Estimation for Plausibility Sets} \label{sec:IE}
 When solving an MDP in reinforcement learning, the main type of uncertainties are encountered on the model parameters, namely in transition probabilities and rewards. Given data set $\data$, an interval estimation of the model parameters is able to acknowledge and quantify this uncertainty, which a maximum likelihood based point estimate cannot do. In this section, we first describe the standard approach to constructing plausibility sets as distribution free confidence intervals. We then propose its extension to Bayesian setting and present a simple algorithm to serve that purpose. It is important to
 note that distribution-free bounds are subtly different from the Bayesian bounds, the Bayesian safety guarantee holds conditional on a given dataset $\data$ while the distribution-free hold
 across the sets $\data$. This makes the guarantees qualitatively different and difficult to compare.
@@ -266,7 +283,7 @@ MCMC methods like Stan~\citep{Gelman2004}. The algorithm assumes that it is poss
 
 \cref{alg:bayes_ucrl} proceeds in an episodic manner. At the beginning of each episode, it computes the posterior transition probabilities for each state and action. It then invokes \cref{alg:bayes} to compute the nominal transition points and the interval estimations for each state and action. It solves the MDP to compute the optimal policy for current episode. The execution of this policy for a fixed horizon generates more samples for posterior estimation in the next episode. This algorithm requires some extra steps compared to UCRL. It is also computationally expensive. But it performs better than UCRL in terms of computed returns over episodes which we will see in \cref{sec:experiments}.
 
-\section{OFVF: Optimism in the Face of sensible Value Functions} \label{sec:multiple}
+\section{OFVF: Optimism in the Face of sensible Value Functions} \label{sec:ofvf}
 In this section, we describe OFVF, a new approach to constructing plausibility sets to drive exploration in reinforcement learning. OFVF uses samples from posterior distribution, similar to BayesUCRL. But OFVF can optimize the size and shape of the plausibility sets that can provide much better upper bounds for optimism. We first outline the algorithm and illustrate how each step is achieved.
 
 OFVF relaxes the requirement for plausibility sets to be a confidence interval. It is sufficient to guarantee for each state $s$ and action $a$ that:
@@ -325,14 +342,6 @@ Now for the case when $\mathcal{V}$ is not a singleton, we only consider the set
 \end{equation}
 The optimization in \eqref{eq:center_point} can be represented as a linear program. In other words, we construct the set to minimize its radius while still intersecting the hyperplane for each $v$ in $\vset$.
 
-\section{Empirical Evaluation} \label{sec:experiments}
-
-In this section, we evaluate the estimated returns over episodes computed by Bayes UCRL and OFVF empirically. We assume a true model of each problem and generate a number of simulated data sets for the known distribution. We compute the tightest optimistic estimate for the optimal return and compare it with the optimal return for the true model. To judge the performance of the methods, we evaluate both the absolute error of the worst case estimates from optimal, as well the average case estimate from optimal.
-
-We compare our results with ``UCRL`` and ``PSRL`` algorithms. UCRL simply constructs the distribution free plausibility set by applying Chernoff-hoeffding inequality. PSRL does not construct any explicit plausibility set. Rather, it is a stochastically optimistic algorithm and it proceeds in a manner similar to Thompson sampling. PSRL samples a single statistically plausible MDP in proportion to the likelihood from the posterior. Optimism at each state-action independently makes OFU algorithms far too optimistic. PSRL can overcome this problem~\cite{Osband2016} and outperforms all OFU algorithms including OFVF in average case performance. But as we will see in the experiments, OFVF performs robustly in the worst case scenario and outperforms all other methods.
-
-Next in section \cref{ssection:single_state}, we compare the methods in a simplified setting in which we consider the problem of estimating the value of a single state from a Bellman update. Then in the following sections, we evaluate the methods on different problems involving challenging exploration in full MDP setup.
-
 \begin{figure}
 	\centering
 	\begin{tikzpicture}[>=stealth',
@@ -370,6 +379,14 @@ Next in section \cref{ssection:single_state}, we compare the methods in a simpli
 	\end{tikzpicture}
 	\caption{Simple MDP with one non-terminal state, three actions leading to three terminal states with different transition probabilities} \label{fig:SingleState}
 \end{figure}
+
+\section{Empirical Evaluation} \label{sec:experiments}
+
+In this section, we evaluate the estimated returns over episodes computed by Bayes UCRL and OFVF empirically. We assume a true model of each problem and generate a number of simulated data sets for the known distribution. We compute the tightest optimistic estimate for the optimal return and compare it with the optimal return for the true model. To judge the performance of the methods, we evaluate both the absolute error of the worst case estimates from optimal, as well the average case estimate from optimal.
+
+We compare our results with ``Bayes-UCRL`` and ``PSRL`` algorithms. We omit UCRL from comparison because it performs too poorly compared to other methods. PSRL does not construct any explicit plausibility set. Rather, it is a stochastically optimistic algorithm and it proceeds in a manner similar to Thompson sampling. PSRL samples a single statistically plausible MDP in proportion to the likelihood from the posterior. Optimism at each state-action independently makes OFU algorithms far too optimistic. PSRL can overcome this problem~\cite{Osband2016} and outperforms all OFU algorithms including OFVF in average case performance. But as we will see in the experiments, OFVF performs robustly in the worst case scenario and outperforms all other methods.
+
+Next in section \cref{ssection:single_state}, we compare the methods in a simplified setting in which we consider the problem of estimating the value of a single state from a Bellman update. Then in the following sections, we evaluate the methods on different problems involving challenging exploration in full MDP setup.
 
 \begin{figure}
 	\begin{center}
@@ -413,7 +430,6 @@ Next in section \cref{ssection:single_state}, we compare the methods in a simpli
 	\end{center}
 	\caption{RiverSwim problem with six states $(s_0,\ldots,s_5)$ and 2 actions (left- dashed arrow, right- solid arrow)} \label{fig:RiverSwim}
 \end{figure}
-
 \begin{figure}
 	\begin{center}
 		\begin{tikzpicture}[>=stealth',
@@ -441,7 +457,7 @@ Next in section \cref{ssection:single_state}, we compare the methods in a simpli
 		
 		%transition below q0
 		(q0)  edge [bend right=-20]  node[el,right, rotate=90, font=\fontsize{2}{2.5}\selectfont, pos=0.35]  {$(1,1,0)$}      (q4)
-		(q4)  edge [bend left=20]  node[el,left, rotate=-90, font=\fontsize{2}{2.5}\selectfont]  {$(3,1,0)$\\$(1,0.4,198)$}        (q0)
+		(q4)  edge [bend left=20]  node[el,left, rotate=-90, font=\fontsize{2}{2.5}\selectfont]  {$(0,1,0)$\\$(1,0.4,198)$}        (q0)
 		
 		%transition right q0
 		(q1)  edge [in=80,out=100,loop] node[el,above, font=\fontsize{2}{2.5}\selectfont] {$(0,1,0)$}                    (q1)
@@ -461,7 +477,7 @@ Next in section \cref{ssection:single_state}, we compare the methods in a simpli
 		(q6)  edge [bend left=20]  node[el,left, rotate=90, font=\fontsize{2}{2.5}\selectfont, pos=0.35]  {$(0,1,0)$\\$(1,0.2,500)$}        (q2)
 		
 		(q3)  edge [in=80,out=100,loop] node[el,above, font=\fontsize{2}{2.5}\selectfont] {$(0,1,0)$}                    (q3)
-		(q3)  edge [in=10,out=350,loop] node[el,above, rotate=-90, font=\fontsize{2}{2.5}\selectfont] {$(3,1,0)$}   (q3)
+		(q3)  edge [in=10,out=350,loop] node[el,above, rotate=-90, font=\fontsize{2}{2.5}\selectfont] {$(2,1,0)$}   (q3)
 		(q2)  edge [bend right=-20]  node[el,above, font=\fontsize{2}{2.5}\selectfont]  {$(2,1,0)$}     (q3)
 		(q3)  edge [bend left=20]  node[el,below, font=\fontsize{2}{2.5}\selectfont]  {$(3,1,0)$}        (q2)
 		%(q4)  edge [bend left=50, dashed]  node[el,below, font=\tiny]  {$1$}                  (q2)
@@ -511,13 +527,6 @@ We initially consider a simple problem with one single non-terminal state. The a
 	\label{fig:single_state}
 \end{figure*}
 
-\subsection{RiverSwim Problem}
-
-
-We compare the performance different methods in standard example of RiverSwim~\citep{Osband2013, Strehl2004}. RiverSwim consists of a chain of six states as shown in \cref{fig:RiverSwim}. The agent starts at the left-most state $s_0$. The agent can take one of two action: left or right. Strong current flows in the river from right to left. Swimming left thus always successful and takes the agent to the state on the left with probability 1. Swimming right goes against the current and often fails. The agent receives a very small reward for reaching leftmost state. But the rightmost state gives a much higher reward and the optimal policy is to swim right. Efficient exploration is required in this problem to find the optimal policy.
-
-We start with a uniform Dirichlet prior over the transition probabilities. We run the experiments for 500 episodes with each containing 100 Monte Carlo simulations. We compute the worst and average case cumulative regrets over the episodes. \cref{fig:riverswim} shows that, OFVF outperforms all other methods in terms of worst-case cumulative regret.
-
 \begin{figure*}
 	\centering
 	\begin{minipage}[c]{.85\columnwidth}
@@ -532,15 +541,39 @@ We start with a uniform Dirichlet prior over the transition probabilities. We ru
 	\label{fig:riverswim}
 \end{figure*}
 
+\begin{figure*}
+	\centering
+	\begin{minipage}[c]{.85\columnwidth}
+		\centering
+		\includegraphics[width=\linewidth]{fig/casino_land_averagecase_Bayes_PSRL_OFVF.pdf}\\
+	\end{minipage}%
+	\begin{minipage}[c]{.85\columnwidth}
+		\centering
+		\includegraphics[width=\linewidth]{fig/casino_land__worstcase_Bayes_PSRL_OFVF.pdf}
+	\end{minipage}%
+	\caption{Cumulative regret for the CasinoLand problem. Left) average cumulative regret, Right) Worst-case cumulative regret.}
+	\label{fig:riverswim}
+\end{figure*}
+
+\subsection{RiverSwim Problem}
+
+
+We compare the performance different methods in standard example of RiverSwim~\citep{Osband2013, Strehl2004}. RiverSwim consists of a chain of six states as shown in \cref{fig:RiverSwim}. The agent starts at the left-most state $s_0$. The agent can take one of two action: left or right. Strong current flows in the river from right to left. Swimming left thus always successful and takes the agent to the state on the left with probability 1. Swimming right goes against the current and often fails. The agent receives a very small reward for reaching leftmost state. But the rightmost state gives a much higher reward and the optimal policy is to swim right. Efficient exploration is required in this problem to find the optimal policy.
+
+We start with a uniform Dirichlet prior over the transition probabilities. We run the experiments for 500 episodes with each containing 100 Monte Carlo simulations. We compute the worst and average case cumulative regrets over the episodes. \cref{fig:riverswim} shows that, OFVF outperforms all other methods in terms of worst-case cumulative regret.
+
 \subsection{CasinoLand Problem}
 We compare the performance of the algorithms on another challenging exploration environment, CasinoLand~\citep{Strehl2004}. CasinoLand consists of eight rooms in a two-by-four grid as shown in~\cref{fig:CasinoLand}. The transition model of the agent is shown in the picture. On the top row, the agent can move freely to any direction. Actions are less rewarding on the top row, with rewards basically zero for all the movements. On the bottom row, no horizontal movement is allowed. Taking an specific action (conceptually pulling a lever) yields a large reward with small probability. The MDP requires hard exploration because the lever with smallest probability of generating reward is the best lever to pull.
 
 We start with a uniform Dirichlet prior over the transition probabilities. We run the experiments for 500 episodes with each containing 100 Monte Carlo simulations. We compute the worst and average case cumulative regrets over the episodes. [Plot reference] shows that, OFVF outperforms all other methods in terms of worst-case cumulative regret.
 
 \subsection{Mountain Car Problem}
-Next, we run experiments on the MountainCar problem from OpenAI Gym~\citep{openai}. The problem is about driving an under-powered car to the top (position=0.5) of a one-dimensional hill on the right side of the car. There is another hill on the left side of the car. There are two actions, going left or right. Climbing the hill on the left of the car can give some potential energy and accelerate the car towards the target on the top of the right hill.
+Next, we run experiments on the MountainCar problem from OpenAI Gym~\citep{openai}. The problem is about driving an under-powered car to the top (position=0.5) of a one-dimensional hill on the right side of the car. There is also a hill on the left side of the car. There are two actions, going left or right. The engine of the car is not strong enough, it cannot directly drive up to the hill on the right to reach the goal. But climbing the hill on the left of the car can give some momentum and that extra energy can help the car drive towards the target on the top of the right hill.
 
 We start with a uniform Dirichlet prior for transition over the nearby states of each individual state. We compute the reference optimal solution by running Q-Learning for a very large number $(10^5)$ of episodes. We run our algorithms for hundreds of episodes each containing hundreds of consequent runs. We compare both the average-case and worst-case cumulative regret. [reference] plot shows that, OFVF outperforms all other methods in the worst case scenario.
+
+\section{Summary and Conclusion} \label{sec:conclusion}
+We presented, in this paper, a new Bayesian approach to construct the set of plausible MDPs to drive exploration. This approach has several advantages over previously used distribution free methods. Bayes-UCRL can incorporate any structural prior knowledge and it is easy to generalize the shape of the plausibility sets to other norms, not only $L_1$ norms. We proposed OFVF, a Bayesian algorithm capable of constructing plausibility sets with better shapes and sizes. Beside the fact that our proposed Bayesian methods are computationally demanding than other distribution free methods, our theoretical and experimental analysis furnished that they can pay off with much tighter robust return estimates. We showed that, OFU algorithms can be useful for robust exploration by maximizing the worst-case return.
 
 \bibliography{marek,reazul_lib}
 
