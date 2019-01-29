@@ -1,5 +1,5 @@
-This is BibTeX, Version 0.99d (TeX Live 2017/Debian)
-Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: robust_exploration.aux
 The style file: named.bst
 Database file #1: marek.bib
@@ -12,114 +12,114 @@ Repeated entry---line 3484 of file marek.bib
  :                           ,
 I'm skipping whatever remains of this entry
 Database file #2: reazul_lib.bib
-Repeated entry---line 176 of file reazul_lib.bib
+Repeated entry---line 351 of file reazul_lib.bib
  : @article{Petrik2016
  :                    ,
 I'm skipping whatever remains of this entry
-I was expecting a `,' or a `}'---line 188 of file reazul_lib.bib
+I was expecting a `,' or a `}'---line 375 of file reazul_lib.bib
  : 
  : year = {2009}
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
-Repeated entry---line 455 of file reazul_lib.bib
+Repeated entry---line 909 of file reazul_lib.bib
  : @article{Brafman2001
  :                     ,
 I'm skipping whatever remains of this entry
-I was expecting a `,' or a `}'---line 608 of file reazul_lib.bib
+I was expecting a `,' or a `}'---line 1215 of file reazul_lib.bib
  :  
  :  title = {{An Analysis of Model-Based Interval Estimation for Markov Decision Processes}}
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
-Repeated entry---line 610 of file reazul_lib.bib
+Repeated entry---line 1219 of file reazul_lib.bib
  : @article{Strehl2004
  :                    ,
 I'm skipping whatever remains of this entry
-I was expecting a `,' or a `}'---line 623 of file reazul_lib.bib
+I was expecting a `,' or a `}'---line 1245 of file reazul_lib.bib
  :  
  :  title = {{Efficient Model-Based Exploration}}
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
-Repeated entry---line 723 of file reazul_lib.bib
+Repeated entry---line 1445 of file reazul_lib.bib
  : @article{Kearns1998a
  :                     ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 841 of file reazul_lib.bib
+Repeated entry---line 1681 of file reazul_lib.bib
  : @article{Auer2010a
  :                   ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 870 of file reazul_lib.bib
+Repeated entry---line 1739 of file reazul_lib.bib
  : @article{Agrawal2012
  :                     ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 2207 of file reazul_lib.bib
+Repeated entry---line 4413 of file reazul_lib.bib
  : @article{Agrawal2012
  :                     ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 2894 of file reazul_lib.bib
+Repeated entry---line 5787 of file reazul_lib.bib
  : @book{Bertsekas1996
  :                    ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 3083 of file reazul_lib.bib
+Repeated entry---line 6165 of file reazul_lib.bib
  : @book{Gelman2004
  :                 ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 4088 of file reazul_lib.bib
+Repeated entry---line 8175 of file reazul_lib.bib
  : @inproceedings{Kearns1998a
  :                           ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 4815 of file reazul_lib.bib
+Repeated entry---line 9629 of file reazul_lib.bib
  : @book{Sutton1998
  :                 ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 5144 of file reazul_lib.bib
+Repeated entry---line 10287 of file reazul_lib.bib
  : @book{Shapiro2014
  :                  ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 8356 of file reazul_lib.bib
+Repeated entry---line 16711 of file reazul_lib.bib
  : @article{Strehl2004
  :                    ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 9423 of file reazul_lib.bib
+Repeated entry---line 18845 of file reazul_lib.bib
  : @article{Agrawal2011
  :                     ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 11255 of file reazul_lib.bib
+Repeated entry---line 22509 of file reazul_lib.bib
  : @unpublished{Gupta2015
  :                       ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 11930 of file reazul_lib.bib
+Repeated entry---line 23859 of file reazul_lib.bib
  : @inproceedings{Petrik2016
  :                          ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 13675 of file reazul_lib.bib
+Repeated entry---line 27349 of file reazul_lib.bib
  : @book{Puterman2005
  :                   ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 13929 of file reazul_lib.bib
+Repeated entry---line 27857 of file reazul_lib.bib
  : @incollection{Auer2009
  :                       ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 15565 of file reazul_lib.bib
+Repeated entry---line 31129 of file reazul_lib.bib
  : @article{Wiesemann2013a
  :                        ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 16926 of file reazul_lib.bib
+Repeated entry---line 33851 of file reazul_lib.bib
  : @book{Puterman2005
  :                   ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 17160 of file reazul_lib.bib
+Repeated entry---line 34319 of file reazul_lib.bib
  : @article{Petrik2016
  :                    ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 17220 of file reazul_lib.bib
+Repeated entry---line 34439 of file reazul_lib.bib
  : @article{Petrik2016
  :                    ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 17563 of file reazul_lib.bib
+Repeated entry---line 35125 of file reazul_lib.bib
  : @article{Petrik2016
  :                    ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 18425 of file reazul_lib.bib
+Repeated entry---line 36849 of file reazul_lib.bib
  : @book{Puterman2005
  :                   ,
 I'm skipping whatever remains of this entry

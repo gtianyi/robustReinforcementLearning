@@ -232,24 +232,42 @@ Where $V\opt(s)$ is the true value w.r.t $\mdp^*$.
 \section{Interval Estimation for Plausibility Sets} \label{sec:IE}
 When solving an MDP in reinforcement learning, the main type of uncertainties are encountered on the model parameters, namely in transition probabilities and rewards. Given data set $\data$, an interval estimation of the model parameters is able to acknowledge and quantify this uncertainty, which a maximum likelihood based point estimate cannot do. In this section, we first describe the standard approach to constructing plausibility sets as distribution free confidence intervals. We then propose its extension to Bayesian setting and present a simple algorithm to serve that purpose. It is important to
 note that distribution-free bounds are subtly different from the Bayesian bounds, the Bayesian safety guarantee holds conditional on a given dataset $\data$ while the distribution-free hold
-across the sets $\data$. This makes the guarantees qualitatively different and difficult to compare.
+across all the sets. This makes the guarantees qualitatively different and difficult to compare.
 
 \subsection{Plausibility Sets as Confidence Intervals} \label{ssec:freq_pset}
 It is common in the literature to use $L_1$ norm as the distribution-free bound. This bound is constructed around the empirical mean of the transition probability $\bar{P}_{s,a}$ by applying the Hoeffding inequality~\citep{Auer2009,Auer2010a,Petrik2016,Wiesemann2013a,Strehl2004}.
 \[
 \pset_{sa} = \bigg\{ \lVert \tilde{p}_{sa} - \bar{p}_{sa} \rVert_1 \le \sqrt{\frac{2}{n_{s,a}}\log\frac{SA2^S}{\delta}} \bigg\}
 \]
-where $\bar{P}_{sa}$ is the mean transition computed from D, $n_{s,a}$ is the number of times the agent arrived state $s'$ after taking action $a$ in state $s$, $\delta$ is the required probability of the interval and $\lVert \bigcdot \rVert_1$ is the $L_1$ norm. An important limitation of this approach is that, the size of $\pset_{sa}$ grows linearly with the number of states, which makes it practically useless in general.
+where $\bar{P}_{sa}$ is the mean transition computed from $\data$, $n_{s,a}$ is the number of times the agent arrived state $s'$ after taking action $a$ in state $s$, $\delta$ is the required probability of the interval and $\lVert \bigcdot \rVert_1$ is the $L_1$ norm. An important limitation of this approach is that, the size of $\pset_{sa}$ grows linearly with the number of states, which makes it practically useless in general.
 
 \subsection{Bayesian Plausibility Sets} \label{ssec:bayes_pset}
-The Bayesian plausibility sets take the same interval estimation idea and extend it into Bayesian setting, which is analogous to \emph{credible intervals} in Bayesian statistics. Credible intervals are constructed with the posterior probability distributions and they are fixed $-$ not a random variable, given the data $\data$. Instead the estimated transition probabilities maximizing the rewards are random variables. They can take advantage of situation-specific prior knowledge unlike general confidence intervals as discussed above. However, a concise comparison between Bayesian and frequentist bounds is beyond the scope of this paper.
 
-The credible region for the plausibility set can be constructed around the mean, median or mode of the sample posterior distribution. Among which, bound around the empirical mean of the transition probabilities is simple and more common. To construct such a region, we optimize for the smallest plausibility set around the mean transition
-probability with the assumption that a smaller plausibility set will lead to a tighter upper bound estimate.
-Formally, the optimization problem to compute $\psi_{s,a}$ for each state s and action a is:
+The Bayesian plausibility sets take the same interval estimation idea
+and extend it into Bayesian setting, which is analogous to
+\emph{credible intervals} in Bayesian statistics. Credible intervals
+are constructed with the posterior probability distributions and they
+are fixed $-$ not a random variable, given the data $\data$. Instead,
+the estimated transition probabilities maximizing the rewards are
+random variables.  They can take the advantage of situation-specific prior
+knowledge unlike general confidence intervals as discussed above.
+However, a concise comparison between Bayesian and frequentist bounds
+is beyond the scope of this paper.
+
+The credible region for the plausibility set can be constructed around
+the mean, the median or the mode of the sample posterior distribution.
+Among which, bound around the empirical mean of the transition
+probabilities is simple and more common. To construct such a region,
+we optimize for the smallest plausibility set around the mean
+transition probability with the assumption that a smaller plausibility
+set will lead to a tighter upper bound estimate.  Formally, the
+optimization problem to compute $\psi_{s,a}$ for each state $s$ and
+action $a$ is:
+
 \begin{equation} \label{eq:optimization_bci}
 \min_{\psi\in\Real_+} \left\{\psi \ss \P\left[ \norm{\tilde{p}_{s,a} - \bar{p}_{s,a}}_1 > \psi ~|~ \mathcal{D} \right] < \delta \right\}~,
 \end{equation}
+
 where nominal point is $\bar{p}_{s,a} = \E_{\tilde{P}}[\tilde{p}_{s,a} ~|~ \mathcal{D}]$. The nominal point is not included in the optimization to reduce computational complexity. 
 
 The optimization problem in \cref{eq:optimization_bci} can be solved by the Sample Average Approximation~(SAA) algorithm~\citep{Shapiro2014}. The main idea is to sample from the posterior distribution and then choose the minimal size $\psi_{s,a}$ that satisfies the constrain.  \Cref{alg:bayes}, in the appendix, summarizes the simple sort-based method.
@@ -382,11 +400,21 @@ The optimization in \eqref{eq:center_point} can be represented as a linear progr
 
 \section{Empirical Evaluation} \label{sec:experiments}
 
-In this section, we evaluate the estimated returns over episodes computed by Bayes UCRL and OFVF empirically. We assume a true model of each problem and generate a number of simulated data sets for the known distribution. We compute the tightest optimistic estimate for the optimal return and compare it with the optimal return for the true model. To judge the performance of the methods, we evaluate both the absolute error of the worst case estimates from optimal, as well the average case estimate from optimal.
+In this section, we evaluate the estimated returns over episodes
+computed by Bayes UCRL and OFVF empirically. We assume a true model of
+each problem and generate a number of simulated data sets for the
+known distribution. We compute the tightest optimistic estimate for
+the optimal return and compare it with the optimal return for the true
+model. To judge the performance of the methods, we evaluate both the
+absolute error of the worst case estimates from optimal, as well as the
+average case estimate from optimal.
 
-We compare our results with ``Bayes-UCRL`` and ``PSRL`` algorithms. We omit UCRL from comparison because it performs too poorly compared to other methods. PSRL does not construct any explicit plausibility set. Rather, it is a stochastically optimistic algorithm and it proceeds in a manner similar to Thompson sampling. PSRL samples a single statistically plausible MDP in proportion to the likelihood from the posterior. Optimism at each state-action independently makes OFU algorithms far too optimistic. PSRL can overcome this problem~\cite{Osband2016} and outperforms all OFU algorithms including OFVF in average case performance. But as we will see in the experiments, OFVF performs robustly in the worst case scenario and outperforms all other methods.
+We compare our results with Bayes-UCRL and PSRL algorithms. We omit UCRL from comparison because it performs too poorly compared to other methods. PSRL does not construct any explicit plausibility set. Rather, it is a stochastically optimistic algorithm and it proceeds in a manner similar to Thompson sampling. PSRL samples a single statistically plausible MDP in proportion to the likelihood from the posterior. Optimism at each state-action independently makes OFU algorithms far too optimistic. PSRL can overcome this problem~\cite{Osband2016} and outperforms all OFU algorithms including OFVF in average case performance. But as we will see in the experiments, OFVF performs robustly in the worst case scenario and outperforms all other methods.
 
-Next in section \cref{ssection:single_state}, we compare the methods in a simplified setting in which we consider the problem of estimating the value of a single state from a Bellman update. Then in the following sections, we evaluate the methods on different problems involving challenging exploration in full MDP setup.
+We first compare the methods in a simplified setting in which we
+consider the problem of estimating the value of a single state from a
+Bellman update. We then evaluate the methods on different problems
+involving challenging exploration in full MDP setup.
 
 \begin{figure}
 	\begin{center}
@@ -430,6 +458,7 @@ Next in section \cref{ssection:single_state}, we compare the methods in a simpli
 	\end{center}
 	\caption{RiverSwim problem with six states $(s_0,\ldots,s_5)$ and 2 actions (left- dashed arrow, right- solid arrow)} \label{fig:RiverSwim}
 \end{figure}
+
 \begin{figure}
 	\begin{center}
 		\begin{tikzpicture}[>=stealth',
@@ -509,7 +538,14 @@ Next in section \cref{ssection:single_state}, we compare the methods in a simpli
 
 \subsection{Single-state Bellman Update} \label{ssection:single_state}
 
-We initially consider a simple problem with one single non-terminal state. The agent can take three different actions on that state. Each action leads to one of three terminal states with different transition probabilities. The value function for the terminal states are fixed and assumed to be known. The dynamics of the MDP is shown in~\cref{fig:SingleState}. We consider an uninformative Dirichlet prior for the transition probabilities. We run the experiments for 100 episodes, each episode 
+We initially consider a simple problem with one single non-terminal
+state. The agent can take three different actions on that state. Each
+action leads to one of three terminal states with different transition
+probabilities. The value function for the terminal states are fixed
+and assumed to be known. The dynamics of the MDP is shown
+in~\cref{fig:SingleState}. We consider an uninformative Dirichlet
+prior for the transition probabilities. We run the experiments for 100
+episodes. 
 
 \cref{fig:single_state} compares the average-case and worst-case returns computed by different methods. Note that OFVF outperforms all other methods in this simplistic setting. OFVF is able to explore in a robust way maximizing the worst-case return. As expected, PSRL outperforms all other methods in average case, but performs poorly in the worst-case scenario.
 
@@ -552,20 +588,40 @@ We initially consider a simple problem with one single non-terminal state. The a
 		\includegraphics[width=\linewidth]{fig/casino_land__worstcase_Bayes_PSRL_OFVF.pdf}
 	\end{minipage}%
 	\caption{Cumulative regret for the CasinoLand problem. Left) average cumulative regret, Right) Worst-case cumulative regret.}
-	\label{fig:riverswim}
+	\label{fig:casinoland}
 \end{figure*}
 
 \subsection{RiverSwim Problem}
 
 
-We compare the performance different methods in standard example of RiverSwim~\citep{Osband2013, Strehl2004}. RiverSwim consists of a chain of six states as shown in \cref{fig:RiverSwim}. The agent starts at the left-most state $s_0$. The agent can take one of two action: left or right. Strong current flows in the river from right to left. Swimming left thus always successful and takes the agent to the state on the left with probability 1. Swimming right goes against the current and often fails. The agent receives a very small reward for reaching leftmost state. But the rightmost state gives a much higher reward and the optimal policy is to swim right. Efficient exploration is required in this problem to find the optimal policy.
+We compare the performance of different methods in standard example of
+RiverSwim~\citep{Osband2013, Strehl2004}. RiverSwim consists of a
+chain of six states as shown in \cref{fig:RiverSwim}. The agent starts
+at the left-most state $s_0$. The agent can take one of two action:
+left or right. Strong current flows in the river from right to left.
+Swimming left thus always successful and takes the agent to the state
+on the left with probability 1. Swimming right goes against the
+current and often fails. The agent receives a very small reward for
+reaching leftmost state. But the rightmost state gives a much higher
+reward, and the optimal policy is to swim right. Efficient exploration
+is required in this problem to find the optimal policy.
 
-We start with a uniform Dirichlet prior over the transition probabilities. We run the experiments for 500 episodes with each containing 100 Monte Carlo simulations. We compute the worst and average case cumulative regrets over the episodes. \cref{fig:riverswim} shows that, OFVF outperforms all other methods in terms of worst-case cumulative regret.
+We start with a uniform Dirichlet prior over the transition
+probabilities. We run the experiments for 500 episodes with each
+containing 100 Monte Carlo simulations. We compute the worst and
+average case cumulative regrets over the episodes.
+\cref{fig:riverswim} shows that, OFVF outperforms all other methods in
+terms of worst-case cumulative regret.
 
 \subsection{CasinoLand Problem}
 We compare the performance of the algorithms on another challenging exploration environment, CasinoLand~\citep{Strehl2004}. CasinoLand consists of eight rooms in a two-by-four grid as shown in~\cref{fig:CasinoLand}. The transition model of the agent is shown in the picture. On the top row, the agent can move freely to any direction. Actions are less rewarding on the top row, with rewards basically zero for all the movements. On the bottom row, no horizontal movement is allowed. Taking an specific action (conceptually pulling a lever) yields a large reward with small probability. The MDP requires hard exploration because the lever with smallest probability of generating reward is the best lever to pull.
 
-We start with a uniform Dirichlet prior over the transition probabilities. We run the experiments for 500 episodes with each containing 100 Monte Carlo simulations. We compute the worst and average case cumulative regrets over the episodes. [Plot reference] shows that, OFVF outperforms all other methods in terms of worst-case cumulative regret.
+We start with a uniform Dirichlet prior over the transition
+probabilities. We run the experiments for 500 episodes with each
+containing 100 Monte Carlo simulations. We compute the worst and
+average case cumulative regrets over the episodes.
+\cref{fig:casinoland} shows that, OFVF outperforms all other methods
+in terms of worst-case cumulative regret.
 
 \subsection{Mountain Car Problem}
 Next, we run experiments on the MountainCar problem from OpenAI Gym~\citep{openai}. The problem is about driving an under-powered car to the top (position=0.5) of a one-dimensional hill on the right side of the car. There is also a hill on the left side of the car. There are two actions, going left or right. The engine of the car is not strong enough, it cannot directly drive up to the hill on the right to reach the goal. But climbing the hill on the left of the car can give some momentum and that extra energy can help the car drive towards the target on the top of the right hill.
